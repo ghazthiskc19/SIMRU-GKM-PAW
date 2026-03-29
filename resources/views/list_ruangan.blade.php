@@ -10,18 +10,10 @@
 </head>
 <body>
     <div class="mobile-container">
-        <!-- Header dengan Back Button -->
-        <header class="header-with-back">
-            <button class="header-back" type="button" aria-label="Kembali">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </button>
-            <h1 class="header-title-back">List Ruangan</h1>
-            <div class="header-back-spacer"></div>
-        </header>
+        @include('partials.header', ['id' => 2], ['judul' => 'List Ruangan'])
 
         <div class="content list-ruangan-content">
             <section class="ruangan-list" aria-label="Daftar ruangan yang tersedia">
-                <!-- Room Card Template -->
                 <article class="ruangan-card" data-ruangan-id="1">
                     <div class="ruangan-card-header">
                         <div class="ruangan-thumbnail"></div>
@@ -43,7 +35,6 @@
                     </div>
                 </article>
 
-                <!-- Room Card 2 -->
                 <article class="ruangan-card" data-ruangan-id="2">
                     <div class="ruangan-card-header">
                         <div class="ruangan-thumbnail"></div>
@@ -65,7 +56,6 @@
                     </div>
                 </article>
 
-                <!-- Room Card 3 -->
                 <article class="ruangan-card" data-ruangan-id="3">
                     <div class="ruangan-card-header">
                         <div class="ruangan-thumbnail"></div>
@@ -87,7 +77,6 @@
                     </div>
                 </article>
 
-                <!-- Room Card 4 -->
                 <article class="ruangan-card" data-ruangan-id="4">
                     <div class="ruangan-card-header">
                         <div class="ruangan-thumbnail"></div>

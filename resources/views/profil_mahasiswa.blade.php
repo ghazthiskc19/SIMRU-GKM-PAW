@@ -12,7 +12,7 @@
 <body>
 
     <div class="mobile-container">
-        @include('partials.header')
+        @include('partials.header', ['id' => 1])
 
         <div class="content">
             <div class="profile-content">
