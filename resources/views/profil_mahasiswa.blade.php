@@ -5,23 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil - Sistem Informasi Manajemen Ruangan GKM</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    @vite(['resources/css/profil_mahasiswa_style.css'])
+    @vite(['resources/css/shared_header_nav.css', 'resources/css/profil_mahasiswa_style.css'])
 </head>
 <body>
 
     <div class="mobile-container">
-        
-        <div class="header">
-            <div class="header-logo">
-                <img src="{{ asset('images/icon_logo.png') }}" alt="Profil">
-            </div>
-            <h1 class="header-title">Sistem Informasi Manajemen Ruangan GKM</h1>
-            <div class="header-notif">
-                <img src="{{ asset('images/icon_notifikasi.png') }}" alt="Notifikasi">
-            </div>
-        </div>
+        @include('partials.header')
 
         <div class="content">
             <div class="profile-content">
@@ -54,22 +45,10 @@
                 </div>
                 
             </div>
-        </div> <div class="bottom-nav">
-            <a href="#" class="nav-item">
-                <img src="{{ asset('images/icon_home.png') }}" alt="Home" class="nav-icon">
-                <span class="nav-label">Home</span>
-            </a>
-            
-            <a href="{{ url('/') }}" class="nav-item">
-                <img src="{{ asset('images/icon_menu.png') }}" alt="Menu" class="nav-icon">
-                <span class="nav-label">Menu</span>
-            </a>
-            
-            <a href="#" class="nav-item active">
-                <img src="{{ asset('images/icon_profile_active.png') }}" alt="Profile" class="nav-icon">
-                <span class="nav-label">Profile</span>
-            </a>
         </div>
 
-    </div> </body>
+        @include('partials.bottom-nav', ['active' => 'profil'])
+
+    </div>
+</body>
 </html>

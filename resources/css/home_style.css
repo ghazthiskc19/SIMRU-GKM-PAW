@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: whitesmoke;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content.home-content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-panel {
+    background: #f6f6f6;
+    border: 1px solid #5856AA;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 16px;
+}
+
+.calendar-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.calendar-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #3d3d3d;
+    line-height: 1;
+    border-bottom: 4px solid #6763c8;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.calendar-action {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 10px;
+    background: #6763c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-action img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+}
+
+.home-calendar {
+    border-top: 1px solid #d0d0d0;
+    padding-top: 8px;
+    overflow: visible;
+}
+
+.home-calendar .fc {
+    --fc-border-color: #d1d1d1;
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: #f6f6f6;
+    --fc-today-bg-color: #5856aa61;
+    --fc-event-bg-color: #7a74dd;
+    --fc-event-border-color: #7a74dd;
+    --fc-event-text-color: #ffffff;
+    font-size: 10px;
+}
+
+.home-calendar .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 8px;
+}
+
+.home-calendar .fc-view-harness {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.fc-view-harness::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+.fc-view-harness ::-webkit-scrollbar-track {
+    background: transparent;
+}
+.fc-view-harness ::-webkit-scrollbar-thumb {
+    background-color: #d4d4d8;
+    border-radius: 10px;
+}
+
+.home-calendar .fc-toolbar-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #4a4a4a;
+}
+
+.home-calendar .fc-button {
+    background: #6763c8 !important;
+    border-color: #6763c8 !important;
+    box-shadow: none !important;
+}
+
+.home-calendar .fc-timegrid-slot {
+    height: 2.2em;
+}
+
+.home-calendar .fc-scrollgrid {
+    min-width: 780px;
+}
+
+.home-calendar .fc-col-header-cell-cushion {
+    font-size: 14px;
+    padding: 6px 0;
+}
+
+.home-calendar .fc-timegrid-axis {
+    width: auto;
+    min-width: 64px;
+    padding: 0;
+    border-right: 1px solid #d1d1d1 !important;
+}
+
+.home-calendar .fc-timegrid-axis-cushion {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0 8px;
+}
+
+.home-calendar .fc-timegrid-axis,
+.home-calendar .fc-col-header-cell-cushion {
+    color: #4c4c4c;
+    font-weight: 700;
+}
+
+.home-calendar .fc-event-title {
+    font-weight: 700;
+}
+
+.activity-section {
+    background: #5856AA;
+    color: #fff;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 20px;
+    min-height: 240px;
+}
+
+.activity-greeting {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.activity-caption {
+    font-size: 12px;
+    font-weight: 100;
+    margin-bottom: 14px;
+}
+
+.activity-card {
+    background: rgba(159, 155, 246, 0.5);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.activity-room-thumbnail {
+    width: 92px;
+    height: 80px;
+    border-radius: 10px;
+    background: #f2f2f2;
+    flex-shrink: 0;
+}
+
+.activity-card-content h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 0.95;
+    margin-bottom: 8px;
+}
+.activity-link {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #6763c8;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+.activity-link:hover {
+    background: #fff;
+    color: #6763c8;
+}
+
+.activity-card-content p {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+
+.fc-scroller::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+.fc-scroller::-webkit-scrollbar-track {
+    background: transparent;
+}
+.fc-scroller::-webkit-scrollbar-thumb {
+    background-color: #d4d4d8;
+    border-radius: 10px;
+}
+

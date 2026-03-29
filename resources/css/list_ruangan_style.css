@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: whitesmoke;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header dengan Back Button */
+.header-with-back {
+    background: linear-gradient(135deg, #5856AA 0%, #6763c8 100%);
+    color: #fff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.header-back {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-back img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.header-title-back {
+    font-size: 18px;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+}
+
+.header-back-spacer {
+    width: 32px;
+    flex-shrink: 0;
+}
+
+/* Content Area */
+.list-ruangan-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ruangan-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Room Card */
+.ruangan-card {
+    background: #5856AA;
+    border-radius: 16px;
+    overflow: hidden;
+    color: #fff;
+}
+
+.ruangan-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ruangan-card-header:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ruangan-thumbnail {
+    width: 75px;
+    height: 60px;
+    min-width: 76px;
+    background: #f2f2f2;
+    border-radius: 12px;
+}
+
+.ruangan-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ruangan-name {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+
+.ruangan-toggle {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0;
+    width: fit-content;
+}
+
+.ruangan-toggle img {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+.ruangan-toggle[aria-expanded="true"] img {
+    transform: rotate(180deg);
+}
+
+/* Expanded Details */
+.ruangan-details {
+    background: rgba(159, 155, 246, 0.5);
+    padding: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ruangan-detail-content {
+    margin-bottom: 12px;
+}
+
+.ruangan-detail-content p {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.ruangan-detail-content p:last-child {
+    margin-bottom: 0;
+}
+
+.ruangan-detail-content strong {
+    font-weight: 600;
+    display: block;
+}
+
+.detail-capacity,
+.detail-facilities {
+    display: block;
+    margin-top: 2px;
+    font-weight: 500;
+}
+
+/* Button Lihat Detail */
+.btn-detail-ruangan {
+    background: #FFD700;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.btn-detail-ruangan:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollbar Styling */
+.list-ruangan-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.list-ruangan-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.list-ruangan-content::-webkit-scrollbar-thumb {
+    background-color: #d4d4d8;
+    border-radius: 10px;
+}
