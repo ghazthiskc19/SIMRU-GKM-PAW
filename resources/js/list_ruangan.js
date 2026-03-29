@@ -11,12 +11,41 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Pastikan bisa diukur untuk animasi walau awalnya ada atribut hidden
+        details.hidden = false;
+
+        const openDetails = () => {
+            details.classList.add('is-open');
+            details.style.maxHeight = `${details.scrollHeight + 30}px`;
+        };
+
+        const closeDetails = () => {
+            details.style.maxHeight = `${details.scrollHeight}px`;
+            requestAnimationFrame(() => {
+                details.classList.remove('is-open');
+                details.style.maxHeight = '0px';
+            });
+        };
+
+        const initiallyExpanded = button.getAttribute('aria-expanded') === 'true';
+        if (initiallyExpanded) {
+            openDetails();
+        } else {
+            details.classList.remove('is-open');
+            details.style.maxHeight = '0px';
+        }
+
         const toggleDetails = () => {
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
             const nextExpanded = !isExpanded;
 
             button.setAttribute('aria-expanded', String(nextExpanded));
-            details.hidden = !nextExpanded;
+
+            if (nextExpanded) {
+                openDetails();
+            } else {
+                closeDetails();
+            }
         };
 
         header.addEventListener('click', () => {
