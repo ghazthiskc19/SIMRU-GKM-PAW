@@ -20,12 +20,12 @@
 @endphp
 
 <div class="bottom-nav">
-    <a href="{{ url('/home') }}" class="nav-item {{ $active === 'home' ? 'active' : '' }}">
+    <a href="{{ url('/') }}" class="nav-item {{ $active === 'home' ? 'active' : '' }}">
         {!! $renderNavIcon('icon_home.svg') !!}
         <span class="nav-label">Home</span>
     </a>
 
-    <a href="{{ url('/') }}" class="nav-item {{ $active === 'menu' ? 'active' : '' }}">
+    <a href="{{ url('/menu_mahasiswa') }}" class="nav-item {{ $active === 'menu' ? 'active' : '' }}">
         {!! $renderNavIcon('icon_menu.svg') !!}
         <span class="nav-label">Menu</span>
     </a>

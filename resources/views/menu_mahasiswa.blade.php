@@ -16,42 +16,42 @@
             <div class="menu-grid">
                 <a href="{{ url('/list_ruangan') }}" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_ruangan.png') }}" alt="List Ruangan">
+                        <img src="{{ asset('images/icon_ruangan.svg') }}" alt="List Ruangan">
                     </div>
                     <span class="menu-label">List Ruangan</span>
                 </a>
 
                 <a href="#" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_jadwal.png') }}" alt="Jadwal Ruangan">
+                        <img src="{{ asset('images/icon_jadwal.svg') }}" alt="Jadwal Ruangan">
                     </div>
                     <span class="menu-label">Jadwal Ruangan</span>
                 </a>
 
                 <a href="#" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_peminjaman.png') }}" alt="Peminjaman Ruangan">
+                        <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Peminjaman Ruangan">
                     </div>
                     <span class="menu-label">Peminjaman Ruangan</span>
                 </a>
 
                 <a href="#" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_riwayat.png') }}" alt="Riwayat Peminjaman">
+                        <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Peminjaman">
                     </div>
                     <span class="menu-label">Riwayat Peminjaman</span>
                 </a>
 
                 <a href="#" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_laporan.png') }}" alt="Laporan Masalah">
+                        <img src="{{ asset('images/icon_laporan.svg') }}" alt="Laporan Masalah">
                     </div>
                     <span class="menu-label">Laporan Masalah</span>
                 </a>
 
                 <a href="#" class="menu-item">
                     <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_bantuan.png') }}" alt="Bantuan">
+                        <img src="{{ asset('images/icon_bantuan.svg') }}" alt="Bantuan">
                     </div>
                     <span class="menu-label">Bantuan</span>
                 </a>

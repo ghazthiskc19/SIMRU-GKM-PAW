@@ -39,7 +39,10 @@
                     </div>
 
                     <div class="logout-btn-container">
-                        <button class="logout-btn">Logout</button>
+                        <a href="{{ url('/login') }}">
+                            <button class="logout-btn">Logout</button>
+                        </a>
+                        
                     </div>
 
                 </div>
