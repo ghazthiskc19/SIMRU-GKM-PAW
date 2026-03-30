@@ -14,7 +14,11 @@ export default defineConfig({
                 'resources/css/home_style.css',
                 'resources/js/home_calendar.js',
                 'resources/css/list_ruangan_style.css',
-                'resources/js/list_ruangan.js'
+                'resources/js/list_ruangan.js',
+                'resources/css/list_ruangan_detail_style.css',
+                'resources/js/list_ruangan_detail.js',
+                'resources/css/jadwal_ruangan_style.css',
+                'resources/js/jadwal_ruangan.js'
             ],
             refresh: true,
         }),

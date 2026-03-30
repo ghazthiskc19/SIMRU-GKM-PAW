@@ -64,10 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     detailButtons.forEach(button => {
         button.addEventListener('click', () => {
             const ruanganId = button.getAttribute('data-ruangan-id');
-            // Backend: Navigate to detail page or open modal
-            // Placeholder for backend integration
-            console.log('Navigate to detail ruangan ID:', ruanganId);
-            // Example: window.location.href = `/ruangan/${ruanganId}`;
+            window.location.href = `/list_ruangan_detail?ruangan=${encodeURIComponent(ruanganId || '')}`;
         });
     });
 

@@ -18,6 +18,14 @@ Route::get('/list_ruangan', function () {
     return view('list_ruangan');
 });
 
+Route::get('/list_ruangan_detail', function () {
+    return view('list_ruangan_detail');
+});
+
+Route::get('/jadwal_ruangan', function () {
+    return view('jadwal_ruangan');
+})->name('jadwal-ruangan');
+
 Route::get('/notifikasi', function () {
     return view('notifikasi');
 });

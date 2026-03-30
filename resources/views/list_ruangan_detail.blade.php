@@ -3,72 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Ruangan - Sistem Informasi Manajemen Ruangan GKM</title>
+    <title>Detail Ruangan - Sistem Informasi Manajemen Ruangan GKM</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/shared_header_nav.css', 'resources/css/list_ruangan_style.css', 'resources/js/list_ruangan.js'])
+    @vite(['resources/css/shared_header_nav.css', 'resources/css/list_ruangan_detail_style.css', 'resources/js/list_ruangan_detail.js'])
 </head>
 <body>
     <div class="mobile-container">
-        @include('partials.header', ['id' => 2], ['judul' => 'Peminjaman Ruangan'])
+        @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan'])
 
-        <div class="list-ruangan-detail-container">
+        <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
             <div class="list-ruangan-detail-status">
                 <div class="nama-ruangan-container">
-                    <!-- sesuaikan dengan ruangan yang di klik sebelumnya -->
-                    <h3 class="ruangan-name">GKM 4.1</h3>
+                    <h3 class="ruangan-name" id="detail-room-name-chip">String value</h3>
                 </div>
                 <div class="status-ruangan-container">
-                    <!-- akan mengambil status ruangan, apakah bisa dipinjam atau tidak -->
-                    <h3 class="status-ruangan">Tersedia</h3>
+                    <h3 class="status-ruangan" id="detail-room-status">Tersedia</h3>
                 </div>
             </div>
+
             <div class="list-ruangan-detail-hero">
-                <div class="arrow-left-hero">
-                    <a href="#"></a>
-                </div>
+                <button class="arrow-hero arrow-left-hero" type="button" aria-label="Gambar sebelumnya">❮</button>
                 <div class="hero-image-container">
-                    <!-- disini buat foto yang bisa kek ngeslide show secara otomatis fade in kiri or kanan -->
-                    <img src="{{ asset('images/hero_ruangan.png') }}" alt="Foto Ruangan GKM 4.1" class="hero-image">
+                    <img src="{{ asset('images/hero_ruangan.png') }}" alt="Foto Ruangan" class="hero-image" id="detail-hero-image">
                 </div>
-                <div class="arrow-right-hero">
-                    <a href="#"></a>
-                </div>
+                <button class="arrow-hero arrow-right-hero" type="button" aria-label="Gambar berikutnya">❯</button>
             </div>
+
+            <div class="hero-dots" id="hero-dots" aria-label="Indikator gambar"></div>
+
             <div class="list-ruangan-detail-informasi">
                 <div class="nama-ruangan">
-                    <p>Nama Ruangan:</p>
-                    <p class="ruangan-name">GKM 4.1</p>
+                    <label>Nama Ruangan</label>
+                    <div class="field-value" id="detail-room-name">String value</div>
                 </div>
                 <div class="kapasitas-ruangan">
-                    <p>Kapasitas:</p>
-                    <p class="ruangan-kapasitas">50 orang</p>
+                    <label>Kapasitas Ruangan</label>
+                    <div class="field-value" id="detail-room-capacity">String value</div>
                 </div>
                 <div class="fasilitas-ruangan">
-                    <p>Fasilitas:</p>
-                    <ul class="ruangan-fasilitas">
-                        <li>AC</li>
-                        <li>Sound System</li>
-                        <li>In Focus</li>
-                        <li>Layer In Focus</li>
-                        <li>Meja Panjang</li>
-                        <li>Kursi</li>
-                        <li>Microphone</li>
-                    </ul>
-                <div class="lokasi-ruangan">
-                    <p>Lokasi:</p>
-                    <p class="ruangan-lokasi">Gedung Kreativitas Mahasiswa, Filkom, Lantai 4</p>
+                    <label>Fasilitas Ruangan</label>
+                    <div class="field-value multiline" id="detail-room-facilities">String value</div>
                 </div>
+                <div class="lokasi-ruangan">
+                    <label>Lokasi Ruangan</label>
+                    <div class="field-value" id="detail-room-location">String value</div>
+                </div>
+
                 <div class="jadwal-ketersediaan-ruangan">
                     <p>Jadwal Ketersediaan Ruangan</p>
                     <div class="check-button-container">
-                        <a href="#" class="check-button">Cek Disini</a>
+                        <button type="button" class="check-button" id="check-ketersediaan-button">Cek Disini</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        @include('partials.bottom-nav', ['active' => 'menu'])
+        <div class="pinjam-action-bar">
+            <button type="button" class="pinjam-button" id="pinjam-button">Pinjam Ruangan Ini</button>
+        </div>
     </div>
 </body>
 </html>

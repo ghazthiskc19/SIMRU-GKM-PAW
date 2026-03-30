@@ -21,7 +21,7 @@
                     <span class="menu-label">List Ruangan</span>
                 </a>
 
-                <a href="#" class="menu-item">
+                <a href="{{ route('jadwal-ruangan') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_jadwal.svg') }}" alt="Jadwal Ruangan">
                     </div>

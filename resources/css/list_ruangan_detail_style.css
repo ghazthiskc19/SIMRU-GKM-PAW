@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: whitesmoke;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-with-back {
+    background: linear-gradient(135deg, #5856AA 0%, #6763c8 100%);
+    color: #fff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.header-back {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.header-back img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.header-title-back {
+    font-size: 18px;
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+}
+
+.header-back-spacer {
+    width: 32px;
+    flex-shrink: 0;
+}
+
+.list-ruangan-detail-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    padding-bottom: 110px;
+}
+
+.list-ruangan-detail-status {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 10px;
+}
+
+.nama-ruangan-container,
+.status-ruangan-container {
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nama-ruangan-container {
+    background: #5856AA;
+    color: #fff;
+    min-width: 108px;
+}
+
+.status-ruangan-container {
+    min-width: 108px;
+    background: #57a557;
+    color: #fff;
+}
+
+.ruangan-name,
+.status-ruangan {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.list-ruangan-detail-hero {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.hero-image-container {
+    background: #d0d0d0;
+    height: 266px;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.arrow-hero {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    color: #000;
+    font-size: 36px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.arrow-left-hero { left: 8px; }
+.arrow-right-hero { right: 8px; }
+
+.hero-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.hero-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #cfcfd1;
+    border: none;
+    padding: 0;
+}
+
+.hero-dot.active {
+    background: #b7b7b9;
+}
+
+.list-ruangan-detail-informasi label {
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #232323;
+}
+
+.list-ruangan-detail-informasi > div {
+    margin-bottom: 8px;
+}
+
+.field-value {
+    width: 100%;
+    min-height: 42px;
+    background: #efefef;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+    color: #2f2f2f;
+    display: flex;
+    align-items: flex-start;
+}
+
+.field-value.multiline {
+    min-height: 112px;
+}
+
+.jadwal-ketersediaan-ruangan {
+    margin-top: 8px;
+}
+
+.jadwal-ketersediaan-ruangan > p {
+    font-size: 17px;
+    font-weight: 500;
+    color: #232323;
+    margin-bottom: 6px;
+}
+
+.check-button-container {
+    background: #5856AA;
+    border-radius: 8px;
+    padding: 11px;
+}
+
+.check-button {
+    width: 100%;
+    border: none;
+    border-radius: 999px;
+    background: #f6cc35;
+    color: #3d43a8;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.check-button:active {
+    transform: scale(0.99);
+}
+
+.pinjam-action-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #5856AA;
+    padding: 25px 18px 18px;
+}
+
+.pinjam-button {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    background: #f6cc35;
+    color: #3d43a8;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.list-ruangan-detail-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.list-ruangan-detail-container::-webkit-scrollbar-thumb {
+    background: #c7c7cc;
+    border-radius: 10px;
+}
