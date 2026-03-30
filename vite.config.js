@@ -6,10 +6,12 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css', 
+                'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/css/shared_header_nav.css',
                 'resources/css/halaman_menu_style.css',
+                'resources/css/riwayat_style.css',
+                'resources/css/detail_riwayat_style.css',
                 'resources/css/profil_mahasiswa_style.css',
                 'resources/css/home_style.css',
                 'resources/js/home_calendar.js',

@@ -14,7 +14,7 @@
 
         <div class="content">
             <div class="menu-grid">
-                <a href="{{ url('/list_ruangan') }}" class="menu-item">
+                <a href="{{ route('list-ruangan') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_ruangan.svg') }}" alt="List Ruangan">
                     </div>
@@ -35,7 +35,7 @@
                     <span class="menu-label">Peminjaman Ruangan</span>
                 </a>
 
-                <a href="#" class="menu-item">
+                <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Peminjaman">
                     </div>
