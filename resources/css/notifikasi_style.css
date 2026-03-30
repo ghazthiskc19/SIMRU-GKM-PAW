@@ -1,0 +1,192 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header dengan Gradien Ungu */
+.header-notif-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px 15px;
+    background: linear-gradient(135deg, #4b3996, #2d2060); /* Gradien sesuai desain */
+    color: white;
+}
+
+.back-btn, .header-icon-right {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.back-btn img, .header-icon-right img {
+    width: 100%;
+    height: auto;
+}
+
+.header-title-notif {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Area Konten yang bisa di-scroll */
+.content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Item Notifikasi (Bisa Diklik) */
+.notif-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #E0E0E0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.notif-item:active {
+    background-color: #f9f9f9;
+}
+
+/* Bagian Ringkasan (Selalu Tampil) */
+.notif-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Ikon Status */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.icon-circle img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Warna Latar Ikon */
+.bg-purple { background-color: #E0D4FF; }
+.bg-yellow { background-color: #FFF9C4; }
+.bg-green { background-color: #C8E6C9; }
+
+/* Teks Notifikasi Utama */
+.notif-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.notif-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+}
+
+.notif-date {
+    font-size: 11px;
+    font-weight: 400;
+    color: #666;
+}
+
+/* Bagian Detail (Disembunyikan secara default) */
+.notif-detail {
+    display: none; /* Disembunyikan awalnya */
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #E0E0E0;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.detail-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.detail-info {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.detail-desc {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    text-align: justify;
+}
+
+/* Bottom Nav - Sama seperti sebelumnya */
+.bottom-nav {
+    background-color: #F0F2F5;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #E0E0E0;
+    border-radius: 0 0 20px 20px; 
+}
+.nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #888;
+    position: relative;
+}
+.nav-icon { width: 28px; height: 28px; margin-bottom: 5px; }
+.nav-label { font-size: 11px; font-weight: 600; }
+.nav-item.active { color: #303F9F; }
+.nav-item.active .nav-icon { filter: none; }
+.nav-item.active::after {
+    content: ''; display: block; width: 25px; height: 3px;
+    background-color: #303F9F; border-radius: 5px; margin-top: 5px;
+}

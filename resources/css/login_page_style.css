@@ -1,0 +1,126 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 40px;
+    overflow: hidden; /* Penting: agar dekorasi yang keluar batas terpotong melengkung mengikuti HP */
+    position: relative; /* Menjadi patokan letak dekorasi absolute */
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   Elemen Dekoratif (Absolute Positioning)
+   ========================================= */
+
+/* Hiasan Kiri Atas */
+.decor-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px; /* Sesuaikan dengan ukuran dari Figma */
+    z-index: 1;
+}
+
+/* Gelombang Oranye Bawah (Layer 1) */
+.decor-bottom-orange {
+    position: absolute;
+    bottom: 0; /* Menempel di bawah */
+    left: 0;
+    width: 100%; /* Membentang penuh */
+    z-index: 1; /* Di belakang biru */
+}
+
+/* Gelombang Biru Bawah (Layer 2) */
+.decor-bottom-blue {
+    position: absolute;
+    bottom: 0; /* Menempel di bawah */
+    left: 0;
+    width: 100%; /* Membentang penuh */
+    z-index: 2; /* Di depan oranye */
+}
+
+/* =========================================
+   Konten Utama (Berada di atas dekorasi)
+   ========================================= */
+.login-content {
+    position: relative;
+    z-index: 10; /* Memastikan konten bisa diklik dan tidak tertutup dekorasi */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Membuat semua konten berada di tengah vertikal */
+    flex: 1;
+    padding: 0 40px;
+}
+
+.logo-filkom {
+    height: 25px; /* Sesuaikan tinggi logo */
+    margin-bottom: 40px;
+}
+
+.main-icon {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+.app-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* =========================================
+   Tombol Login
+   ========================================= */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.btn-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* Warna ungu agak pudar khas desainmu */
+    background-color: #8C94DE; 
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 25px; /* Sudut sangat bulat seperti pil */
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #727BCC; /* Sedikit lebih gelap saat disorot */
+    transform: translateY(-2px);
+}

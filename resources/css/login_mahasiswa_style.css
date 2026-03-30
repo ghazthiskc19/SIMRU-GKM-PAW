@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 40px;
+    overflow: hidden; 
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   Elemen Dekoratif (Absolute Positioning)
+   ========================================= */
+
+/* Hiasan Kiri Atas */
+.decor-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px; /* Sesuaikan dengan ukuran dari Figma */
+    z-index: 1;
+}
+
+/* Gelombang Oranye Bawah (Layer 1) */
+.decor-bottom-orange {
+    position: absolute;
+    bottom: 0; /* Menempel di bawah */
+    left: 0;
+    width: 100%; /* Membentang penuh */
+    z-index: 1; /* Di belakang biru */
+}
+
+/* Gelombang Biru Bawah (Layer 2) */
+.decor-bottom-blue {
+    position: absolute;
+    bottom: 0; /* Menempel di bawah */
+    left: 0;
+    width: 100%; /* Membentang penuh */
+    z-index: 2; /* Di depan oranye */
+}
+
+.login-card {
+    background-color: rgba(255, 255, 255, 0.95); /* Putih dengan sedikit efek transparan */
+    width: 85%;
+    max-width: 340px;
+    padding: 40px 30px;
+    margin: auto; /* Mengatur kartu tepat di tengah layar */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+    text-align: center;
+    position: relative;
+    z-index: 10; /* Berada di atas dekorasi gelombang */
+    backdrop-filter: blur(5px); /* Efek kaca kekinian */
+}
+
+/* Tipografi Judul */
+.login-card h2 {
+    color: #2b3582; /* Biru Navy */
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.login-card p.subtitle {
+    color: #f69240; /* Aksen Oranye */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+/* Form Group & Input */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #2b3582;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 2px solid #e0e5f2;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9fbfd;
+    transition: all 0.3s ease;
+}
+
+/* Efek saat input diklik (Fokus menjadi Oranye) */
+.form-group input:focus {
+    border-color: #f69240;
+    box-shadow: 0 0 8px rgba(246, 146, 64, 0.2);
+}
+
+/* Tombol Login */
+.btn-login {
+    background-color: #2b3582; /* Warna dasar Biru */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 14px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(43, 53, 130, 0.3);
+}
+
+/* Efek saat tombol disorot (Berubah jadi Oranye) */
+.btn-login:hover {
+    background-color: #f69240;
+    box-shadow: 0 6px 20px rgba(246, 146, 64, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Link Bawah */
+.forgot-password {
+    margin-bottom: 20px;
+}
+
+.forgot-password a {
+    color: #7b8ab8;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.forgot-password a:hover {
+    color: #f69240; /* Hover Oranye */
+}
+
+.register-link {
+    font-size: 13px;
+    color: #7b8ab8;
+}
+
+.register-link a {
+    color: #2b3582;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+    transition: color 0.3s;
+}
+
+.register-link a:hover {
+    color: #f69240; /* Hover Oranye */
+    text-decoration: underline;
+}

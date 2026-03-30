@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/', function () {
+Route::get('/menu_mahasiswa', function () {
     return view('menu_mahasiswa');
 });
 
@@ -16,4 +16,17 @@ Route::get('/profil_mahasiswa', function () {
 
 Route::get('/list_ruangan', function () {
     return view('list_ruangan');
+});
+
+Route::get('/notifikasi', function () {
+    return view('notifikasi');
+});
+
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/login_mahasiswa', function () {
+    return view('login_mahasiswa');
 });

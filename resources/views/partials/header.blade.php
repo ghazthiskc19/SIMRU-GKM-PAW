@@ -14,11 +14,13 @@
 @else
     <div class="header">
         <div class="header-logo">
-            <img src="{{ asset('images/icon_logo.png') }}" alt="Logo">
+            <img src="{{ asset('images/icon_logo.svg') }}" alt="Logo">
         </div>
         <h1 class="header-title">{{ $judul }}</h1>
         <div class="header-notif">
-            <img src="{{ asset('images/icon_notifikasi.png') }}" alt="Notifikasi">
+            <a href="{{ uri('/notifikasi') }}">
+                <img src="{{ asset('images/icon_notifikasi.svg') }}" alt="Notifikasi">
+            </a>
         </div>
     </div>
 @endif
