@@ -20,7 +20,9 @@ export default defineConfig({
                 'resources/css/list_ruangan_detail_style.css',
                 'resources/js/list_ruangan_detail.js',
                 'resources/css/jadwal_ruangan_style.css',
-                'resources/js/jadwal_ruangan.js'
+                'resources/js/jadwal_ruangan.js',
+                'resources/css/peminjaman_ruangan_style.css',
+                'resources/js/peminjaman_ruangan.js'
             ],
             refresh: true,
         }),

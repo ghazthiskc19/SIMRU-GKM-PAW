@@ -9,14 +9,7 @@
 </head>
 <body>
     <div class="mobile-container">
-        
-        <div class="header-ungu">
-            <a href="{{ route('riwayat-peminjaman') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Detail Peminjaman</h1>
-            <div class="header-back-spacer"></div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Detail Peminjaman'])
 
         <div class="content detail-content">
             
@@ -50,5 +43,11 @@
 
         @include('partials.bottom-nav', ['active' => 'menu'])
     </div>
+
+    <script>
+        document.querySelector('.header-back')?.addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>

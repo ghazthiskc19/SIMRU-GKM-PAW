@@ -105,6 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `/jadwal_ruangan?ruangan=${encodeURIComponent(roomId)}`;
     });
 
+    const pinjamBtn = document.getElementById('pinjam-button');
+    pinjamBtn?.addEventListener('click', () => {
+        window.location.href = `/peminjaman_ruangan?ruangan=${encodeURIComponent(roomId)}`;
+    });
+
     const backButton = document.querySelector('.header-back');
     backButton?.addEventListener('click', () => {
         window.history.back();

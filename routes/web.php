@@ -26,6 +26,10 @@ Route::get('/jadwal_ruangan', function () {
     return view('jadwal_ruangan');
 })->name('jadwal-ruangan');
 
+Route::get('/peminjaman_ruangan', function () {
+    return view('peminjaman_ruangan');
+})->name('peminjaman-ruangan');
+
 Route::get('/notifikasi', function () {
     return view('notifikasi');
 });

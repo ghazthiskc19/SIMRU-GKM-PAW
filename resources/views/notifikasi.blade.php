@@ -7,20 +7,12 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     
-    @vite(['resources/css/notifikasi_style.css'])
+    @vite(['resources/css/shared_header_nav.css', 'resources/css/notifikasi_style.css'])
 </head>
 <body>
 
     <div class="mobile-container">
-        
-        <div class="header-notif-page">
-            <a href="{{ url('/') }}" class="back-btn">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-notif">Notifikasi</h1>
-            <div class="header-icon-right">
-                </div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Notifikasi'])
 
         <div class="content">
             
@@ -106,6 +98,10 @@
     </div>
 
     <script>
+        document.querySelector('.header-back')?.addEventListener('click', function () {
+            window.history.back();
+        });
+
         function toggleDetail(item) {
             // Cari div dengan class 'notif-detail' di dalam item yang diklik
             const detailBox = item.querySelector('.notif-detail');

@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="mobile-container">
-        @include('partials.header', ['id' => 2], ['judul' => 'List Ruangan'])
+        @include('partials.header', ['id' => 2, 'judul' => 'List Ruangan'])
 
         <div class="content list-ruangan-content">
             <section class="ruangan-list" aria-label="Daftar ruangan yang tersedia">
