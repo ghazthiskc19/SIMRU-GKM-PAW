@@ -51,11 +51,23 @@ Route::get('/riwayat_peminjaman', function () {
 })->name('riwayat-peminjaman');
 
 Route::get('/detail_riwayat', function () {
-    return view('detail_riwayat');
-})->name('detail-riwayat');
+    return view('detail_peminjaman');
+})->name('detail-peminjaman');
 
 Route::get('/laporan_masalah', function () {
     return view('laporan_masalah');
 })->name('laporan-masalah');
+
+Route::get('/riwayat_laporan', function () {
+    return view('riwayat_laporan');
+})->name('riwayat-laporan');
+
+Route::get('/detail_laporan', function () {
+    return view('detail_laporan');
+})->name('detail-laporan');
+
+Route::get('/bantuan', function () {
+    return view('bantuan');
+})->name('bantuan');
 
 

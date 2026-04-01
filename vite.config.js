@@ -13,6 +13,8 @@ export default defineConfig({
                 'resources/css/riwayat_style.css',
                 'resources/css/detail_riwayat_style.css',
                 'resources/css/laporan_masalah_style.css',
+                'resources/css/bantuan_style.css',
+                'resources/js/bantuan.js',
                 'resources/css/profil_mahasiswa_style.css',
                 'resources/css/home_style.css',
                 'resources/js/home_calendar.js',

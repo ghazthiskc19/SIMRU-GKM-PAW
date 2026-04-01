@@ -49,7 +49,7 @@
                     <span class="menu-label">Laporan Masalah</span>
                 </a>
 
-                <a href="#" class="menu-item">
+                <a href="{{ route('bantuan') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_bantuan.svg') }}" alt="Bantuan">
                     </div>
