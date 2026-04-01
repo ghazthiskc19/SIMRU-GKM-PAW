@@ -32,6 +32,49 @@
     padding: 0 10px;
 }
 
+.header-with-back {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 10px;
+    border-bottom: 1px solid #5856AA; /* Menyamakan dengan header utama */
+    background-color: #5856AA;
+}
+
+/* Tombol Back */
+.header-back {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 32px; /* Ukuran area sentuh (sama dengan .header-logo) */
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-back img {
+    width: 20px; /* Ukuran aktual ikon panah */
+    height: auto;
+}
+
+/* Judul Header */
+.header-title-back {
+    flex: 1;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    margin: 0; /* Menghilangkan margin bawaan tag h1 */
+}
+
+/* Spacer Penyeimbang (Wajib sama dengan width .header-back) */
+.header-back-spacer {
+    width: 32px; 
+    height: 32px;
+}
+
 .bottom-nav {
     background-color: #F0F2F5;
     padding: 15px 0;
