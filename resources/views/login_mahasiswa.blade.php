@@ -20,7 +20,7 @@
             <p class="subtitle">Login to your  account</p>
 
 
-            <form action="{{ url('/') }}" method="GET">
+            <form action="{{ route('home') }}" method="GET">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>

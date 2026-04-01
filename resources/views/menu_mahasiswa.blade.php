@@ -42,7 +42,7 @@
                     <span class="menu-label">Riwayat Peminjaman</span>
                 </a>
 
-                <a href="#" class="menu-item">
+                <a href="{{ route('laporan-masalah') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_laporan.svg') }}" alt="Laporan Masalah">
                     </div>

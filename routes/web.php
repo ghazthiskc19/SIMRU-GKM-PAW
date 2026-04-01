@@ -2,16 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+Route::get("/", function () {
+    return redirect('/login');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::get('/login_mahasiswa', function () {
+    return view('login_mahasiswa');
+})->name('login-mahasiswa');
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 
 Route::get('/menu_mahasiswa', function () {
     return view('menu_mahasiswa');
 })->name('menu-mahasiswa');
 
 Route::get('/profil_mahasiswa', function () {
-    return view('profil_mahasiswa'); 
+    return view('profil_mahasiswa');
 });
 
 Route::get('/list_ruangan', function () {
@@ -42,11 +54,8 @@ Route::get('/detail_riwayat', function () {
     return view('detail_riwayat');
 })->name('detail-riwayat');
 
+Route::get('/laporan_masalah', function () {
+    return view('laporan_masalah');
+})->name('laporan-masalah');
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-Route::get('/login_mahasiswa', function () {
-    return view('login_mahasiswa');
-});

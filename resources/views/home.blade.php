@@ -19,7 +19,7 @@
                         <h2 class="calendar-title">Kalender</h2>
                     </div>
                     <button class="calendar-action" type="button" aria-label="Kalender">
-                        <img src="{{ asset('images/icon_jadwal.png') }}" alt="Kalender">
+                        <img src="{{ asset('images/icon_jadwal.svg') }}" alt="Kalender">
                     </button>
                 </div>
 

@@ -10,7 +10,13 @@
 </head>
 <body>
     <div class="mobile-container">
-        @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Peminjaman'])
+        <div class="header-riwayat">
+            <a href="{{ url('/menu_mahasiswa') }}" class="header-back">
+                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
+            </a>
+            <h1 class="header-title-back">Riwayat Peminjaman</h1>
+            <div class="header-back-spacer"></div>
+        </div>
 
         <div class="content riwayat-content">
             
