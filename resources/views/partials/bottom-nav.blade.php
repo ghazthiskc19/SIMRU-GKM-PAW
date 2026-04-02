@@ -14,7 +14,6 @@
             return '';
         }
 
-        // Inject class untuk styling warna currentColor
         return str_replace('<svg ', '<svg class="nav-icon nav-icon-svg" aria-hidden="true" ', $svg);
     };
 @endphp

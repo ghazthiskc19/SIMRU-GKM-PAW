@@ -28,21 +28,6 @@ body {
     flex-direction: column;
 }
 
-.header-ungu {
-    background-color: #5856AA;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    margin-top: -1px;
-    flex-shrink: 0;
-}
-.header-back { display: flex; align-items: center; text-decoration: none; width: 32px; }
-.header-back img { width: 24px; height: 24px; filter: brightness(0) invert(1); }
-.header-title-back { font-size: 14px; font-weight: 700; margin: 0; text-align: center; flex: 1; }
-.header-back-spacer { width: 32px; }
-
 .form-content {
     flex: 1;
     overflow-y: auto;
@@ -80,26 +65,42 @@ body {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
+
 .form-group label {
     display: block;
-    font-size: 10px;
+    font-size: 17px;
     font-weight: 500;
-    color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    color: #232323;
 }
+
 .form-control {
     width: 100%;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
     padding: 10px 12px;
-    border: 1px solid #E0E0E0;
-    border-radius: 6px;
-    font-size: 11px;
+    font-size: 16px;
+    background: #efefef;
+    color: #2f2f2f;
     outline: none;
     transition: border-color 0.3s;
 }
-.form-control::placeholder { color: #A0A0A0; }
-.form-control:focus { border-color: #5856AA; }
+
+.form-control::placeholder {
+    color: #7a7a7a;
+}
+
+.form-control:focus {
+    border-color: #5856AA;
+}
+
+textarea.form-control {
+    min-height: 86px;
+    resize: vertical;
+    font-family: 'Poppins', sans-serif;
+}
 
 .split-input {
     display: flex;
@@ -124,33 +125,32 @@ body {
 }
 
 .upload-group input[type="file"] {
-    display: block;
     width: 100%;
-    padding: 8px 10px;
-    font-size: 11px;
-    background-color: #E0E0E0;
-    border-radius: 6px;
+    padding: 8px;
+    background: #d3d3d6;
+    border: 1px solid #cdcdcf;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2f2f2f;
+    outline: none;
     cursor: pointer;
-    color: #333;
-    margin-bottom: 5px;
-    border: 1px solid #CCC;
 }
 
 .upload-hint {
-    font-size: 9px;
-    color: #888;
     display: block;
-    margin-top: 2px;
+    margin-top: 6px;
+    color: #666;
+    font-size: 12px;
 }
 
 .footer-submit {
     background-color: #5856AA;
     padding: 25px 30px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
     display: flex;
     justify-content: center;
     margin-bottom: -1px;
+    flex-shrink: 0;
 }
 
 .btn-submit {

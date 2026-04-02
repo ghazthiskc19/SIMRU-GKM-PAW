@@ -10,13 +10,7 @@
 <body>
     <div class="mobile-container">
         
-        <div class="header-ungu">
-            <a href="{{ url('/menu_mahasiswa') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Frequently Asked Questions</h1>
-            <div class="header-back-spacer"></div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Frequently Asked Questions', 'kembaliKe' => '/menu_mahasiswa'])
 
         <div class="content faq-content">
             
@@ -94,5 +88,11 @@
 
         @include('partials.bottom-nav', ['active' => 'menu'])
     </div>
+
+    <script>
+        document.querySelector('.header-back')?.addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>

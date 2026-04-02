@@ -52,7 +52,7 @@ Route::get('/riwayat_peminjaman', function () {
 
 Route::get('/detail_riwayat', function () {
     return view('detail_peminjaman');
-})->name('detail-peminjaman');
+})->name('detail-riwayat');
 
 Route::get('/laporan_masalah', function () {
     return view('laporan_masalah');

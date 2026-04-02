@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="mobile-container">
-        @include('partials.header', ['id' => 2, 'judul' => 'Jadwal Ruangan'])
+        @include('partials.header', ['id' => 2, 'judul' => 'Jadwal Ruangan', 'kembaliKe' => '/menu_mahasiswa'])
 
         <div class="jadwal-content">
             <div class="jadwal-filter-bar">
