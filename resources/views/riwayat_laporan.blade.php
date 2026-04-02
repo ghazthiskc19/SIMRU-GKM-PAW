@@ -10,13 +10,7 @@
 <body>
     <div class="mobile-container">
         
-        <div class="header-riwayat">
-            <a href="{{ route('laporan-masalah') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Laporan Masalah</h1>
-            <div class="header-back-spacer"></div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/menu_mahasiswa'])
 
         <div class="content riwayat-content">
             <div class="history-list">

@@ -10,13 +10,7 @@
 <body>
     <div class="mobile-container">
         
-        <div class="header-ungu">
-            <a href="{{ url('/riwayat_laporan') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Laporan Masalah</h1>
-            <div class="header-back-spacer"></div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/riwayat_laporan'])
 
         <div class="content detail-content">
             

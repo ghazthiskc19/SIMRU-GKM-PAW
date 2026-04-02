@@ -103,18 +103,14 @@
         });
 
         function toggleDetail(item) {
-            // Cari div dengan class 'notif-detail' di dalam item yang diklik
             const detailBox = item.querySelector('.notif-detail');
             
-            // Cek apakah sedang terbuka atau tertutup
             if (detailBox.style.display === "block") {
                 detailBox.style.display = "none";
             } else {
-                // Opsional: Tutup semua detail lain yang sedang terbuka
                 const allDetails = document.querySelectorAll('.notif-detail');
                 allDetails.forEach(box => box.style.display = "none");
                 
-                // Buka yang ini
                 detailBox.style.display = "block";
             }
         }
