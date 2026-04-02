@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="mobile-container">
+<<<<<<< Updated upstream
         
         <div class="header-riwayat">
             <a href="{{ route('laporan-masalah') }}" class="header-back">
@@ -17,6 +18,9 @@
             <h1 class="header-title-back">Laporan Masalah</h1>
             <div class="header-back-spacer"></div>
         </div>
+=======
+        @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah'])
+>>>>>>> Stashed changes
 
         <div class="content riwayat-content">
             <div class="history-list">
@@ -79,5 +83,11 @@
 
         @include('partials.bottom-nav', ['active' => 'menu'])
     </div>
+
+    <script>
+        document.querySelector('.header-back')?.addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>
