@@ -69,7 +69,6 @@
     </div>
 
     <script>
-<<<<<<< Updated upstream
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('form-laporan');
             const btnSubmit = document.querySelector('.btn-submit');
@@ -85,10 +84,6 @@
                     window.location.href = "{{ route('riwayat-laporan') }}";
                 }
             });
-=======
-        document.querySelector('.header-back')?.addEventListener('click', function () {
-            window.history.back();
->>>>>>> Stashed changes
         });
     </script>
 </body>
