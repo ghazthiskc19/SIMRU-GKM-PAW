@@ -24,20 +24,6 @@
 
             <div class="list-ruangan-detail-hero">
                 <button class="arrow-hero arrow-left-hero" type="button" aria-label="Gambar sebelumnya">❮</button>
-                <div class="hero-image
-
-        <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
-            <div class="list-ruangan-detail-status">
-                <div class="nama-ruangan-container">
-                    <h3 class="ruangan-name" id="detail-room-name-chip">String value</h3>
-                </div>
-                <div class="status-ruangan-container">
-                    <h3 class="status-ruangan" id="detail-room-status">Tersedia</h3>
-                </div>
-            </div>
-
-            <div class="list-ruangan-detail-hero">
-                <button class="arrow-hero arrow-left-hero" type="button" aria-label="Gambar sebelumnya">❮</button>
                 <div class="hero-image-container">
                     <img src="{{ asset('images/hero_ruangan.png') }}" alt="Foto Ruangan" class="hero-image" id="detail-hero-image">
                 </div>
