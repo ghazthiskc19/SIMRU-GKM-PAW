@@ -26,7 +26,9 @@
         </div>
         <h1 class="header-title">{{ $judul }}</h1>
         <div class="header-notif">
-            <img src="{{ asset('images/icon_notifikasi.svg') }}" alt="Notifikasi">
+            <a href="{{ route('notifikasi') }}">
+                <img src="{{ asset('images/icon_notifikasi.svg') }}" alt="Notifikasi">
+            </a>
         </div>
     </header>
 @endif

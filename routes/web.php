@@ -44,7 +44,7 @@ Route::get('/peminjaman_ruangan', function () {
 
 Route::get('/notifikasi', function () {
     return view('notifikasi');
-});
+})->name('notifikasi');
 
 Route::get('/riwayat_peminjaman', function () {
     return view('riwayat_peminjaman');
