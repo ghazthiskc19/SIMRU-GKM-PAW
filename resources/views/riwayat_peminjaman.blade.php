@@ -21,7 +21,7 @@
             </div>
 
             <div class="history-list">
-                <a href="{{ route('detail-peminjaman') }}" style="text-decoration: none; color: inherit; display: block;">
+                <a href="{{ route('detail-riwayat') }}" style="text-decoration: none; color: inherit; display: block;">
                     <div class="history-card">
                         <div class="card-main">
                             <div class="room-img-placeholder"></div>

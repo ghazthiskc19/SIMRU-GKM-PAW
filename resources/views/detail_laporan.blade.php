@@ -41,6 +41,15 @@
 
         </div>
 
-        </div>
+        @include('partials.bottom-nav', ['active' => 'menu'])
+
+    </div>
+
+    <script>
+        document.querySelector('.header-back')?.addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
+
 </body>
 </html>
