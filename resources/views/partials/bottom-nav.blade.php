@@ -20,7 +20,7 @@
 @endphp
 
 <div class="bottom-nav">
-    <a href="{{ url('/') }}" class="nav-item {{ $active === 'home' ? 'active' : '' }}">
+    <a href="{{ url('/home') }}" class="nav-item {{ $active === 'home' ? 'active' : '' }}">
         {!! $renderNavIcon('icon_home.svg') !!}
         <span class="nav-label">Home</span>
     </a>
