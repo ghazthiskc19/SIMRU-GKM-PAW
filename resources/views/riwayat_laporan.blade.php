@@ -11,7 +11,7 @@
     <div class="mobile-container">
         
         <div class="header-riwayat">
-            <a href="{{ url('/menu_mahasiswa') }}" class="header-back">
+            <a href="{{ route('laporan-masalah') }}" class="header-back">
                 <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
             </a>
             <h1 class="header-title-back">Laporan Masalah</h1>
@@ -21,7 +21,7 @@
         <div class="content riwayat-content">
             <div class="history-list">
                 
-                <a href="{{ url('/detail_laporan') }}" style="text-decoration: none; color: inherit; display: block;">
+                <a href="{{ route('detail-laporan') }}" style="text-decoration: none; color: inherit; display: block;">
                     <div class="history-card">
                         <div class="card-main">
                             <div class="room-img-placeholder"></div>
