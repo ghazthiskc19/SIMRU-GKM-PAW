@@ -12,18 +12,6 @@
 
         @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/menu_mahasiswa'])
 
-        <div class="header-riwayat">
-            <a href="{{ route('laporan-masalah') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Laporan Masalah</h1>
-            <div class="header-back-spacer"></div>
-        </div>
-=======
-        @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah'])
->>>>>>> Stashed changes
->>>>>>> b9f4b319c17eb19766f5f2c8eaf56be516eca0d1
-
         <div class="content riwayat-content">
             <div class="history-list">
                 

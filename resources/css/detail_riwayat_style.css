@@ -28,22 +28,6 @@ body {
     flex-direction: column;
 }
 
-.header-ungu {
-    background-color: #5856AA;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    margin-top: -1px;
-    flex-shrink: 0;
-}
-
-.header-back { display: flex; align-items: center; text-decoration: none; width: 32px; }
-.header-back img { width: 24px; height: 24px; filter: brightness(0) invert(1); }
-.header-title-back { font-size: 15px; font-weight: 700; margin: 0; text-align: center; flex: 1; }
-.header-back-spacer { width: 32px; }
-
 .detail-content {
     flex: 1;
     overflow-y: auto;

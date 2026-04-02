@@ -29,42 +29,6 @@ body {
     flex-direction: column;
 }
 
-.header-ungu {
-    background: linear-gradient(180deg, #4A4699 0%, #5856AA 100%);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    margin-top: -1px;
-    flex-shrink: 0;
-}
-
-.header-back {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    width: 32px;
-}
-
-.header-back img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) invert(1);
-}
-
-.header-title-back {
-    font-size: 14px;
-    font-weight: 700;
-    margin: 0;
-    text-align: center;
-    flex: 1;
-}
-
-.header-back-spacer {
-    width: 32px;
-}
-
 .faq-content {
     flex: 1;
     overflow-y: auto;

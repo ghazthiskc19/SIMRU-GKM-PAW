@@ -47,9 +47,10 @@
                     </div>
                 </div>
 
+                <form id="form-laporan" action="#" method="POST">
                 <div class="form-group">
                     <label>Laporan Permasalahan</label>
-                    <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
+                    <textarea placeholder="Isi Dengan Benar" class="form-control" rows="4" required></textarea>
                 </div>
 
                 <div class="form-group upload-group">
@@ -60,12 +61,7 @@
             </form>
         </div>
 
-        <div class="footer-submit">
-            <button type="submit" class="btn-submit">
-                Submit
-                <img src="{{ asset('images/icon_submit.svg') }}" alt="Submit Icon" class="submit-icon">
-            </button>
-        </div>
+        @include('partials.footer-submit', ['teks' => 'Submit'])
 
     </div>
 
