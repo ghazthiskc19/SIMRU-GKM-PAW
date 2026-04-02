@@ -18,7 +18,7 @@
         </div>
         <h1 class="header-title">{{ $judul }}</h1>
         <div class="header-notif">
-            <a href="{{ url('/notifikasi') }}">
+            <a href="{{ route('notifikasi') }}">
                 <img src="{{ asset('images/icon_notifikasi.svg') }}" alt="Notifikasi">
             </a>
         </div>
