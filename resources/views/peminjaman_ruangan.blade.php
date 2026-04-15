@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="mobile-container">
-        @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan'])
+        @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu_mahasiswa'])
 
         <div class="peminjaman-ruangan-container" data-ruangan-id="{{ request('ruangan', 1) }}">
             <div class="list-ruangan-detail-status">
@@ -88,9 +88,7 @@
             </form>
         </div>
 
-        <div class="pinjam-action-bar">
-            <button type="submit" form="peminjaman-form" class="pinjam-button" id="submit-peminjaman-button">Submit</button>
-        </div>
+        @include('partials.footer-submit', ['teks' => 'Submit', 'formId' => 'peminjaman-form'])
     </div>
 </body>
 </html>

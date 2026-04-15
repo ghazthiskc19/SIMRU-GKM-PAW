@@ -41,13 +41,21 @@
                     </div>
                     <span class="menu-label">Riwayat Peminjaman</span>
                 </a>
-
+                
                 <a href="{{ route('laporan-masalah') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_laporan.svg') }}" alt="Laporan Masalah">
                     </div>
                     <span class="menu-label">Laporan Masalah</span>
                 </a>
+
+                <a href="{{ route('riwayat-laporan') }}" class="menu-item">
+                    <div class="menu-icon-box">
+                        <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Laporan">
+                    </div>
+                    <span class="menu-label">Riwayat Laporan</span>
+                </a>
+
 
                 <a href="{{ route('bantuan') }}" class="menu-item">
                     <div class="menu-icon-box">

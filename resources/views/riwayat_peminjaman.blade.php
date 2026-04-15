@@ -10,13 +10,7 @@
 </head>
 <body>
     <div class="mobile-container">
-        <div class="header-riwayat">
-            <a href="{{ url('/menu_mahasiswa') }}" class="header-back">
-                <img src="{{ asset('images/icon_back.svg') }}" alt="Kembali">
-            </a>
-            <h1 class="header-title-back">Riwayat Peminjaman</h1>
-            <div class="header-back-spacer"></div>
-        </div>
+        @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Peminjaman', 'kembaliKe' => '/menu_mahasiswa'])
 
         <div class="content riwayat-content">
             
@@ -27,7 +21,7 @@
             </div>
 
             <div class="history-list">
-                <a href="{{ route('detail-peminjaman') }}" style="text-decoration: none; color: inherit; display: block;">
+                <a href="{{ route('detail-riwayat') }}" style="text-decoration: none; color: inherit; display: block;">
                     <div class="history-card">
                         <div class="card-main">
                             <div class="room-img-placeholder"></div>
