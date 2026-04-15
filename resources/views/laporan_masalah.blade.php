@@ -1,70 +1,65 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Laporan Masalah - Sistem Informasi Manajemen Ruangan GKM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/shared_header_nav.css', 'resources/css/laporan_masalah_style.css'])
-</head>
-<body>
-    <div class="mobile-container">
-        
-        @include('partials.header', ['id' => 2, 'judul' => 'Form Laporan Masalah', 'kembaliKe' => '/menu_mahasiswa'])
+@extends('layouts.app')
 
-        <div class="content form-content">
-            
-            <div class="room-selector-container">
-                <select class="room-select">
-                    <option value="gkm4.1">GKM 4.1</option>
-                    <option value="gkm4.2">GKM 4.2</option>
-                    <option value="gkm3.1">GKM 3.1</option>
-                </select>
-                <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+@section('title', 'Form Laporan Masalah - Sistem Informasi Manajemen Ruangan GKM')
 
-            <form id="form-laporan" action="#" method="POST">
-                <div class="form-group">
-                    <label>Nama</label>
-                    <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
-                </div>
+@push('styles')
+    @vite(['resources/css/laporan_masalah_style.css'])
+@endpush
 
-                <div class="form-group">
-                    <label>NIM</label>
-                    <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
-                </div>
+@section('page')
+    @include('partials.header', ['id' => 2, 'judul' => 'Form Laporan Masalah', 'kembaliKe' => '/menu_mahasiswa'])
 
-                <div class="form-group">
-                    <label>Program Studi</label>
-                    <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Tanggal Pemakaian</label>
-                    <div class="split-input">
-                        <input type="date" class="form-control" required>
-                        <input type="time" class="form-control" required>
-                    </div>
-                </div>
-
-                <form id="form-laporan" action="#" method="POST">
-                <div class="form-group">
-                    <label>Laporan Permasalahan</label>
-                    <textarea placeholder="Isi Dengan Benar" class="form-control" rows="4" required></textarea>
-                </div>
-
-                <div class="form-group upload-group">
-                    <label for="dokumen">Dokumen Tambahan (Foto Bukti)</label>
-                    <input type="file" id="dokumen" name="dokumen[]" accept="image/png, image/jpeg, image/jpg" multiple required>
-                    <small class="upload-hint">Format hanya gambar (JPG/PNG), maksimal 2MB per file.</small>
-                </div>
-            </form>
+    <div class="content form-content">
+        <div class="room-selector-container">
+            <select class="room-select">
+                <option value="gkm4.1">GKM 4.1</option>
+                <option value="gkm4.2">GKM 4.2</option>
+                <option value="gkm3.1">GKM 3.1</option>
+            </select>
+            <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </div>
 
-        @include('partials.footer-submit', ['teks' => 'Submit'])
+        <form id="form-laporan" action="#" method="POST">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
+            </div>
 
+            <div class="form-group">
+                <label>NIM</label>
+                <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Program Studi</label>
+                <input type="text" placeholder="Isi Dengan Benar" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tanggal Pemakaian</label>
+                <div class="split-input">
+                    <input type="date" class="form-control" required>
+                    <input type="time" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Laporan Permasalahan</label>
+                <textarea placeholder="Isi Dengan Benar" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group upload-group">
+                <label for="dokumen">Dokumen Tambahan (Foto Bukti)</label>
+                <input type="file" id="dokumen" name="dokumen[]" accept="image/png, image/jpeg, image/jpg" multiple required>
+                <small class="upload-hint">Format hanya gambar (JPG/PNG), maksimal 2MB per file.</small>
+            </div>
+        </form>
     </div>
 
+    @include('partials.footer-submit', ['teks' => 'Submit'])
+@endsection
+
+@push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('form-laporan');
@@ -83,5 +78,4 @@
             });
         });
     </script>
-</body>
-</html>
+@endpush

@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Laporan - Sistem Informasi Manajemen Ruangan GKM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/shared_header_nav.css', 'resources/css/detail_riwayat_style.css'])
-</head>
-<body>
-    <div class="mobile-container">
-        
-        @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/riwayat_laporan'])
+@extends('layouts.app')
+
+@section('title', 'Detail Laporan - Sistem Informasi Manajemen Ruangan GKM')
+
+@push('styles')
+    @vite(['resources/css/detail_riwayat_style.css'])
+@endpush
+
+@section('page')
+    @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/riwayat_laporan'])
 
         <div class="content detail-content">
             
@@ -41,15 +38,5 @@
 
         </div>
 
-        @include('partials.bottom-nav', ['active' => 'menu'])
-
-    </div>
-
-    <script>
-        document.querySelector('.header-back')?.addEventListener('click', function () {
-            window.history.back();
-        });
-    </script>
-
-</body>
-</html>
+    @include('partials.bottom-nav', ['active' => 'menu'])
+@endsection

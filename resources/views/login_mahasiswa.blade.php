@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Mahasiswa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+@extends('layouts.auth')
 
+@section('lang', 'en')
+@section('title', 'Login Mahasiswa')
+
+@push('styles')
     @vite(['resources/css/login_mahasiswa_style.css'])
+@endpush
 
-</head>
-<body>
-    <div class="mobile-container">
-        <img src="{{ asset('images/decor_top_orange.svg') }}" alt="" class="decor-top">
-        <img src="{{ asset('images/decor_bottom_orange.svg') }}" alt="" class="decor-bottom-orange">
-        <img src="{{ asset('images/decor_bottom_blue.svg') }}" alt="" class="decor-bottom-blue">
+@section('page')
+    @include('partials.auth-decor')
 
-        <div class="login-card">
+    <div class="login-card">
             <h2>Welcome back!</h2>
             <p class="subtitle">Login to your  account</p>
             @if(session('error'))
@@ -57,7 +52,5 @@
                  Don't have account? <a href="#">Daftar Akun Baru</a>
             </div>
 
-        </div>
     </div>
-</body>
-</html>
+@endsection

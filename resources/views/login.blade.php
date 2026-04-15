@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Informasi Manajemen Ruangan GKM</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    
+@extends('layouts.auth')
+
+@section('title', 'Login - Sistem Informasi Manajemen Ruangan GKM')
+
+@push('styles')
     @vite(['resources/css/login_page_style.css'])
-</head>
-<body>
+@endpush
 
-    <div class="mobile-container">
-        
-        <img src="{{ asset('images/decor_top_orange.svg') }}" alt="" class="decor-top">
-        <img src="{{ asset('images/decor_bottom_orange.svg') }}" alt="" class="decor-bottom-orange">
-        <img src="{{ asset('images/decor_bottom_blue.svg') }}" alt="" class="decor-bottom-blue">
+@section('page')
+    @include('partials.auth-decor')
 
-        <div class="login-content">
+    <div class="login-content">
             
             <img src="{{ asset('images/logo_filkom.svg') }}" alt="FILKOM UB" class="logo-filkom">
             
@@ -30,9 +22,5 @@
                 <a href="{{ route('login-mahasiswa') }}" class="btn-login">Login As Student</a>
             </div>
 
-        </div>
-
     </div>
-
-</body>
-</html>
+@endsection

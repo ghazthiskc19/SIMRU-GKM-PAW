@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Sistem Informasi Manajemen Ruangan GKM</title>
+@extends('layouts.app')
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/shared_header_nav.css', 'resources/css/halaman_menu_style.css'])
-</head>
-<body>
-    <div class="mobile-container">
-        @include('partials.header', ['id' => 1])
+@section('lang', 'en')
+@section('title', 'Menu - Sistem Informasi Manajemen Ruangan GKM')
+
+@push('styles')
+    @vite(['resources/css/halaman_menu_style.css'])
+@endpush
+
+@section('page')
+    @php
+        $userRole = data_get($user ?? null, 'role');
+    @endphp
+
+    @include('partials.header', ['id' => 1])
 
         <div class="content">
             <div class="menu-grid">
@@ -32,19 +34,28 @@
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Peminjaman Ruangan">
                     </div>
-                    @if ($user['role'] == 'bem')
+                    @if ($userRole === 'bem')   
                         <span class="menu-label"> Verifikasi Peminjaman Ruangan</span>
                     @else
                         <span class="menu-label">Peminjaman Ruangan</span>
                     @endif
                 </a>
 
-                <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
-                    <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Peminjaman">
-                    </div>
-                    <span class="menu-label">Riwayat Peminjaman</span>
-                </a>
+                @if ($userRole === 'bem')
+                    <a href="{{ route('riwayat-verifikasi') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Verifikasi">
+                        </div>
+                        <span class="menu-label">Riwayat Verifikasi</span>
+                    </a>
+                @else
+                    <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Peminjaman">
+                        </div>
+                        <span class="menu-label">Riwayat Peminjaman</span>
+                    </a>
+                @endif
                 
                 <a href="{{ route('laporan-masalah') }}" class="menu-item">
                     <div class="menu-icon-box">
@@ -72,9 +83,5 @@
             
         </div>
 
-        @include('partials.bottom-nav', ['active' => 'menu'])
-    </div>
-    
-
-</body>
-</html>
+    @include('partials.bottom-nav', ['active' => 'menu'])
+@endsection

@@ -15,6 +15,8 @@ export default defineConfig({
                 'resources/css/laporan_masalah_style.css',
                 'resources/css/bantuan_style.css',
                 'resources/js/bantuan.js',
+                'resources/css/riwayat_verifikasi_style.css',
+                'resources/css/riwayat_verifikasi_detail_style.css',
                 'resources/css/profil_mahasiswa_style.css',
                 'resources/css/home_style.css',
                 'resources/js/home_calendar.js',
