@@ -33,21 +33,12 @@ Route::middleware('auth.session')->group(function () {
         return view('notifikasi');
     })->name('notifikasi');
 
-    Route::get('/detail_riwayat', function () {
-        return view('detail_peminjaman');
-    })->name('detail-riwayat');
-
     Route::get('/laporan_masalah', function () {
         return view('laporan_masalah');
     })->name('laporan-masalah');
 
-    Route::get('/riwayat_laporan', function () {
-        return view('riwayat_laporan');
-    })->name('riwayat-laporan');
-
-    Route::get('/detail_laporan', function () {
-        return view('detail_laporan');
-    })->name('detail-laporan');
+    Route::get('/riwayat_laporan', [StudentHistoryController::class, 'laporanIndex'])
+        ->name('riwayat-laporan');
 
     Route::get('/bantuan', function () {
         return view('bantuan');
@@ -57,4 +48,10 @@ Route::middleware('auth.session')->group(function () {
 Route::middleware(['auth.session', 'role:mahasiswa'])->group(function () {
     Route::get('/riwayat_peminjaman', [StudentHistoryController::class, 'index'])
         ->name('riwayat-peminjaman');
+
+    Route::get('/riwayat_peminjaman/detail/{id}', [StudentHistoryController::class, 'detail'])
+        ->name('riwayat-peminjaman-detail');
+
+    Route::get('/riwayat_laporan/detail/{id}', [StudentHistoryController::class, 'laporanDetail'])
+        ->name('riwayat-laporan-detail');
 });
