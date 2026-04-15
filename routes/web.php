@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::get("/", function () {
     return redirect('/login');
@@ -14,17 +15,18 @@ Route::get('/login_mahasiswa', function () {
     return view('login_mahasiswa');
 })->name('login-mahasiswa');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
-Route::get('/menu_mahasiswa', function () {
-    return view('menu_mahasiswa');
-})->name('menu-mahasiswa');
+Route::post('/login_mahasiswa', [AuthController::class, 'login_mahasiswa'])
+    ->name('login_mahasiswa.process');
 
-Route::get('/profil_mahasiswa', function () {
-    return view('profil_mahasiswa');
-});
+Route::get('/home', [AuthController::class, 'home'])->name('home');
+
+Route::get('/menu_mahasiswa', [AuthController::class, 'menu_mahasiswa'])
+    ->name('menu-mahasiswa');
+
+Route::get('/profile_mahasiswa', [AuthController::class, 'profile_mahasiswa'])
+    ->name('profile_mahasiswa');
+
 
 Route::get('/list_ruangan', function () {
     return view('list_ruangan');

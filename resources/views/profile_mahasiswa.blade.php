@@ -18,24 +18,24 @@
             <div class="profile-content">
                 
                 <div class="profile-image-wrapper">
-                    <img src="{{ asset('images/photo_user_mahasiswa.png') }}" alt="Foto Profil Lampu Kaka" class="profile-img">
+                    <img src="{{ $user['foto'] }}" alt="Foto Profil Lampu Kaka" class="profile-img">
                 </div>
 
                 <div class="profile-form">
                     
                     <div class="form-group">
                         <span class="form-label">Nama</span>
-                        <div class="form-input-box">Prabowo Subianto</div>
+                        <div class="form-input-box">{{ $user['nama'] }}</div>
                     </div>
 
                     <div class="form-group">
                         <span class="form-label">NIM</span>
-                        <div class="form-input-box">20051998</div>
+                        <div class="form-input-box">{{ $user['nim'] }}</div>
                     </div>
 
                     <div class="form-group">
                         <span class="form-label">Program Studi</span>
-                        <div class="form-input-box">Tim Mawar</div>
+                        <div class="form-input-box">{{ $user['prodi'] }}</div>
                     </div>
 
                     <div class="logout-btn-container">

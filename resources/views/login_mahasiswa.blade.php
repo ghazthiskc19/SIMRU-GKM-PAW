@@ -18,9 +18,22 @@
         <div class="login-card">
             <h2>Welcome back!</h2>
             <p class="subtitle">Login to your  account</p>
+            @if(session('error'))
+                <div style="
+                    background-color:#ffdddd;
+                    color:#a94442;
+                    padding:10px;
+                    border-radius:5px;
+                    margin-bottom:10px;
+                    text-align:center;
+                ">
+                    {{ session('error') }}
+                </div>
+            @endif
 
+            <form action="{{ route('login_mahasiswa.process') }}" method="POST">
+                @csrf
 
-            <form action="{{ route('home') }}" method="GET">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>

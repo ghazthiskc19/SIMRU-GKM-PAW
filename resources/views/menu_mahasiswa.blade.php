@@ -27,12 +27,16 @@
                     </div>
                     <span class="menu-label">Jadwal Ruangan</span>
                 </a>
-
+                
                 <a href="{{ route('peminjaman-ruangan') }}" class="menu-item">
                     <div class="menu-icon-box">
                         <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Peminjaman Ruangan">
                     </div>
-                    <span class="menu-label">Peminjaman Ruangan</span>
+                    @if ($user['role'] == 'bem')
+                        <span class="menu-label"> Verifikasi Peminjaman Ruangan</span>
+                    @else
+                        <span class="menu-label">Peminjaman Ruangan</span>
+                    @endif
                 </a>
 
                 <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
