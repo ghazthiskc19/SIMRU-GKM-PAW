@@ -30,6 +30,14 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+    public function logout()
+    {
+        session()->forget('user');   // hapus user dari session
+        session()->flush();          // hapus semua session
+
+        return redirect('/');
+    }
+
     public function home()
     {
         $user = $this->sessionUserService->currentUser();

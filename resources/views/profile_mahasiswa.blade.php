@@ -32,9 +32,10 @@
                 </div>
 
                 <div class="logout-btn-container">
-                    <a href="{{ url('/login') }}">
-                        <button class="logout-btn">Logout</button>
-                    </a>
+                   <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    <button type="submit" class="logout-btn">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
