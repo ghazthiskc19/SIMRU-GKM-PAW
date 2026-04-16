@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Frequently Asked Questions', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Frequently Asked Questions', 'kembaliKe' => '/menu'])
 
     <div class="content faq-content">
         <div class="faq-list">

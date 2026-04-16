@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Jadwal Ruangan', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Jadwal Ruangan', 'kembaliKe' => '/menu'])
 
     <div class="jadwal-content">
         <div class="jadwal-filter-bar">

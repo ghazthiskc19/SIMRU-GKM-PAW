@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Peminjaman', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Peminjaman', 'kembaliKe' => '/menu'])
 
     <div class="content riwayat-content">
         <div class="month-selector">

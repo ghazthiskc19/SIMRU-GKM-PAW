@@ -1,9 +1,16 @@
 <?php
 
 use App\Http\Controllers\BemVerificationController;
+use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth.session', 'role:bem'])->group(function () {
+    Route::get('/verifikasi_peminjaman', [StudentHistoryController::class, 'verifikasiPeminjaman'])
+        ->name('verifikasi-peminjaman');
+
+    Route::get('/verifikasi_peminjaman/detail/{id}', [StudentHistoryController::class, 'verifikasiPeminjamanDetail'])
+        ->name('verifikasi-peminjaman-detail');
+
     Route::get('/riwayat_verifikasi', [BemVerificationController::class, 'index'])
         ->name('riwayat-verifikasi');
 

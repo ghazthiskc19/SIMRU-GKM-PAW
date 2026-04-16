@@ -287,31 +287,22 @@ label.split-time-label{
 
 .btn-submit {
     width: 100%;
+    background-color: #FFC107;
+    color: #5856AA;
+    font-size: 14px;
+    font-weight: 700;
     border: none;
     border-radius: 20px;
-    background: #f6cc35;
-    color: #3d43a8;
-    font-size: 34px;
-    font-weight: 700;
-    line-height: 1;
-    padding: 10px 12px;
-    cursor: pointer;
+    padding: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    cursor: pointer;
     transition: transform 0.2s;
 }
-
-.btn-submit:active {
-    transform: scale(0.99);
-}
-
-.send-icon {
-    width: 32px;
-    height: 32px;
-    color: #3d43a8;
-}
+.btn-submit:active { transform: scale(0.98); }
+.send-icon { color: #5856AA; }
 
 .peminjaman-ruangan-container::-webkit-scrollbar {
     width: 6px;

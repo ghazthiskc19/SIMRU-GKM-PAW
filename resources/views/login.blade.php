@@ -18,8 +18,8 @@
             <h1 class="app-title">Peminjaman Ruangan GKM</h1>
 
             <div class="button-group">
-                <a href="#" class="btn-login">Login Admin</a>
-                <a href="{{ route('login-mahasiswa') }}" class="btn-login">Login As Student</a>
+                <a href="{{ route('login-user') }}" class="btn-login">Login Admin</a>
+                <a href="{{ route('login-user') }}" class="btn-login">Login As Student</a>
             </div>
 
     </div>

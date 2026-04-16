@@ -3,26 +3,35 @@
 @section('title', 'Detail Riwayat Verifikasi - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
-    @vite(['resources/css/riwayat_verifikasi_detail_style.css'])
+    @vite(['resources/css/detail_riwayat_style.css'])
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Peminjaman', 'kembaliKe' => '/riwayat_verifikasi'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Verifikasi', 'kembaliKe' => '/riwayat_verifikasi'])
 
-    <div class="content detail-verifikasi-content">
+    <div class="content detail-content">
         <section class="status-alert" aria-label="Status verifikasi terkini">
             <div class="status-icon">
                 <img src="{{ asset('images/icon_jadwal.svg') }}" alt="Status Verifikasi">
             </div>
             <div class="status-text">
                 <h3>{{ $detail['status_title'] }}</h3>
-                <p>{{ $detail['status_time'] }}</p>
+                @php
+                    $statusTitle = strtolower($detail['status_title'] ?? '');
+                @endphp
+                @if (str_contains($statusTitle, 'ditolak') || str_contains($statusTitle, 'dibatalkan'))
+                    <p>Laporan ditolak.</p>
+                @elseif (str_contains($statusTitle, 'diverifikasi') || str_contains($statusTitle, 'selesai') || str_contains($statusTitle, 'disetujui'))
+                    <p>Laporan telah diverifikasi.</p>
+                @else
+                    <p>{{ $detail['status_time'] }}</p>
+                @endif
             </div>
         </section>
 
         <hr class="separator">
 
-        <section class="detail-block" aria-label="Detail peminjaman ruangan">
+        <section class="detail-info">
             <h3>Detail Peminjaman</h3>
             <div class="detail-row"><span>Ruangan</span><strong>{{ $detail['ruangan'] }}</strong></div>
             <div class="detail-row"><span>Nama</span><strong>{{ $detail['nama'] }}</strong></div>

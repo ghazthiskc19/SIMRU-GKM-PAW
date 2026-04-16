@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'List Ruangan', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'List Ruangan', 'kembaliKe' => '/menu'])
 
     <div class="content list-ruangan-content">
         <section class="ruangan-list" aria-label="Daftar ruangan yang tersedia">

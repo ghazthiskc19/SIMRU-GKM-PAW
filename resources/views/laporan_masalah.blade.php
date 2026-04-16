@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Form Laporan Masalah', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Form Laporan Masalah', 'kembaliKe' => '/menu'])
 
     <div class="content form-content">
         <div class="room-selector-container">
