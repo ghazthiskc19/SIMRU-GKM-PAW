@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "ruangan": "GKM 4.1",
+    "hari_tanggal": "Senin, 20 Oktober 2025",
+    "jam_mulai": "07.00",
+    "jam_selesai": "10.00",
+    "status_label": "Status Verifikasi:",
+    "status_text": "Telah diverifikasi",
+    "status_badge_class": "badge-success",
+    "catatan_ringkas": null,
+    "status_title": "Laporan Sedang Ditinjau",
+    "status_time": "19 Oct 2025 | 17.05 WIB",
+    "nama": "Rafi Dimas Pratama",
+    "nim": "225150201111070",
+    "program_studi": "Teknik Informatika",
+    "tanggal_pemakaian": "1 November 2025",
+    "jam_mulai_lengkap": "12.00 WIB",
+    "jam_selesai_lengkap": "18.00 WIB",
+    "alasan_peminjaman": "Ruang digunakan untuk kegiatan workshop internal pengembangan skill kepanitiaan dan mentoring persiapan lomba mahasiswa tingkat fakultas.",
+    "sarana_prasarana": "Memerlukan akses listrik stabil, AC ruangan aktif, kursi sebanyak 60 unit, meja panjang untuk registrasi, serta dukungan sistem proyeksi agar pemaparan materi berjalan baik.",
+    "alat_tambahan": "2 Microphone wireless, 1 kabel HDMI cadangan, 1 roll kabel ekstensi.",
+    "dokumen": [
+      "surat_permohonan_hmdtif.pdf",
+      "proposal_kegiatan_workshop.pdf",
+      "rundown_kegiatan.pdf"
+    ],
+    "catatan_verifikasi": "Laporan masalah sedang ditinjau oleh Staff Perlengkapan Filkom. Harap menunggu hingga proses verifikasi dan review selesai."
+  },
+  {
+    "id": 2,
+    "ruangan": "GKM 4.1",
+    "hari_tanggal": "Jumat, 17 Oktober 2025",
+    "jam_mulai": "07.00",
+    "jam_selesai": "10.00",
+    "status_label": "Status Peminjaman:",
+    "status_text": "Ditolak/Dibatalkan",
+    "status_badge_class": "badge-danger",
+    "catatan_ringkas": "Alasan Penolakan: Konflik Jadwal dengan Kuliah Tamu",
+    "status_title": "Laporan Ditolak / Dibatalkan",
+    "status_time": "17 Oct 2025 | 17.05 WIB",
+    "nama": "Nadya Putri Maharani",
+    "nim": "225150201111045",
+    "program_studi": "Sistem Informasi",
+    "tanggal_pemakaian": "20 Oktober 2025",
+    "jam_mulai_lengkap": "07.00 WIB",
+    "jam_selesai_lengkap": "10.00 WIB",
+    "alasan_peminjaman": "Pengajuan dipakai untuk rapat koordinasi persiapan acara akademik dan pembagian tugas kepanitiaan.",
+    "sarana_prasarana": "Membutuhkan kursi, meja rapat, sound system, serta proyektor untuk presentasi timeline kegiatan.",
+    "alat_tambahan": "1 speaker aktif dan 1 pointer presentasi.",
+    "dokumen": [
+      "surat_permohonan_koordinasi.pdf",
+      "lampiran_peserta_rapat.pdf"
+    ],
+    "catatan_verifikasi": "Pengajuan ditolak karena terjadi konflik jadwal dengan agenda kuliah tamu yang telah terjadwal pada waktu dan ruangan yang sama."
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "email": "prabowo@gmail.com",
+    "password": "123",
+    "nama": "Prabowo Subianto",
+    "nim":"212",
+    "prodi": "Teknik Persawitan",
+    "role": "mahasiswa",
+    "foto": "images/photo_user_mahasiswa.png"
+  },
+  {
+    "email": "bem@gmail.com",
+    "password": "123",
+    "nama": "Skibidi 67",
+    "nim": "501",
+    "prodi": "Ilmu Brainrot",
+    "role": "bem",
+    "foto": "images/photo_user_bem.png"
+  }
+]
