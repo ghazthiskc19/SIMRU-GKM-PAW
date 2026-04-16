@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    margin: 0;
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: whitesmoke;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    border: 5px solid #000;
+    height: calc(100vh - 40px);
+    max-height: 900px;
+    display: flex;
+    flex-direction: column;
+}
+
+.verifikasi-detail-content {
+    background-color: #F8F9FA;
+    padding: 15px;
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 100px;
+}
+
+.card-container-ungu {
+    background-color: #8280D4;
+    border-radius: 15px;
+    padding: 0 0 20px 0;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.inner-header-card {
+    background-color: #5856AA;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.room-img-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.detail-header-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.detail-header-info p {
+    font-size: 13px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.detail-fields {
+    padding: 0 20px;
+}
+
+.data-group {
+    margin-bottom: 15px;
+}
+
+.data-group label, .dokumen-block label {
+    display: block;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.data-box {
+    background-color: white;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+    min-height: 44px;
+    width: 100%;
+}
+
+.data-box.textarea {
+    min-height: 100px;
+}
+
+.detail-section {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.detail-section h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.detail-section .data-box {
+    margin-top: 0;
+}
+
+/* Dokumen & Tombol */
+.dokumen-block {
+    padding: 0 20px;
+    margin-top: 10px;
+}
+
+.document-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5856AA;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    padding: 10px 20px 0;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-verify { background-color: #52c41a; }
+.btn-reject { background-color: #e74c3c; }

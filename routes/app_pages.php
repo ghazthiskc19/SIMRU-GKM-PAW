@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth.session')->group(function () {
     Route::get('/home', [AuthController::class, 'home'])->name('home');
 
-    Route::get('/menu_mahasiswa', [AuthController::class, 'menu_mahasiswa'])
-        ->name('menu-mahasiswa');
+    Route::get('/menu', [AuthController::class, 'menu'])
+        ->name('menu');
 
     Route::get('/profile_mahasiswa', [AuthController::class, 'profile_mahasiswa'])
         ->name('profile_mahasiswa');
@@ -51,7 +51,9 @@ Route::middleware(['auth.session', 'role:mahasiswa'])->group(function () {
 
     Route::get('/riwayat_peminjaman/detail/{id}', [StudentHistoryController::class, 'detail'])
         ->name('riwayat-peminjaman-detail');
+});
 
+Route::middleware(['auth.session', 'role:mahasiswa,bem'])->group(function () {
     Route::get('/riwayat_laporan/detail/{id}', [StudentHistoryController::class, 'laporanDetail'])
         ->name('riwayat-laporan-detail');
 });

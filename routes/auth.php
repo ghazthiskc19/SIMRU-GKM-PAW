@@ -8,8 +8,8 @@ Route::get('/login', function () {
 });
 
 Route::get('/login_mahasiswa', function () {
-    return view('login_mahasiswa');
-})->name('login-mahasiswa');
+    return view('login_user');
+})->name('login-user');
 
 Route::post('/login_mahasiswa', [AuthController::class, 'login_mahasiswa'])
     ->name('login_mahasiswa.process');

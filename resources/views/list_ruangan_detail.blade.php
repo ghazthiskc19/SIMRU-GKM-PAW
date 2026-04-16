@@ -7,7 +7,7 @@
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu_mahasiswa'])
+    @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
 
     <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
         <div class="list-ruangan-detail-status">

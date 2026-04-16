@@ -36,10 +36,10 @@ class AuthController extends Controller
         return view('home', compact('user'));
     }
 
-    public function menu_mahasiswa()
+    public function menu()
     {
         $user = $this->sessionUserService->currentUser();
-        return view('menu_mahasiswa', compact('user'));
+        return view('menu', compact('user'));
     }
 
     public function profile_mahasiswa()

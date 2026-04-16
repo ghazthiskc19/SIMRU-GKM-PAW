@@ -44,6 +44,26 @@ class StudentHistoryController extends Controller
         ]);
     }
 
+    public function verifikasiPeminjaman()
+    {
+        return view('bem.verifikasi_peminjaman', [
+            'items' => $this->historyItems(),
+        ]);
+    }
+
+    public function verifikasiPeminjamanDetail(int $id)
+    {
+        $item = collect($this->historyItems())->firstWhere('id', $id);
+
+        if (!$item) {
+            abort(404);
+        }
+
+        return view('bem.verifikasi_peminjaman_detail', [
+            'detail' => $item,
+        ]);
+    }
+
     private function historyItems(): array
     {
         return [

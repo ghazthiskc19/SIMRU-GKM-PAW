@@ -30,18 +30,14 @@
                     <span class="menu-label">Jadwal Ruangan</span>
                 </a>
                 
-                <a href="{{ route('peminjaman-ruangan') }}" class="menu-item">
-                    <div class="menu-icon-box">
-                        <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Peminjaman Ruangan">
-                    </div>
-                    @if ($userRole === 'bem')   
-                        <span class="menu-label"> Verifikasi Peminjaman Ruangan</span>
-                    @else
-                        <span class="menu-label">Peminjaman Ruangan</span>
-                    @endif
-                </a>
-
                 @if ($userRole === 'bem')
+                    <a href="{{ route('verifikasi-peminjaman') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Verifikasi Peminjaman Ruangan">
+                        </div>
+                        <span class="menu-label">Verifikasi Peminjaman Ruangan</span>
+                    </a>
+
                     <a href="{{ route('riwayat-verifikasi') }}" class="menu-item">
                         <div class="menu-icon-box">
                             <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Verifikasi">
@@ -49,6 +45,13 @@
                         <span class="menu-label">Riwayat Verifikasi</span>
                     </a>
                 @else
+                    <a href="{{ route('peminjaman-ruangan') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_peminjaman.svg') }}" alt="Peminjaman Ruangan">
+                        </div>
+                        <span class="menu-label">Peminjaman Ruangan</span>
+                    </a>
+
                     <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
                         <div class="menu-icon-box">
                             <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Peminjaman">

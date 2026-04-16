@@ -24,7 +24,7 @@
         <span class="nav-label">Home</span>
     </a>
 
-    <a href="{{ url('/menu_mahasiswa') }}" class="nav-item {{ $active === 'menu' ? 'active' : '' }}">
+    <a href="{{ url('/menu') }}" class="nav-item {{ $active === 'menu' ? 'active' : '' }}">
         {!! $renderNavIcon('icon_menu.svg') !!}
         <span class="nav-label">Menu</span>
     </a>
