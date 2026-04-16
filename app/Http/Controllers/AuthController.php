@@ -50,9 +50,9 @@ class AuthController extends Controller
         return view('menu', compact('user'));
     }
 
-    public function profile_mahasiswa()
+    public function profile()
     {
         $user = $this->sessionUserService->currentUser();
-        return view('profile_mahasiswa', compact('user'));
+        return view('profile', compact('user'));
     }
 }

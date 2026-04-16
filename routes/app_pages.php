@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RuanganController;
 
 Route::middleware('auth.session')->group(function () {
     Route::get('/home', [AuthController::class, 'home'])->name('home');
@@ -10,16 +11,15 @@ Route::middleware('auth.session')->group(function () {
     Route::get('/menu', [AuthController::class, 'menu'])
         ->name('menu');
 
-    Route::get('/profile_mahasiswa', [AuthController::class, 'profile_mahasiswa'])
-        ->name('profile_mahasiswa');
+    Route::get('/profile', [AuthController::class, 'profile'])
+        ->name('profile');
 
     Route::get('/list_ruangan', function () {
         return view('list_ruangan');
     })->name('list-ruangan');
 
-    Route::get('/list_ruangan_detail', function () {
-        return view('list_ruangan_detail');
-    })->name('list-ruangan-detail');
+    Route::get('/list_ruangan_detail', [RuanganController::class, 'detail'])
+    ->name('list-ruangan-detail');
 
     Route::get('/jadwal_ruangan', function () {
         return view('jadwal_ruangan');

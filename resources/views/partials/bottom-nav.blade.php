@@ -29,7 +29,7 @@
         <span class="nav-label">Menu</span>
     </a>
 
-    <a href="{{ url('/profile_mahasiswa') }}" class="nav-item {{ $active === 'profil' ? 'active' : '' }}">
+    <a href="{{ url('/profile') }}" class="nav-item {{ $active === 'profil' ? 'active' : '' }}">
         {!! $renderNavIcon('icon_profile.svg') !!}
         <span class="nav-label">Profil</span>
     </a>

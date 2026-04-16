@@ -12,10 +12,10 @@
     <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
         <div class="list-ruangan-detail-status">
             <div class="nama-ruangan-container">
-                <h3 class="ruangan-name" id="detail-room-name-chip">String value</h3>
+                <h3 class="ruangan-name" id="detail-room-name-chip">{{ $ruangan['nama_ruangan'] }}</h3>
             </div>
             <div class="status-ruangan-container">
-                <h3 class="status-ruangan" id="detail-room-status">Tersedia</h3>
+                <h3 class="status-ruangan" id="detail-room-status">{{ $ruangan['status'] }}</h3>
             </div>
         </div>
 
@@ -32,19 +32,19 @@
         <div class="list-ruangan-detail-informasi">
             <div class="nama-ruangan">
                 <label>Nama Ruangan</label>
-                <div class="field-value" id="detail-room-name">String value</div>
+                <div class="field-value" id="detail-room-name">{{ $ruangan['nama_ruangan'] }}</div>
             </div>
             <div class="kapasitas-ruangan">
                 <label>Kapasitas Ruangan</label>
-                <div class="field-value" id="detail-room-capacity">String value</div>
+                <div class="field-value" id="detail-room-capacity">{{ $ruangan['kapasitas'] }}</div>
             </div>
             <div class="fasilitas-ruangan">
                 <label>Fasilitas Ruangan</label>
-                <div class="field-value multiline" id="detail-room-facilities">String value</div>
+                <div class="field-value multiline" id="detail-room-facilities">{{ $ruangan['fasilitas'] }}</div>
             </div>
             <div class="lokasi-ruangan">
                 <label>Lokasi Ruangan</label>
-                <div class="field-value" id="detail-room-location">String value</div>
+                <div class="field-value" id="detail-room-location">{{ $ruangan['lokasi'] }}</div>
             </div>
 
             <div class="jadwal-ketersediaan-ruangan">
