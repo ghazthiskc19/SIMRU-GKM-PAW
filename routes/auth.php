@@ -13,3 +13,5 @@ Route::get('/login_mahasiswa', function () {
 
 Route::post('/login_mahasiswa', [AuthController::class, 'login_mahasiswa'])
     ->name('login_mahasiswa.process');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

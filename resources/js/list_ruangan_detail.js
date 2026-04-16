@@ -4,63 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const roomId = String(container.getAttribute('data-ruangan-id') || '1');
 
-    const roomDataMap = {
-        '1': {
-            name: 'GKM 4.1',
-            status: 'Tersedia',
-            capacity: 'String value',
-            facilities: 'String value',
-            location: 'String value',
-            images: [
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png'
-            ]
-        },
-        '2': {
-            name: 'GKM 4.2',
-            status: 'Tersedia',
-            capacity: 'String value',
-            facilities: 'String value',
-            location: 'String value',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        },
-        '3': {
-            name: 'GKM 3.1',
-            status: 'Tersedia',
-            capacity: 'String value',
-            facilities: 'String value',
-            location: 'String value',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        },
-        '4': {
-            name: 'GKM Lantai 1',
-            status: 'Tersedia',
-            capacity: 'String value',
-            facilities: 'String value',
-            location: 'String value',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        }
-    };
-
-    const room = roomDataMap[roomId] || roomDataMap['1'];
-
-    const elNameChip = document.getElementById('detail-room-name-chip');
-    const elStatus = document.getElementById('detail-room-status');
-    const elName = document.getElementById('detail-room-name');
-    const elCapacity = document.getElementById('detail-room-capacity');
-    const elFacilities = document.getElementById('detail-room-facilities');
-    const elLocation = document.getElementById('detail-room-location');
-
-    if (elNameChip) elNameChip.textContent = room.name;
-    if (elStatus) elStatus.textContent = room.status;
-    if (elName) elName.textContent = room.name;
-    if (elCapacity) elCapacity.textContent = room.capacity;
-    if (elFacilities) elFacilities.textContent = room.facilities;
-    if (elLocation) elLocation.textContent = room.location;
-
     const imageEl = document.getElementById('detail-hero-image');
     const dotsEl = document.getElementById('hero-dots');
     const leftBtn = document.querySelector('.arrow-left-hero');
