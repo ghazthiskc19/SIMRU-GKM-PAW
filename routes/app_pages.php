@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\PeminjamanController;
+
 
 Route::middleware('auth.session')->group(function () {
     Route::get('/home', [AuthController::class, 'home'])->name('home');
@@ -24,10 +26,10 @@ Route::middleware('auth.session')->group(function () {
     Route::get('/jadwal_ruangan', function () {
         return view('jadwal_ruangan');
     })->name('jadwal-ruangan');
+    
+    Route::get('/peminjaman_ruangan', [RuanganController::class, 'peminjaman']) ->name('peminjaman-ruangan');
 
-    Route::get('/peminjaman_ruangan', function () {
-        return view('peminjaman_ruangan');
-    })->name('peminjaman-ruangan');
+    Route::post('peminjaman_ruangan', [PeminjamanController::class, 'peminjaman']) ->name('peminjaman-ruangan.process');
 
     Route::get('/notifikasi', function () {
         return view('notifikasi');

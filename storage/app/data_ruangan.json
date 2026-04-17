@@ -3,32 +3,32 @@
         "id_ruangan": 1,
         "nama_ruangan": "GKM 4.1",
         "status": "Tersedia",
-        "fasilitas": "AC, Meja dan Kursi, Monitor, Sound dan Speaker",
-        "kapasitas": "50",
+        "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
+        "kapasitas": "80 Orang",
         "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
     },
     {
         "id_ruangan": 2,
         "nama_ruangan": "GKM 4.2",
         "status": "Tersedia",
-        "fasilitas": "AC, Meja dan Kursi, Monitor, Sound dan Speaker",
-        "kapasitas": "50",
+        "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
+        "kapasitas": "80 Orang",
         "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
     },
     {
         "id_ruangan": 3,
         "nama_ruangan": "GKM 4.3",
         "status": "Tersedia",
-        "fasilitas": "AC, Meja dan Kursi, Monitor, Sound dan Speaker",
-        "kapasitas": "50",
+        "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
+        "kapasitas": "80 Orang",
         "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
     },
     {
         "id_ruangan": 4,
         "nama_ruangan": "GKM Lantai 1",
         "status": "Tersedia",
-        "fasilitas": "AC, Meja dan Kursi, Monitor, Sound dan Speaker",
-        "kapasitas": "50",
+        "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
+        "kapasitas": "200 Orang",
         "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
     }
 ]

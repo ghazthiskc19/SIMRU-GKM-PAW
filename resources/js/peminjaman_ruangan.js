@@ -4,35 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const roomId = String(container.getAttribute('data-ruangan-id') || '1');
 
-    const roomDataMap = {
-        '1': {
-            name: 'GKM 4.1',
-            status: 'Tersedia',
-            images: [
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png',
-                '/images/hero_ruangan.png'
-            ]
-        },
-        '2': {
-            name: 'GKM 4.2',
-            status: 'Tersedia',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        },
-        '3': {
-            name: 'GKM 3.1',
-            status: 'Tersedia',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        },
-        '4': {
-            name: 'GKM Lantai 1',
-            status: 'Tersedia',
-            images: ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png']
-        }
-    };
-
-    const room = roomDataMap[roomId] || roomDataMap['1'];
-
     const elNameChip = document.getElementById('detail-room-name-chip');
     const elStatus = document.getElementById('detail-room-status');
     const roomIdInput = document.getElementById('ruangan-id-input');
@@ -155,20 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-
         const jamMulai = document.getElementById('jam_mulai')?.value;
         const jamSelesai = document.getElementById('jam_selesai')?.value;
         if (jamMulai && jamSelesai && jamMulai >= jamSelesai) {
+            event.preventDefault();
             setErrorFeedback('Jam selesai harus lebih besar daripada jam mulai.');
             return;
         }
 
         if (!fileInput?.files?.length) {
+            event.preventDefault();
             setErrorFeedback('Silakan unggah minimal 1 dokumen PDF.');
             return;
         }
 
-        alert('Form peminjaman berhasil dikirim.');
     });
 });
