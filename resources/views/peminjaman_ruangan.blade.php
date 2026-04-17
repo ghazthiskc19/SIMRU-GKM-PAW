@@ -12,10 +12,10 @@
     <div class="peminjaman-ruangan-container" data-ruangan-id="{{ request('ruangan', 1) }}">
         <div class="list-ruangan-detail-status">
             <div class="nama-ruangan-container">
-                <h3 class="ruangan-name" id="detail-room-name-chip">String value</h3>
+                <h3 class="ruangan-name" id="detail-room-name-chip">{{ $ruangan['nama_ruangan'] }}</h3>
             </div>
             <div class="status-ruangan-container">
-                <h3 class="status-ruangan" id="detail-room-status">Tersedia</h3>
+                <h3 class="status-ruangan" id="detail-room-status">{{ $ruangan['status'] }}</h3>
             </div>
         </div>
 
@@ -29,7 +29,13 @@
 
         <div class="hero-dots" id="hero-dots" aria-label="Indikator gambar"></div>
 
-        <form class="peminjaman-form" id="peminjaman-form" novalidate>
+        <form   class="peminjaman-form" 
+                id="peminjaman-form" 
+                novalidate 
+                action="{{ route('peminjaman-ruangan.process') }}" 
+                method="post" 
+                enctype="multipart/form-data">
+            @csrf
             <input type="hidden" name="ruangan_id" id="ruangan-id-input" value="{{ request('ruangan', 1) }}">
 
             <div class="form-group">
