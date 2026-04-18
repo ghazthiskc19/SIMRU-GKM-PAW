@@ -12,6 +12,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (elStatus) elStatus.textContent = room.status;
     if (roomIdInput) roomIdInput.value = roomId;
 
+    const roomSelect = document.getElementById('room-select');
+    if (roomSelect) {
+        roomSelect.addEventListener('change', (e) => {
+            const selectedRoomId = e.target.value;
+            const selectedRoom = window.allRooms.find(r => String(r.id_ruangan) === selectedRoomId);
+
+            if (selectedRoom) {
+                // Update room details
+                if (elNameChip) elNameChip.textContent = selectedRoom.nama_ruangan;
+                if (elStatus) elStatus.textContent = selectedRoom.status;
+                if (roomIdInput) roomIdInput.value = selectedRoomId;
+
+                // Update images
+                const newImages = selectedRoom.images && selectedRoom.images.length
+                    ? selectedRoom.images
+                    : ['/images/hero_ruangan.png'];
+                images.length = 0;
+                images.push(...newImages);
+                index = 0;
+                renderImage();
+            }
+        });
+    }
+
     const imageEl = document.getElementById('detail-hero-image');
     const dotsEl = document.getElementById('hero-dots');
     const leftBtn = document.querySelector('.arrow-left-hero');

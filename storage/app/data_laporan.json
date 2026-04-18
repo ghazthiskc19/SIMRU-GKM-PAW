@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "ruangan": "GKM 4.1",
+        "hari_tanggal": "Selasa, 21 April 2026",
+        "pukul": "00:00 WIB",
+        "status": "Sedang Ditinjau",
+        "status_class": "badge-warning",
+        "footer": "Laporan telah dikirim dan sedang ditinjau oleh staf.",
+        "status_title": "Laporan Sedang Ditinjau",
+        "status_time": "18 Apr 2026 | 14.37 160651",
+        "tanggal": "21 April 2026",
+        "waktu": "00:00 WIB",
+        "tempat": "GKM 4.1",
+        "kegiatan": "Laporan Masalah",
+        "lembaga": "Teknik Persawitan",
+        "nama": "Prabroro",
+        "nim": "12345",
+        "description": [
+            "Nama: Prabroro",
+            "NIM: 12345",
+            "Program Studi: Teknik Persawitan",
+            "Detail Laporan: Ada setan sawit yang menunggu ruangan ini"
+        ]
+    }
+]

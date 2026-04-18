@@ -35,9 +35,11 @@ Route::middleware('auth.session')->group(function () {
         return view('notifikasi');
     })->name('notifikasi');
 
-    Route::get('/laporan_masalah', function () {
-        return view('laporan_masalah');
-    })->name('laporan-masalah');
+    Route::get('/laporan_masalah', [StudentHistoryController::class, 'laporanForm'])
+        ->name('laporan-masalah');
+
+    Route::post('/laporan_masalah', [StudentHistoryController::class, 'storeLaporan'])
+        ->name('laporan-masalah.store');
 
     Route::get('/riwayat_laporan', [StudentHistoryController::class, 'laporanIndex'])
         ->name('riwayat-laporan');

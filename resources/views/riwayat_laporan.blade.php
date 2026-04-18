@@ -9,6 +9,12 @@
 @section('page')
     @include('partials.header', ['id' => 2, 'judul' => 'Laporan Masalah', 'kembaliKe' => '/menu'])
 
+    @if (session('success'))
+        <div class="alert alert-success" style="padding: 12px 16px; margin: 20px; border-radius: 10px; background: #e6ffed; color: #1a7f37;">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="content riwayat-content">
         <div class="history-list">
             @foreach (($items ?? []) as $item)

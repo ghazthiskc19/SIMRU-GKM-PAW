@@ -38,7 +38,7 @@ class RuanganController extends Controller
             abort(404, 'Ruangan tidak ditemukan');
         }
 
-        return view('peminjaman_ruangan', compact('ruangan'));
+        return view('peminjaman_ruangan', compact('ruangan', 'data'));
     }
 
     

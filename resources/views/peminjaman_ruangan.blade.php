@@ -9,6 +9,7 @@
 @push('scripts')
     <script>
         window.room = @json($ruangan);
+        window.allRooms = @json($data);
     </script>
     @vite(['resources/js/peminjaman_ruangan.js'])
 @endpush
@@ -17,6 +18,17 @@
     @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
 
     <div class="peminjaman-ruangan-container" data-ruangan-id="{{ request('ruangan', 1) }}">
+        <div class="room-selector-container">
+            <label for="room-select">Pilih Ruangan:</label>
+            <select id="room-select" class="room-select">
+                @foreach($data as $room)
+                    <option value="{{ $room['id_ruangan'] }}" {{ $room['id_ruangan'] == request('ruangan', 1) ? 'selected' : '' }}>
+                        {{ $room['nama_ruangan'] }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="list-ruangan-detail-status">
             <div class="nama-ruangan-container">
                 <h3 class="ruangan-name" id="detail-room-name-chip">{{ $ruangan['nama_ruangan'] }}</h3>
@@ -36,11 +48,11 @@
 
         <div class="hero-dots" id="hero-dots" aria-label="Indikator gambar"></div>
 
-        <form   class="peminjaman-form" 
-                id="peminjaman-form" 
-                novalidate 
-                action="{{ route('peminjaman-ruangan.process') }}" 
-                method="post" 
+        <form   class="peminjaman-form"
+                id="peminjaman-form"
+                novalidate
+                action="{{ route('peminjaman-ruangan.process') }}"
+                method="post"
                 enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="ruangan_id" id="ruangan-id-input" value="{{ request('ruangan', 1) }}">
