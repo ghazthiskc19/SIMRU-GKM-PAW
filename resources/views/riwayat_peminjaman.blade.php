@@ -18,7 +18,7 @@
 
         <div class="history-list">
             @foreach (($items ?? []) as $item)
-                <a href="{{ route('riwayat-peminjaman-detail', ['id' => $item['id']]) }}" style="text-decoration: none; color: inherit; display: block;" aria-label="Lihat detail riwayat {{ $item['ruangan'] }} tanggal {{ $item['hari_tanggal'] }}">
+                <a href="{{ route('riwayat-peminjaman-detail', ['id' => $item['id_peminjaman']]) }}" style="text-decoration: none; color: inherit; display: block;" aria-label="Lihat detail riwayat {{ $item['ruangan'] }} tanggal {{ $item['hari_tanggal'] }}">
                     <div class="history-card">
                         <div class="card-main">
                             <div class="room-img-placeholder"></div>

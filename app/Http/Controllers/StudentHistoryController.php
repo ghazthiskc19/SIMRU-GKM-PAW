@@ -15,7 +15,7 @@ class StudentHistoryController extends Controller
 
     public function detail(int $id)
     {
-        $item = collect($this->historyItems())->firstWhere('id', $id);
+        $item = collect($this->historyItems())->firstWhere('id_peminjaman', $id);
 
         if (!$item) {
             abort(404);
