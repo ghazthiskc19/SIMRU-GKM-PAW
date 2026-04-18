@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PeminjamanController extends Controller
 {
     public function peminjaman(Request $request)
     {
+
 
         $request->validate([
             'nama' => 'required',
@@ -22,12 +23,37 @@ class PeminjamanController extends Controller
                 $dokumenPaths[] = $file->store('dokumen');
             }
         }
+
+        $lastId = 0;
+        $path = storage_path('app/data_peminjaman.json');
+
+        if (file_exists($path)) {
+            $json = file_get_contents($path);
+            $data_lama = json_decode($json, true);
+
+            if (!is_array($data_lama)) {
+                $data_lama = [];
+            }
+
+             foreach ($data_lama as $item) {
+                if (isset($item['id_peminjaman']) && is_numeric($item['id_peminjaman'])) {
+                    $lastId = max($lastId, (int)$item['id_peminjaman']);
+                }
+            }
+        } else {
+            $data_lama = [];
+        }
+
+        $idUnik = $lastId + 1;
+
+        
         $data = [
+            "id_peminjaman" => $idUnik,
+            "ruangan_id" => $request->ruangan_id,
             "nama" => $request->nama,
             "nim" => $request->nim,
             "prodi" => $request->program_studi,
             "tanggal_pemakaian" => $request->tanggal_pemakaian,
-            "ruangan_id" => $request->ruangan_id,
             "jam_mulai" => $request->jam_mulai,
             "jam_selesai" => $request->jam_selesai,
             "alasan_peminjaman" => $request->alasan_peminjaman,
@@ -35,21 +61,15 @@ class PeminjamanController extends Controller
             "alat_tambahan" => $request->alat_tambahan,
             "dokumen" => $dokumenPaths
         ];
-
-        $path = "data_peminjaman.json";
-
-        if (Storage::exists($path)){
-            $json = Storage::get($path);
-            $data_lama = json_decode($json, true);
-        }else{
-            $data_lama = [];
-        }
+        
+       
 
         $data_lama[] = $data;
        
         file_put_contents(
-            storage_path('app/data_peminjaman.json'),
-            json_encode($data_lama, JSON_PRETTY_PRINT)
+            $path,
+            json_encode($data_lama, JSON_PRETTY_PRINT),
+            LOCK_EX
         );
         return redirect()->route('notifikasi')
                 ->with('success', 'Data berhasil disimpan');

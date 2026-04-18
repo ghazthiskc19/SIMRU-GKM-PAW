@@ -3,7 +3,14 @@
 @section('title', 'Peminjaman Ruangan - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
-    @vite(['resources/css/peminjaman_ruangan_style.css', 'resources/js/peminjaman_ruangan.js'])
+    @vite(['resources/css/peminjaman_ruangan_style.css'])
+@endpush
+
+@push('scripts')
+    <script>
+        window.room = @json($ruangan);
+    </script>
+    @vite(['resources/js/peminjaman_ruangan.js'])
 @endpush
 
 @section('page')

@@ -5,7 +5,8 @@
         "status": "Tersedia",
         "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
         "kapasitas": "80 Orang",
-        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
+        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
+        "images":  ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]
     },
     {
         "id_ruangan": 2,
@@ -13,7 +14,8 @@
         "status": "Tersedia",
         "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
         "kapasitas": "80 Orang",
-        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
+        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
+        "images":  ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]
     },
     {
         "id_ruangan": 3,
@@ -21,7 +23,8 @@
         "status": "Tersedia",
         "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
         "kapasitas": "80 Orang",
-        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
+        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
+        "images":  ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]
     },
     {
         "id_ruangan": 4,
@@ -29,6 +32,7 @@
         "status": "Tersedia",
         "fasilitas": "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
         "kapasitas": "200 Orang",
-        "lokasi": "Gedung GKM lantai 4 Fakultas Ilmu Komputer"
+        "lokasi": "Gedung GKM lantai 1 Fakultas Ilmu Komputer",
+        "images":  ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]
     }
 ]

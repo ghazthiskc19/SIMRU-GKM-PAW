@@ -1,107 +1,50 @@
 [
     {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
+        "id_peminjaman": 1,
         "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
+        "nama": "Prabowo Subianto",
+        "nim": "212",
+        "prodi": "Teknik Persawitan",
+        "tanggal_pemakaian": "2026-04-18",
+        "jam_mulai": "11:41",
+        "jam_selesai": "17:41",
+        "alasan_peminjaman": "saasd",
+        "sarana_prasarana": "asdasd",
+        "alat_tambahan": "sadsad",
         "dokumen": [
-            "dokumen\/zNtwqKQplfP645Z7vL6IF6jRQIjQlUAJ7hcmhVGD.pdf"
+            "dokumen\/BSMKD9HQ0Rv1ucxD0sCqMpv8agiAd4CNOeIfs4B5.pdf"
         ]
     },
     {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
-        "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
+        "id_peminjaman": 2,
+        "ruangan_id": "2",
+        "nama": "raaaa",
+        "nim": "245150207111052",
+        "prodi": "Hukum",
+        "tanggal_pemakaian": "2026-04-25",
+        "jam_mulai": "16:42",
+        "jam_selesai": "17:42",
+        "alasan_peminjaman": "raa",
+        "sarana_prasarana": "raaa",
+        "alat_tambahan": "raaa",
         "dokumen": [
-            "dokumen\/Itu4yUk8ssJDv6jL4bU6ZJPuCT1fMXtkrkhOAeC5.pdf"
+            "dokumen\/dy05tDXaqvwm03DnhsXrfw9SpSmf5CFtVUaEy7Yi.pdf"
         ]
     },
     {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
+        "id_peminjaman": 3,
         "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
+        "nama": "Jokowi",
+        "nim": "67",
+        "prodi": "Hutan",
+        "tanggal_pemakaian": "2026-04-30",
+        "jam_mulai": "11:42",
+        "jam_selesai": "12:42",
+        "alasan_peminjaman": "sadasd",
+        "sarana_prasarana": "asdasdas",
         "alat_tambahan": "asdasdasd",
         "dokumen": [
-            "dokumen\/a7LBScP4I2ooo9rROsz0IxTbLxgVOPTJxLDKgvRY.pdf"
-        ]
-    },
-    {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
-        "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
-        "dokumen": [
-            "dokumen\/YCrKV5EPk1NPhORgSMOdL7pPSGWu4lg8seILmdUg.pdf"
-        ]
-    },
-    {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
-        "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
-        "dokumen": [
-            "dokumen\/OnoaG0CKDeV88cKaRwiEJDLPW3YNRPk2eoMX6Pn3.pdf"
-        ]
-    },
-    {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
-        "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
-        "dokumen": [
-            "dokumen\/MhjDHjn0sekTx6F0f2LFdcJP7UYwa2nEkHYOvG12.pdf"
-        ]
-    },
-    {
-        "nama": "asdsadasd",
-        "nim": "asdasdsa",
-        "prodi": "asdadasd",
-        "tanggal_pemakaian": "2026-04-17",
-        "ruangan_id": "1",
-        "jam_mulai": "18:05",
-        "jam_selesai": "20:05",
-        "alasan_peminjaman": "saddad",
-        "sarana_prasarana": "asdasdasd",
-        "alat_tambahan": "asdasdasd",
-        "dokumen": [
-            "dokumen\/MVsyAUAWJILJV0d36370ti0Q1AabvRkjFIyVkmut.pdf"
+            "dokumen\/wSFxoXDXkSJWtAhvyQoeKmUj5PkGmhbFMsVLz3JX.pdf"
         ]
     }
 ]
