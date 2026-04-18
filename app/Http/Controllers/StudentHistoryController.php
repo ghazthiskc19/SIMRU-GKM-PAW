@@ -222,7 +222,7 @@ class StudentHistoryController extends Controller
             $timeLabel = date('H:i', strtotime($item['jam_mulai'])) . ' - ' . date('H:i', strtotime($item['jam_selesai'])) . ' WIB';
 
             return [
-                'id' => $item['id_peminjaman'],
+                'id_peminjaman' => $item['id_peminjaman'],
                 'ruangan' => $ruangan,
                 'hari_tanggal' => $formattedDate,
                 'pukul' => $timeLabel,
