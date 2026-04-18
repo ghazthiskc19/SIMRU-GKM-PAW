@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elStatus = document.getElementById('detail-room-status');
     const roomIdInput = document.getElementById('ruangan-id-input');
 
-    if (elNameChip) elNameChip.textContent = room.name;
+    if (elNameChip) elNameChip.textContent = room.nama_ruangan;
     if (elStatus) elStatus.textContent = room.status;
     if (roomIdInput) roomIdInput.value = roomId;
 
@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const leftBtn = document.querySelector('.arrow-left-hero');
     const rightBtn = document.querySelector('.arrow-right-hero');
 
-    const images = room.images && room.images.length ? room.images : ['/images/hero_ruangan.png'];
-    let index = 0;
+    const images = room.images && room.images.length
+        ? room.images
+        : ['/images/hero_ruangan.png'];    let index = 0;
 
     const renderDots = () => {
         if (!dotsEl) return;

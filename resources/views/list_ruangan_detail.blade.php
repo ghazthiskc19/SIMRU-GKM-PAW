@@ -3,8 +3,16 @@
 @section('title', 'Detail Ruangan - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
-    @vite(['resources/css/list_ruangan_detail_style.css', 'resources/js/list_ruangan_detail.js'])
+    @vite(['resources/css/list_ruangan_detail_style.css'])
 @endpush
+
+@push('scripts')
+    <script>
+        window.room = @json($ruangan);
+    </script>
+    @vite(['resources/js/list_ruangan_detail.js'])
+@endpush
+
 
 @section('page')
     @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
@@ -60,3 +68,5 @@
         <button type="button" class="pinjam-button" id="pinjam-button">Pinjam Ruangan Ini</button>
     </div>
 @endsection
+
+

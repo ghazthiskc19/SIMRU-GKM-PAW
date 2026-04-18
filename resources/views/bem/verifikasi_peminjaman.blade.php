@@ -18,13 +18,21 @@
 
         <div class="verification-list">
             @forelse (($items ?? [1, 2, 3]) as $item)
-                <a href="{{ route('verifikasi-peminjaman-detail', ['id' => $item['id']]) }}" class="verification-card-link">
+                <a href="{{ route('verifikasi-peminjaman-detail', ['id' => $item['id_peminjaman']]) }}" class="verification-card-link">
                     <article class="verification-card">
                         <div class="verification-card-main">
                             <div class="room-img-placeholder" aria-hidden="true"></div>
                             <div class="verification-card-info">
-                                <h3>{{ $item['ruangan'] ?? 'GKM 4.1' }}</h3>
-                                <p>Hari/Tanggal: {{ $item['hari_tanggal'] ?? 'Kamis, 16 Oktober 2025' }}</p>
+                                @php
+                                    $ruanganMap = [
+                                        1 => 'GKM 4.1',
+                                        2 => 'GKM 4.2',
+                                        3 => 'GKM 4.3',
+                                        4 => 'GKM LT 1',
+                                    ];
+                                @endphp
+                                <h3>{{ $ruanganMap[$item['ruangan_id']] ?? '-'}}</h3>
+                                <p>Hari/Tanggal: {{ $item['tanggal_pemakaian'] }}</p>
                                 <p>Pukul: {{ $item['pukul'] ?? '07.00 - 10.00' }}</p>
                                 @php
                                     $buttonText = match($item['status'] ?? 'Proses Pengajuan') {

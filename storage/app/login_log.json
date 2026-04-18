@@ -63,5 +63,45 @@
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-04-17 11:05:02"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-18 02:27:18"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-18 02:36:59"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-18 03:31:39"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-18 04:00:34"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-18 04:10:47"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-18 04:34:24"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-18 04:41:06"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-18 04:43:19"
     }
 ]

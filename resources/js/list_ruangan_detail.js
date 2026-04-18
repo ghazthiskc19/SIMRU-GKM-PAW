@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const leftBtn = document.querySelector('.arrow-left-hero');
     const rightBtn = document.querySelector('.arrow-right-hero');
 
+    const room = window.room;
     const images = room.images && room.images.length ? room.images : ['/images/hero_ruangan.png'];
     let index = 0;
 
