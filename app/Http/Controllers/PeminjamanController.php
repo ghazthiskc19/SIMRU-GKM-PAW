@@ -59,7 +59,8 @@ class PeminjamanController extends Controller
             "alasan_peminjaman" => $request->alasan_peminjaman,
             "sarana_prasarana" => $request->sarana_prasarana,
             "alat_tambahan" => $request->alat_tambahan,
-            "dokumen" => $dokumenPaths
+            "dokumen" => $dokumenPaths,
+            "status"=> 'Proses Pengajuan'
         ];
         
        

@@ -181,7 +181,7 @@ class StudentHistoryController extends Controller
 
     public function verifikasiPeminjamanDetail(int $id)
     {
-        $item = collect($this->historyItems())->firstWhere('id', (int) $id);
+        $item = collect($this->historyItems())->firstWhere('id_peminjaman', (int) $id);
 
         if (!$item) {
             abort(404);
@@ -226,12 +226,12 @@ class StudentHistoryController extends Controller
                 'ruangan' => $ruangan,
                 'hari_tanggal' => $formattedDate,
                 'pukul' => $timeLabel,
-                'status' => 'Selesai Dipinjam',
+                'status' => $item['status'],
                 'status_class' => 'badge-success',
                 'footer' => 'Peminjaman telah selesai dilaksanakan.',
                 'status_title' => 'Peminjaman Selesai',
                 'status_time' => date('d M Y | H.i WIB', strtotime($item['tanggal_pemakaian'])),
-                'tanggal' => $tanggal,
+                'tanggal_pemakaian' => $tanggal,
                 'waktu' => $timeLabel,
                 'tempat' => $ruangan,
                 'kegiatan' => $item['alasan_peminjaman'] ?? 'Kegiatan Organisasi',

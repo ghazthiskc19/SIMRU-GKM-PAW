@@ -13,7 +13,8 @@
         "alat_tambahan": "sadsad",
         "dokumen": [
             "dokumen\/BSMKD9HQ0Rv1ucxD0sCqMpv8agiAd4CNOeIfs4B5.pdf"
-        ]
+        ],
+        "status": "Proses Pengajuan"
     },
     {
         "id_peminjaman": 2,
@@ -29,7 +30,8 @@
         "alat_tambahan": "raaa",
         "dokumen": [
             "dokumen\/dy05tDXaqvwm03DnhsXrfw9SpSmf5CFtVUaEy7Yi.pdf"
-        ]
+        ],
+        "status": "Proses Pengajuan"
     },
     {
         "id_peminjaman": 3,
@@ -45,6 +47,24 @@
         "alat_tambahan": "asdasdasd",
         "dokumen": [
             "dokumen\/wSFxoXDXkSJWtAhvyQoeKmUj5PkGmhbFMsVLz3JX.pdf"
-        ]
+        ],
+        "status": "Proses Pengajuan"
+    },
+    {
+        "id_peminjaman": 4,
+        "ruangan_id": "1",
+        "nama": "Bahlil",
+        "nim": "666",
+        "prodi": "Kenegaraan",
+        "tanggal_pemakaian": "2026-04-20",
+        "jam_mulai": "11:34",
+        "jam_selesai": "17:34",
+        "alasan_peminjaman": "Iseng",
+        "sarana_prasarana": "gak ada",
+        "alat_tambahan": "Piala emas FIFA",
+        "dokumen": [
+            "dokumen\/kU54Yq8qtXBbX3FWv2iiNfYXLxpFmrYZyS95M8Fq.pdf"
+        ],
+        "status": "Proses Pengajuan"
     }
 ]
