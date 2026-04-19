@@ -113,5 +113,20 @@
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-04-18 15:03:53"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-19 03:48:33"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-19 04:30:04"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-19 04:35:14"
     }
 ]

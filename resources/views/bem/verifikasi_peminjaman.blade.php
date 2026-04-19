@@ -23,15 +23,8 @@
                         <div class="verification-card-main">
                             <div class="room-img-placeholder" aria-hidden="true"></div>
                             <div class="verification-card-info">
-                                @php
-                                    $ruanganMap = [
-                                        1 => 'GKM 4.1',
-                                        2 => 'GKM 4.2',
-                                        3 => 'GKM 4.3',
-                                        4 => 'GKM LT 1',
-                                    ];
-                                @endphp
-                                <h3>{{ $ruanganMap[$item['ruangan_id']] ?? '-'}}</h3>
+                                
+                                <h3>{{ $item['ruangan']}}</h3>
                                 <p>Hari/Tanggal: {{ $item['tanggal_pemakaian'] }}</p>
                                 <p>Pukul: {{ $item['pukul'] ?? '07.00 - 10.00' }}</p>
                                 @php

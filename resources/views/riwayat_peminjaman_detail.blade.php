@@ -24,7 +24,7 @@
 
         <div class="detail-info">
             <h3>Detail Peminjaman</h3>
-            <p>Tanggal: {{ $item['tanggal'] }}</p>
+            <p>Tanggal: {{ $item['tanggal_pemakaian'] }}</p>
             <p>Waktu: {{ $item['waktu'] }}</p>
             <p>Tempat: {{ $item['tempat'] }}</p>
             <p>Kegiatan: {{ $item['kegiatan'] }}</p>
