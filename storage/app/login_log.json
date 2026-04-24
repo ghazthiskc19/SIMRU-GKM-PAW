@@ -128,5 +128,10 @@
         "email": "bem@gmail.com",
         "role": "bem",
         "login_time": "2026-04-19 04:35:14"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-19 16:24:54"
     }
 ]
