@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class StudentHistoryController extends Controller
 {
@@ -66,7 +67,7 @@ class StudentHistoryController extends Controller
                 'dokumen.*' => 'image|mimes:jpeg,png,jpg|max:2048',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
-            \Log::error('Validation failed', $e->errors());
+            Log::error('Validation failed', $e->errors());
             return back()->withErrors($e->errors())->withInput();
         }
 
