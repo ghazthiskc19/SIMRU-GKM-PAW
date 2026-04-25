@@ -4,7 +4,7 @@
 @section('title', 'Login Mahasiswa')
 
 @push('styles')
-    @vite(['resources/css/login_mahasiswa_style.css'])
+    @vite(['resources/css/login_register_style.css'])
 @endpush
 
 @section('page')
@@ -49,7 +49,7 @@
             </div>
 
             <div class="register-link">
-                 Don't have account? <a href="#">Daftar Akun Baru</a>
+                Don't have account? <a href="{{ route('register') }}">Daftar Akun Baru</a>
             </div>
 
     </div>

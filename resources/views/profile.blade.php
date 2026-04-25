@@ -12,7 +12,7 @@
     <div class="content">
         <div class="profile-content">
             <div class="profile-image-wrapper">
-                <img src="{{ $user['foto'] }}" alt="Foto Profil Lampu Kaka" class="profile-img">
+                <img src="{{ asset($user['foto'] ?? 'images/default-profile.png') }}" alt="Foto Profil Lampu Kaka" class="profile-img">
             </div>
 
             <div class="profile-form">
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="logout-btn-container">
-                   <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                     <button type="submit" class="logout-btn">Logout</button>
                     </form>

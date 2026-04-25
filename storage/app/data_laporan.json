@@ -22,5 +22,29 @@
             "Program Studi: Teknik Persawitan",
             "Detail Laporan: Ada setan sawit yang menunggu ruangan ini"
         ]
+    },
+    {
+        "id": 2,
+        "ruangan": "GKM 4.1",
+        "hari_tanggal": "Selasa, 28 April 2026",
+        "pukul": "00:33 WIB",
+        "status": "Sedang Ditinjau",
+        "status_class": "badge-warning",
+        "footer": "Laporan telah dikirim dan sedang ditinjau oleh staf.",
+        "status_title": "Laporan Sedang Ditinjau",
+        "status_time": "19 Apr 2026 | 16.32 160731",
+        "tanggal": "28 April 2026",
+        "waktu": "00:33 WIB",
+        "tempat": "GKM 4.1",
+        "kegiatan": "Laporan Masalah",
+        "lembaga": "dadw",
+        "nama": "adwa",
+        "nim": "123",
+        "description": [
+            "Nama: adwa",
+            "NIM: 123",
+            "Program Studi: dadw",
+            "Detail Laporan: adwadw"
+        ]
     }
 ]
