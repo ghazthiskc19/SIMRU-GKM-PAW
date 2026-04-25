@@ -5,18 +5,17 @@ namespace App\DTOs\Auth;
 class LoginResult
 {
     public function __construct(
-        public readonly bool $success,
-        public readonly ?array $user = null
+        public readonly bool $success
     ) {
     }
 
-    public static function success(array $user): self
+    public static function success(): self
     {
-        return new self(true, $user);
+        return new self(true);
     }
 
     public static function failure(): self
     {
-        return new self(false, null);
+        return new self(false);
     }
 }

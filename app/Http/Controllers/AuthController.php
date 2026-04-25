@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use App\Services\Auth\LoginService;
-use App\Services\Auth\SessionUserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
     public function __construct(
-        private readonly LoginService $loginService,
-        private readonly SessionUserService $sessionUserService
+        private readonly LoginService $loginService
     ) {
     }
 
@@ -29,6 +28,8 @@ class AuthController extends Controller
                 ->withInput($request->only('email'))
                 ->with('error', 'Email atau password tidak valid.');
         }
+
+        $request->session()->regenerate();
 
         return redirect()->route('home');
     }
@@ -69,7 +70,7 @@ class AuthController extends Controller
             'name' => $request->nama,
             'nim' => $request->nim,
             'email' => $request->email,
-            'password' => $request->password, // auto hash
+            'password' => Hash::make($request->password),
             'prodi' => $request->prodi,
             'role' => $role,
             'foto' => $path
@@ -78,29 +79,28 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Registrasi berhasil!');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->forget('user');   // hapus user dari session
-        session()->flush();          // hapus semua session
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect('/');
     }
 
     public function home()
     {
-        $user = $this->sessionUserService->currentUser();
-        return view('home', compact('user'));
+        return view('home');
     }
 
     public function menu()
     {
-        $user = $this->sessionUserService->currentUser();
-        return view('menu', compact('user'));
+        return view('menu');
     }
 
     public function profile()
     {
-        $user = $this->sessionUserService->currentUser();
-        return view('profile', compact('user'));
+        return view('profile');
     }
 }

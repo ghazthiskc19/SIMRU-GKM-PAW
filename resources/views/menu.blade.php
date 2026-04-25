@@ -9,7 +9,7 @@
 
 @section('page')
     @php
-        $userRole = data_get($user ?? null, 'role');
+        $userRole = auth()->user()?->role;
     @endphp
 
     @include('partials.header', ['id' => 1])

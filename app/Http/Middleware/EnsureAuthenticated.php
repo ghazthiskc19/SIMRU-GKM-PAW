@@ -4,14 +4,15 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureAuthenticated
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('user')) {
-            return redirect()->route('login-mahasiswa');
+        if (!Auth::check()) {
+            return redirect()->route('login-user');
         }
 
         return $next($request);

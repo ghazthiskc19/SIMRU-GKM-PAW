@@ -4,14 +4,14 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class EnsureRole
 {
     public function handle(Request $request, Closure $next, string ...$allowedRoles): Response
     {
-        $user = session('user');
-        $role = $user['role'] ?? null;
+        $role = Auth::user()?->role;
 
         if (!$role || !in_array($role, $allowedRoles, true)) {
             if ($role === 'bem') {
@@ -22,7 +22,7 @@ class EnsureRole
                 return redirect()->route('riwayat-peminjaman');
             }
 
-            return redirect()->route('home');
+            return redirect()->route('login-user');
         }
 
         return $next($request);

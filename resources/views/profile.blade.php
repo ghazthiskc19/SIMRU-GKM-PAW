@@ -7,28 +7,32 @@
 @endpush
 
 @section('page')
+    @php
+        $user = auth()->user();
+    @endphp
+
     @include('partials.header', ['id' => 1])
 
     <div class="content">
         <div class="profile-content">
             <div class="profile-image-wrapper">
-                <img src="{{ asset($user['foto'] ?? 'images/default-profile.png') }}" alt="Foto Profil Lampu Kaka" class="profile-img">
+                <img src="{{ asset($user?->foto ?? 'images/default-profile.png') }}" alt="Foto Profil Lampu Kaka" class="profile-img">
             </div>
 
             <div class="profile-form">
                 <div class="form-group">
                     <span class="form-label">Nama</span>
-                    <div class="form-input-box">{{ $user['nama'] }}</div>
+                    <div class="form-input-box">{{ $user?->name }}</div>
                 </div>
 
                 <div class="form-group">
                     <span class="form-label">NIM</span>
-                    <div class="form-input-box">{{ $user['nim'] }}</div>
+                    <div class="form-input-box">{{ $user?->nim }}</div>
                 </div>
 
                 <div class="form-group">
                     <span class="form-label">Program Studi</span>
-                    <div class="form-input-box">{{ $user['prodi'] }}</div>
+                    <div class="form-input-box">{{ $user?->prodi }}</div>
                 </div>
 
                 <div class="logout-btn-container">
