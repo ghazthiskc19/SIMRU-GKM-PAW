@@ -66,5 +66,22 @@
             "dokumen\/kU54Yq8qtXBbX3FWv2iiNfYXLxpFmrYZyS95M8Fq.pdf"
         ],
         "status": "Proses Pengajuan"
+    },
+    {
+        "id_peminjaman": 5,
+        "ruangan_id": "1",
+        "nama": "Arsyad",
+        "nim": "adasdasd",
+        "prodi": "asdasdasd",
+        "tanggal_pemakaian": "2026-03-30",
+        "jam_mulai": "05:30",
+        "jam_selesai": "23:36",
+        "alasan_peminjaman": "asdasdasd",
+        "sarana_prasarana": "asdasdasd",
+        "alat_tambahan": "sadsadasd",
+        "dokumen": [
+            "dokumen\/nursB6Ru0emeQE4J0i849sZb6z5iZY3ALT12YWKz.pdf"
+        ],
+        "status": "Proses Pengajuan"
     }
 ]
