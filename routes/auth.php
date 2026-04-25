@@ -20,4 +20,6 @@ Route::post('/login_mahasiswa', [AuthController::class, 'login_mahasiswa'])
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::post('/register_user', [AuthController::class, 'register_user' ])->name('register_user.process');
+
 

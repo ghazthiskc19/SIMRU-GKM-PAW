@@ -48,8 +48,28 @@
     <div class="login-card">
         <h2>Create Account</h2>
         <p class="subtitle">Lengkapi data untuk mendaftar</p>
-        
-        <form action="#" method="POST">
+        @if(session('success'))
+            <div class="alert success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="alert error">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('register_user.process') }}" method="POST"  enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -91,6 +111,11 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="********" required>
             </div>
+
+            <div class="form-group">
+                <label for="foto">Foto Profil</label>
+                <input type="file" id="foto" name="foto" accept="image/png, image/jpeg">
+            </div>
             
             <button type="submit" class="btn-login">Daftar Akun</button>
         </form>
@@ -100,3 +125,4 @@
         </div>
     </div>
 @endsection
+
