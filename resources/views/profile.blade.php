@@ -16,7 +16,15 @@
     <div class="content">
         <div class="profile-content">
             <div class="profile-image-wrapper">
-                <img src="{{ asset($user?->foto ?? 'images/default-profile.png') }}" alt="Foto Profil Lampu Kaka" class="profile-img">
+                <img src="
+                {{ 
+                    $user && $user->foto
+                        ? (str_starts_with($user->foto, 'foto_users')
+                            ? asset('storage/' . $user->foto)
+                            : asset($user->foto))
+                        : asset('images/default-profile.png')
+                }}
+                " class="profile-img">
             </div>
 
             <div class="profile-form">

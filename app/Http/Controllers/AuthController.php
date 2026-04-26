@@ -59,6 +59,26 @@ class AuthController extends Controller
                     ]);
             }
         }
+        $nim = $request->nim;
+        $name = $request->nama;
+        $email =  $request->email;
+        if (User::where('nim', $nim)->exists()) {
+            return back()->withInput()->withErrors([
+                'nim' => 'NIM sudah terdaftar'
+            ]);
+        }
+
+        if (User::where('email', $email)->exists()) {
+            return back()->withInput()->withErrors([
+                'email' => 'Email sudah terdaftar'
+            ]);
+        }
+
+        if (User::where('name', $name)->exists()) {
+            return back()->withInput()->withErrors([
+                'nama' => 'Nama sudah digunakan'
+            ]);
+        }
 
         $path = null;
 
@@ -101,6 +121,8 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return view('profile');
+        $user = Auth::user();
+        
+        return view('profile', compact('user'));
     }
 }
