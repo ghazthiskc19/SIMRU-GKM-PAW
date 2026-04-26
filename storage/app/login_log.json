@@ -153,5 +153,40 @@
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-04-25 17:57:51"
+    },
+    {
+        "email": "nasir@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:08:46"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:09:12"
+    },
+    {
+        "email": "nasir@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:09:36"
+    },
+    {
+        "email": "wakilbem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:14:27"
+    },
+    {
+        "email": "nasir@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:14:41"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 03:18:25"
+    },
+    {
+        "email": "jokowi@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-04-26 03:21:58"
     }
 ]
