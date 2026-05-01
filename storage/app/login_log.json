@@ -188,5 +188,25 @@
         "email": "jokowi@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-04-26 03:21:58"
+    },
+    {
+        "email": "nasir@gmail.com",
+        "role": "bem",
+        "login_time": "2026-04-26 15:12:23"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-05-01 03:56:32"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-01 03:56:47"
+    },
+    {
+        "email": "mega@gmail.com",
+        "role": "bem",
+        "login_time": "2026-05-01 04:00:30"
     }
 ]
