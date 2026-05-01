@@ -17,6 +17,10 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    protected $primaryKey = 'id_users';
+    public $incrementing = true;
+    protected $keyType = 'int';
     protected $fillable = [
         'nim',
         'name',
@@ -26,6 +30,7 @@ class User extends Authenticatable
         'role',
         'foto'
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,5 +51,10 @@ class User extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id_users';
     }
 }
