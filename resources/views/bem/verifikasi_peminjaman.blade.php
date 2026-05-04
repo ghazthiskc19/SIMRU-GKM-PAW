@@ -28,14 +28,17 @@
                                 <p>Hari/Tanggal: {{ $item['tanggal_pemakaian'] }}</p>
                                 <p>Pukul: {{ $item['pukul'] ?? '07.00 - 10.00' }}</p>
                                 @php
-                                    $buttonText = match($item['status'] ?? 'Proses Pengajuan') {
-                                        'Selesai Dipinjam' => 'Telah Diverifikasi',
-                                        'Ditolak/Dibatalkan' => 'Ditolak',
-                                        default => 'Verifikasi'
+                                    $status = $item['status'] ?? 'Proses Pengajuan';
+                                    $statusClass = match($status) {
+                                        'Proses Pengajuan' => 'btn-verifikasi-small btn-warning',
+                                        'Disetujui' => 'btn-verifikasi-small btn-success',
+                                        'Ditolak' => 'btn-verifikasi-small btn-danger',
+                                        'Selesai' => 'btn-verifikasi-small btn-success',
+                                        'Dibatalkan' => 'btn-verifikasi-small btn-danger',
+                                        default => 'btn-verifikasi-small btn-info'
                                     };
-                                    $buttonClass = ($item['status'] ?? 'Proses Pengajuan') === 'Ditolak/Dibatalkan' ? 'btn-verifikasi-small btn-rejected' : 'btn-verifikasi-small';
                                 @endphp
-                                <button class="{{ $buttonClass }}">{{ $buttonText }}</button>
+                                <button class="{{ $statusClass }}" disabled>{{ $status }}</button>
                             </div>
                         </div>
                     </article>

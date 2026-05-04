@@ -42,6 +42,12 @@ Agent guidance for SIMRU-GKM (Laravel 12).
 - Login flow currently compares plain password values in service logic; do not silently change auth semantics unless requested.
 - Core data files are under [storage/app](storage/app); verify file shape before changing repository logic.
 
+## Agent Checklist
+- Verify JSON storage shape in [storage/app](storage/app) before editing data files.
+- Run `composer run test` (or `composer run dev`) after code changes when possible.
+- Avoid changing auth semantics (plain password comparison) without explicit approval.
+- Prefer small, targeted edits; link to existing docs rather than duplicating them.
+
 ## High-Value Reference Files
 - [composer.json](composer.json): canonical scripts and PHP version.
 - [bootstrap/app.php](bootstrap/app.php): middleware aliases and routing bootstrap.

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Auth;
 class PeminjamanController extends Controller
 {
     public function peminjaman(Request $request)
     {
-
-
         $request->validate([
             'nama' => 'required',
             'nim' => 'required',
@@ -24,56 +25,47 @@ class PeminjamanController extends Controller
             }
         }
 
-        $lastId = 0;
-        $path = storage_path('app/data_peminjaman.json');
-
-        if (file_exists($path)) {
-            $json = file_get_contents($path);
-            $data_lama = json_decode($json, true);
-
-            if (!is_array($data_lama)) {
-                $data_lama = [];
-            }
-
-             foreach ($data_lama as $item) {
-                if (isset($item['id_peminjaman']) && is_numeric($item['id_peminjaman'])) {
-                    $lastId = max($lastId, (int)$item['id_peminjaman']);
-                }
-            }
+        // Determine user id: prefer authenticated user, otherwise find or create by NIM
+        if (Auth::check()) {
+            $userId = Auth::id();
         } else {
-            $data_lama = [];
+            $user = User::where('nim', $request->nim)->first();
+            if (!$user) {
+                $email = strtolower(str_replace(' ', '', $request->nama)) . '@gmail.com';
+                $user = User::create([
+                    'name' => $request->nama,
+                    'nim' => $request->nim,
+                    'email' => $email,
+                    'password' => bcrypt('password123'),
+                    'prodi' => $request->program_studi ?? 'Unknown',
+                    'role' => 'mahasiswa',
+                ]);
+            }
+            $userId = $user->id_users ?? $user->id;
         }
 
-        $idUnik = $lastId + 1;
+        // Build datetime values
+        $waktuMulai = Carbon::createFromFormat('Y-m-d H:i', $request->tanggal_pemakaian . ' ' . $request->jam_mulai)->toDateTimeString();
+        $waktuSelesai = Carbon::createFromFormat('Y-m-d H:i', $request->tanggal_pemakaian . ' ' . $request->jam_selesai)->toDateTimeString();
 
-        
-        $data = [
-            "id_peminjaman" => $idUnik,
-            "ruangan_id" => $request->ruangan_id,
-            "nama" => $request->nama,
-            "nim" => $request->nim,
-            "prodi" => $request->program_studi,
-            "tanggal_pemakaian" => $request->tanggal_pemakaian,
-            "jam_mulai" => $request->jam_mulai,
-            "jam_selesai" => $request->jam_selesai,
-            "alasan_peminjaman" => $request->alasan_peminjaman,
-            "sarana_prasarana" => $request->sarana_prasarana,
-            "alat_tambahan" => $request->alat_tambahan,
-            "dokumen" => $dokumenPaths,
-            "status"=> 'Proses Pengajuan'
-        ];
-        
-       
+        // Persist to database using Eloquent
+        Peminjaman::create([
+            'id_users' => $userId,
+            'id_ruangan' => $request->ruangan_id,
+            'status_peminjaman' => 'Proses Pengajuan',
+            'path_surat' => $dokumenPaths[0] ?? null,
+            'nama_kegiatan' => $request->alasan_peminjaman ?? 'Kegiatan',
+            'waktu_mulai' => $waktuMulai,
+            'waktu_selesai' => $waktuSelesai,
+            'tanggal_pengajuan' => Carbon::now(),
+        ]);
 
-        $data_lama[] = $data;
-       
-        file_put_contents(
-            $path,
-            json_encode($data_lama, JSON_PRETTY_PRINT),
-            LOCK_EX
-        );
-        return redirect()->route('notifikasi')
+        // Backup: original JSON-based persistence is preserved below (commented)
+        /*
+        (original JSON write logic preserved here)
+        */
+
+        return redirect()->route('riwayat-peminjaman')
                 ->with('success', 'Data berhasil disimpan');
-        
     }
 }

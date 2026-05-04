@@ -153,10 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     form?.addEventListener('submit', (event) => {
         const jamMulai = document.getElementById('jam_mulai')?.value;
         const jamSelesai = document.getElementById('jam_selesai')?.value;
-        if (jamMulai && jamSelesai && jamMulai >= jamSelesai) {
-            event.preventDefault();
-            setErrorFeedback('Jam selesai harus lebih besar daripada jam mulai.');
-            return;
+        if (jamMulai && jamSelesai) {
+            if (jamMulai === jamSelesai) {
+                event.preventDefault();
+                setErrorFeedback('Jam selesai harus berbeda dari jam mulai.');
+                return;
+            }
+            // allow jam_selesai < jam_mulai which indicates an overnight booking
         }
 
         if (!fileInput?.files?.length) {

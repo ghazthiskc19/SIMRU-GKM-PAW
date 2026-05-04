@@ -62,16 +62,38 @@
                 </section>
             @endif
 
-            <div class="action-buttons">
-                <button class="btn-action btn-verify">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    Verifikasi
-                </button>
-                <button class="btn-action btn-reject">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    Tolak
-                </button>
-            </div>
+            <form id="status-form" method="POST" action="{{ route('peminjaman-update-status', $detail['id_peminjaman']) }}">
+                @csrf
+                <input type="hidden" name="action" id="form-action" value="">
+                <input type="hidden" name="alasan" id="form-alasan" value="">
+
+                <div class="action-buttons">
+                    <button type="button" class="btn-action btn-verify" onclick="handleApprove()">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Verifikasi
+                    </button>
+                    <button type="button" class="btn-action btn-reject" onclick="handleReject()">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        Tolak
+                    </button>
+                </div>
+            </form>
+
+            <script>
+                function handleApprove() {
+                    document.getElementById('form-action').value = 'approve';
+                    document.getElementById('status-form').submit();
+                }
+
+                function handleReject() {
+                    const reason = prompt('Masukkan alasan penolakan (opsional):');
+                    if (reason !== null) {
+                        document.getElementById('form-action').value = 'reject';
+                        document.getElementById('form-alasan').value = reason || '';
+                        document.getElementById('status-form').submit();
+                    }
+                }
+            </script>
 
         </div>
     </div>

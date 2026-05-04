@@ -131,3 +131,24 @@ body {
 .btn-verifikasi-small.btn-rejected {
     background-color: #ff4d4f;
 }
+
+.btn-verifikasi-small.btn-warning {
+    background-color: #faad14;
+}
+
+.btn-verifikasi-small.btn-success {
+    background-color: #52c41a;
+}
+
+.btn-verifikasi-small.btn-danger {
+    background-color: #ff4d4f;
+}
+
+.btn-verifikasi-small.btn-info {
+    background-color: #1890ff;
+}
+
+.btn-verifikasi-small:disabled {
+    cursor: not-allowed;
+    opacity: 0.9;
+}

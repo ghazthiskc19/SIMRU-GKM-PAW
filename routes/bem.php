@@ -11,6 +11,9 @@ Route::middleware(['auth.session', 'role:bem'])->group(function () {
     Route::get('/verifikasi_peminjaman/detail/{id}', [StudentHistoryController::class, 'verifikasiPeminjamanDetail'])
         ->name('verifikasi-peminjaman-detail');
 
+    Route::post('/verifikasi_peminjaman/{id}/update-status', [StudentHistoryController::class, 'updatePeminjamanStatus'])
+        ->name('peminjaman-update-status');
+
     Route::get('/riwayat_verifikasi', [BemVerificationController::class, 'index'])
         ->name('riwayat-verifikasi');
 

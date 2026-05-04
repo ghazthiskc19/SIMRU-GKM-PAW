@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('bem', function (Blueprint $table) {
-            $table->renameColumn('id', 'id_bem');
-        });
+        if (Schema::hasColumn('bem', 'id') && !Schema::hasColumn('bem', 'id_bem')) {
+            Schema::table('bem', function (Blueprint $table) {
+                $table->renameColumn('id', 'id_bem');
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bem', function (Blueprint $table) {
-            $table->renameColumn('id_users', 'id_bem');
-        });
+        if (Schema::hasColumn('bem', 'id_bem') && !Schema::hasColumn('bem', 'id')) {
+            Schema::table('bem', function (Blueprint $table) {
+                $table->renameColumn('id_bem', 'id');
+            });
+        }
     }
 };

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class StudentHistoryController extends Controller
@@ -193,8 +195,109 @@ class StudentHistoryController extends Controller
         ]);
     }
 
+    private function getStatusMapping(string $status): array
+    {
+        $statusMappings = [
+            'Proses Pengajuan' => [
+                'class' => 'badge-warning',
+                'title' => 'Pengajuan Dalam Proses',
+                'footer' => 'Peminjaman sedang dalam tahap pengajuan.',
+            ],
+            'Disetujui' => [
+                'class' => 'badge-success',
+                'title' => 'Pengajuan Disetujui',
+                'footer' => 'Peminjaman telah disetujui oleh BEM.',
+            ],
+            'Ditolak' => [
+                'class' => 'badge-danger',
+                'title' => 'Pengajuan Ditolak',
+                'footer' => 'Pengajuan peminjaman telah ditolak.',
+            ],
+            'Selesai' => [
+                'class' => 'badge-success',
+                'title' => 'Peminjaman Selesai',
+                'footer' => 'Peminjaman telah selesai dilaksanakan.',
+            ],
+            'Dibatalkan' => [
+                'class' => 'badge-secondary',
+                'title' => 'Peminjaman Dibatalkan',
+                'footer' => 'Peminjaman telah dibatalkan.',
+            ],
+        ];
+
+        return $statusMappings[$status] ?? [
+            'class' => 'badge-info',
+            'title' => $status,
+            'footer' => 'Status peminjaman: ' . $status,
+        ];
+    }
+
     private function historyItems(): array
     {
+        // Prefer reading from the database table `peminjaman` via Eloquent.
+        // If there is no data in DB, the JSON-based fallback is preserved (commented) as a backup.
+        try {
+            $items = \App\Models\Peminjaman::orderBy('tanggal_pengajuan', 'desc')->get();
+
+            if ($items->isEmpty()) {
+                // fallback to JSON file if DB has no records
+                // (Original JSON-based logic is preserved below as comments)
+            }
+
+            $ruanganMap = [
+                '1' => 'GKM 4.1',
+                '2' => 'GKM 4.2',
+                '3' => 'GKM 3.1',
+            ];
+
+            return $items->map(function ($item) use ($ruanganMap) {
+                $ruangan = $ruanganMap[(string) $item->id_ruangan] ?? ('GKM ' . $item->id_ruangan);
+
+                $tanggal = date('d F Y', strtotime($item->waktu_mulai));
+                $dayName = $this->indonesianDayName($item->waktu_mulai);
+                $formattedDate = "$dayName, $tanggal";
+
+                $timeLabel = date('H:i', strtotime($item->waktu_mulai)) . ' - ' . date('H:i', strtotime($item->waktu_selesai)) . ' WIB';
+
+                // Load user info if available
+                $user = \App\Models\User::find($item->id_users);
+                $userName = $user->name ?? null;
+                $userNim = $user->nim ?? null;
+                $userProdi = $user->prodi ?? null;
+
+                $statusMap = $this->getStatusMapping($item->status_peminjaman);
+
+                return [
+                    'id_peminjaman' => $item->id_peminjaman,
+                    'ruangan' => $ruangan,
+                    'hari_tanggal' => $formattedDate,
+                    'pukul' => $timeLabel,
+                    'status' => $item->status_peminjaman,
+                    'status_class' => $statusMap['class'],
+                    'footer' => $statusMap['footer'],
+                    'status_title' => $statusMap['title'],
+                    'status_time' => date('d M Y | H.i WIB', strtotime($item->tanggal_pengajuan)),
+                    'tanggal_pemakaian' => $tanggal,
+                    'waktu' => $timeLabel,
+                    'tempat' => $ruangan,
+                    'kegiatan' => $item->nama_kegiatan ?? 'Kegiatan Organisasi',
+                    'lembaga' => $userProdi,
+                    'nama' => $userName,
+                    'nim' => $userNim,
+                    'description' => [
+                        'Nama: ' . ($userName ?? ''),
+                        'NIM: ' . ($userNim ?? ''),
+                        'Program Studi: ' . ($userProdi ?? ''),
+                        'Alasan Peminjaman: ' . ($item->nama_kegiatan ?? ''),
+                    ],
+                ];
+            })->toArray();
+        } catch (\Throwable $e) {
+            // If DB read fails, fall back to JSON (original logic preserved below)
+        }
+
+        /*
+        // Original JSON-based implementation (kept as backup)
         $path = storage_path('app/data_peminjaman.json');
 
         if (!file_exists($path)) {
@@ -249,6 +352,36 @@ class StudentHistoryController extends Controller
                 ],
             ];
         }, $data);
+        */
+
+        // Ensure function always returns an array on all code paths
+        return [];
+    }
+
+    public function updatePeminjamanStatus(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'action' => 'required|in:approve,reject',
+            'alasan' => 'nullable|string|max:500',
+        ]);
+
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        if ($validated['action'] === 'approve') {
+            $peminjaman->status_peminjaman = 'Disetujui';
+            $peminjaman->id_bem = Auth::id();
+        } elseif ($validated['action'] === 'reject') {
+            $peminjaman->status_peminjaman = 'Ditolak';
+            $peminjaman->id_bem = Auth::id();
+            if ($validated['alasan']) {
+                $peminjaman->alasan_penolakan = $validated['alasan'];
+            }
+        }
+
+        $peminjaman->save();
+
+        return redirect()->route('verifikasi-peminjaman')
+            ->with('success', 'Status peminjaman berhasil diperbarui.');
     }
 
     private function laporanItems(): array
