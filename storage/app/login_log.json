@@ -228,5 +228,60 @@
         "email": "muhammad.ghazy.hum@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-05-04 16:24:16"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-07 02:00:44"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-07 04:24:18"
+    },
+    {
+        "email": "guy@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-07 04:34:05"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-05-07 04:38:59"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-10 12:58:11"
+    },
+    {
+        "email": "prabowo@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-17 06:01:21"
+    },
+    {
+        "email": "jon@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-17 06:08:51"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-05-17 06:10:02"
+    },
+    {
+        "email": "jon@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-17 06:11:17"
+    },
+    {
+        "email": "bem@gmail.com",
+        "role": "bem",
+        "login_time": "2026-05-17 06:51:04"
+    },
+    {
+        "email": "jon@gmail.com",
+        "role": "mahasiswa",
+        "login_time": "2026-05-17 06:51:41"
     }
 ]

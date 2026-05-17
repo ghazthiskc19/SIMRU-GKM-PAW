@@ -41,24 +41,10 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:3',
             'prodi' => 'required|string',
-            'role' => 'required',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048' // max 2MB
         ]);
         
-        $role = $request->role;
-        if ($role == 'bem'){
-            $exists = DB::table('bem')
-                ->where('nim', $request->nim)
-                ->exists();
-
-            if (!$exists){
-                return back()
-                    ->withInput()
-                    ->withErrors([
-                         'nim' => 'Pendaftaran gagal, NIM anda tidak terdaftar sebagai anggota BEM'
-                    ]);
-            }
-        }
+        $role = "mahasiswa";
         $nim = $request->nim;
         $name = $request->nama;
         $email =  $request->email;
@@ -125,4 +111,6 @@ class AuthController extends Controller
         
         return view('profile', compact('user'));
     }
+
+    
 }

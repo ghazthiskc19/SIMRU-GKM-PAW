@@ -30,7 +30,8 @@ Route::middleware('auth.session')->group(function () {
     Route::get('/peminjaman_ruangan', [RuanganController::class, 'peminjaman']) ->name('peminjaman-ruangan');
 
     Route::post('peminjaman_ruangan', [PeminjamanController::class, 'peminjaman']) ->name('peminjaman-ruangan.process');
-
+    Route::get('/api/jadwal', [RuanganController::class, 'getJadwal']);
+    
     Route::get('/notifikasi', function () {
         return view('notifikasi');
     })->name('notifikasi');

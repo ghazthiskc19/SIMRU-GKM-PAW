@@ -58,21 +58,6 @@
             <input type="hidden" name="ruangan_id" id="ruangan-id-input" value="{{ request('ruangan', 1) }}">
 
             <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" id="nama" name="nama" placeholder="Isi Dengan Benar" required>
-            </div>
-
-            <div class="form-group">
-                <label for="nim">NIM</label>
-                <input type="text" id="nim" name="nim" placeholder="Isi Dengan Benar" required>
-            </div>
-
-            <div class="form-group">
-                <label for="program_studi">Program Studi</label>
-                <input type="text" id="program_studi" name="program_studi" placeholder="Isi Dengan Benar" required>
-            </div>
-
-            <div class="form-group">
                 <label>Tanggal Pemakaian</label>
                 <div class="split-row">
                     <input type="date" id="tanggal_pemakaian" name="tanggal_pemakaian" required>

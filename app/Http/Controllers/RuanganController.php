@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
 class RuanganController extends Controller
@@ -41,5 +42,22 @@ class RuanganController extends Controller
         return view('peminjaman_ruangan', compact('ruangan', 'data'));
     }
 
+    public function getJadwal()
+    {
+        $data = Peminjaman::where('status_peminjaman', 'Disetujui')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'title' => $item->nama_kegiatan,
+                    'start' => $item->waktu_mulai,
+                    'end' => $item->waktu_selesai,
+                    'extendedProps' => [
+                        'roomId' => $item->id_ruangan,
+                    ],
+                ];
+        });
+
+        return response()->json($data);
+    }
     
 }

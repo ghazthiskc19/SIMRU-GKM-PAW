@@ -13,69 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-    const day = now.getDate();
-
-    const allEvents = [
-        {
-            // titlenya sesuaikan dengan Nama Room nya
-            title: 'GKM 4.1',
-            start: new Date(year, month, day, 7, 0),
-            end: new Date(year, month, day, 10, 0),
-            extendedProps: { roomId: 'gkm-41' },
-        },
-        {
-            title: 'GKM 4.1',
-            start: new Date(year, month, day, 11, 0),
-            end: new Date(year, month, day, 13, 0),
-            extendedProps: { roomId: 'gkm-41' },
-        },
-        {
-            title: 'GKM 4.1 ',
-            start: new Date(year, month, day, 14, 0),
-            end: new Date(year, month, day, 16, 0),
-            extendedProps: { roomId: 'gkm-41' },
-        },
-        {
-            title: 'GKM 4.2',
-            start: new Date(year, month, day + 1, 8, 0),
-            end: new Date(year, month, day + 1, 10, 0),
-            extendedProps: { roomId: 'gkm-42' },
-        },
-        {
-            title: 'GKM 3.1',
-            start: new Date(year, month, day + 2, 13, 0),
-            end: new Date(year, month, day + 2, 15, 0),
-            extendedProps: { roomId: 'gkm-31' },
-        },
-        {
-            title: 'GKM Lt.1',
-            start: new Date(year, month, day + 3, 9, 0),
-            end: new Date(year, month, day + 3, 12, 0),
-            extendedProps: { roomId: 'gkm-lt1' },
-        },
-    ];
-
+    // Ambil room yang dicentang
     const getCheckedRoomIds = () => {
         return Array.from(roomCheckboxes)
-            .filter((checkbox) => checkbox.checked)
-            .map((checkbox) => checkbox.value);
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
     };
 
-    const getFilteredEvents = (selectedRooms) => {
-        if (!selectedRooms.length) {
-            return [];
-        }
-
-        if (selectedRooms.length === roomCheckboxes.length) {
-            return allEvents;
-        }
-
-        return allEvents.filter((event) => selectedRooms.includes(event.extendedProps.roomId));
-    };
-
+    // FULLCALENDAR
     const calendar = new Calendar(calendarElement, {
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         initialView: 'timeGridWeek',
@@ -89,29 +34,50 @@ document.addEventListener('DOMContentLoaded', () => {
         slotDuration: '01:00:00',
         slotLabelInterval: '01:00:00',
         nowIndicator: true,
+
         headerToolbar: {
             left: 'prev',
             center: 'title',
             right: 'next',
         },
-        dayHeaderFormat: { weekday: 'long', day: 'numeric', month: 'long' },
+
+        // =========================
+        // AJAX LOAD EVENTS (API LARAVEL)
+        // =========================
+        events: function(fetchInfo, successCallback, failureCallback) {
+            const selectedRooms = getCheckedRoomIds();
+
+            const query = selectedRooms
+                .map(r => `rooms[]=${r}`)
+                .join('&');
+
+            fetch(`/api/jadwal?${query}`)
+                .then(res => res.json())
+                .then(data => successCallback(data))
+                .catch(err => failureCallback(err));
+        },
+
+        // Format jam UI
         slotLabelFormat: {
             hour: 'numeric',
             minute: '2-digit',
             hour12: false,
         },
+
         eventTimeFormat: {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false,
         },
-        events: getFilteredEvents(getCheckedRoomIds()),
+
+        // Ubah ":" jadi "."
         slotLabelDidMount(info) {
             const labelEl = info.el.querySelector('.fc-timegrid-slot-label-cushion');
             if (labelEl && labelEl.textContent) {
                 labelEl.textContent = labelEl.textContent.replace(':', '.');
             }
         },
+
         eventDidMount(info) {
             const timeEl = info.el.querySelector('.fc-event-time');
             if (timeEl?.textContent) {
@@ -122,8 +88,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     calendar.render();
 
+    // =========================
+    // FILTER CHANGE (IMPORTANT)
+    // =========================
+    roomCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', () => {
+            calendar.refetchEvents();
+        });
+    });
+
+    // Enter key support
+    roomFilterGroup.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+
+        const activeElement = document.activeElement;
+
+        if (
+            !(activeElement instanceof HTMLInputElement) ||
+            !activeElement.classList.contains('room-filter-checkbox')
+        ) {
+            return;
+        }
+
+        activeElement.checked = !activeElement.checked;
+        calendar.refetchEvents();
+    });
+
+    // =========================
+    // URL PARAM (auto select room)
+    // =========================
     const params = new URLSearchParams(window.location.search);
     const roomFromQuery = params.get('ruangan');
+
     const roomMap = {
         '1': 'gkm-41',
         '2': 'gkm-42',
@@ -133,37 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (roomFromQuery && roomMap[roomFromQuery]) {
         const mappedRoom = roomMap[roomFromQuery];
+
         roomCheckboxes.forEach((checkbox) => {
             checkbox.checked = checkbox.value === mappedRoom;
         });
-        calendar.removeAllEvents();
-        calendar.addEventSource(getFilteredEvents(getCheckedRoomIds()));
+
+        calendar.refetchEvents();
     }
 
-    roomCheckboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', () => {
-            const selectedRooms = getCheckedRoomIds();
-            calendar.removeAllEvents();
-            calendar.addEventSource(getFilteredEvents(selectedRooms));
-        });
-    });
-
-    roomFilterGroup.addEventListener('keydown', (e) => {
-        if (e.key !== 'Enter') {
-            return;
-        }
-
-        const activeElement = document.activeElement;
-        if (!(activeElement instanceof HTMLInputElement) || !activeElement.classList.contains('room-filter-checkbox')) {
-            return;
-        }
-
-        activeElement.checked = !activeElement.checked;
-        const selectedRooms = getCheckedRoomIds();
-        calendar.removeAllEvents();
-        calendar.addEventSource(getFilteredEvents(selectedRooms));
-    });
-
+    // back button
     const backButton = document.querySelector('.header-back');
     backButton?.addEventListener('click', () => {
         window.history.back();

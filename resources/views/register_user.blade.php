@@ -82,16 +82,7 @@
                 <input type="text" id="nim" name="nim" placeholder="Masukkan NIM" required>
             </div>
 
-            <div class="form-group">
-                <label for="role">Role</label>
-                <select id="role" name="role" required>
-                    <option value="" disabled selected>Pilih Role</option>
-                    <option value="mahasiswa">Mahasiswa</option>
-                    <option value="bem">Staff Adkeu BEM</option>
-                    <option value="staff_filkom">Staff Filkom</option>
-                    <option value="penjaga_gkm">Penjaga GKM</option>
-                </select>
-            </div>
+            
 
             <div class="form-group">
                 <label for="prodi">Program Studi</label>
