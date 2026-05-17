@@ -12,11 +12,6 @@ class PeminjamanController extends Controller
 {
     public function peminjaman(Request $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'nim' => 'required',
-        ]);
-
         $dokumenPaths = [];
 
         if ($request->hasFile('dokumen')) {
