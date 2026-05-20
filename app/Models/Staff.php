@@ -6,27 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class bem extends Authenticatable
+class Staff extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * Explicit table name to avoid automatic pluralization (bems).
-     */
-    protected $table = 'bem';
-
-    protected $primaryKey = 'id_bem';
+    protected $primaryKey = 'id_staff';
     public $incrementing = true;
     protected $keyType = 'int';
 
     protected $fillable = [
-        'nim',
+        'nip',
         'name',
         'email',
         'password',
-        'prodi',
         'role',
-        'jabatan',
         'foto',
     ];
 
@@ -39,5 +32,10 @@ class bem extends Authenticatable
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'id_staff';
     }
 }

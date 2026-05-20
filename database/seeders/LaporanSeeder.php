@@ -42,7 +42,7 @@ class LaporanSeeder extends Seeder
             $ruanganId = $ruangan ? ($ruangan->id ?? $ruangan->id_ruangan) : 1; // Fallback ke ID 1 jika tidak ketemu
 
             // 3. Masukkan data ke tabel laporan
-            DB::table('laporan')->insert([
+            DB::table('laporan')->insertOrIgnore([
                 'id_users' => $userId,
                 'id_ruangan' => $ruanganId,
                 'status_laporan' => $item['status'],

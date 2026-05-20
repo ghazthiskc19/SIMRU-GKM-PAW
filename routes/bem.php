@@ -4,7 +4,7 @@ use App\Http\Controllers\BemVerificationController;
 use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth.session', 'role:bem'])->group(function () {
+Route::middleware(['auth.session', 'role:bem,administrasi,staff_filkom'])->group(function () {
     Route::get('/verifikasi_peminjaman', [StudentHistoryController::class, 'verifikasiPeminjaman'])
         ->name('verifikasi-peminjaman');
 

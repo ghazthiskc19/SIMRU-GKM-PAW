@@ -62,3 +62,11 @@ Route::middleware(['auth.session', 'role:mahasiswa,bem'])->group(function () {
     Route::get('/riwayat_laporan/detail/{id}', [StudentHistoryController::class, 'laporanDetail'])
         ->name('riwayat-laporan-detail');
 });
+
+Route::middleware(['auth.session', 'role:administrasi'])->group(function () {
+    Route::get('/staff/bem/create', [App\Http\Controllers\StaffAccountController::class, 'createBem'])
+        ->name('staff.bem.create');
+
+    Route::post('/staff/bem', [App\Http\Controllers\StaffAccountController::class, 'storeBem'])
+        ->name('staff.bem.store');
+});
