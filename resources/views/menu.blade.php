@@ -44,6 +44,7 @@
                         </div>
                         <span class="menu-label">Riwayat Verifikasi</span>
                     </a>
+
                 @elseif (in_array($userRole, ['administrasi','staff_filkom']))
                     <a href="{{ route('verifikasi-peminjaman') }}" class="menu-item">
                         <div class="menu-icon-box">
@@ -57,13 +58,6 @@
                             <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Verifikasi">
                         </div>
                         <span class="menu-label">Riwayat Verifikasi</span>
-                    </a>
-
-                    <a href="{{ route('staff.bem.create') }}" class="menu-item">
-                        <div class="menu-icon-box">
-                            <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Tambah Akun BEM">
-                        </div>
-                        <span class="menu-label">Tambah Akun BEM</span>
                     </a>
 
                 @else
@@ -96,6 +90,28 @@
                     <span class="menu-label">Riwayat Laporan</span>
                 </a>
 
+                @if (in_array($userRole, ['administrasi','staff_filkom']))
+                    <a href="{{ route('verifikasi-laporan') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_laporan.svg') }}" alt="Verifikasi Laporan">
+                        </div>
+                        <span class="menu-label">Verifikasi Laporan</span>
+                    </a>
+
+                    <a href="{{ route('staff.bem.create') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/tambah_akun_bem.svg') }}" alt="Tambah Akun BEM">
+                        </div>
+                        <span class="menu-label">Tambah Akun BEM</span>
+                    </a>
+
+                    <a href="{{ route('laporan-generate') }}" class="menu-item">
+                        <div class="menu-icon-box">
+                            <img src="{{ asset('images/icon_download.svg') }}" alt="Hasilkan Laporan">
+                        </div>
+                        <span class="menu-label">Hasilkan Laporan</span>
+                    </a>
+                @endif
 
                 <a href="{{ route('bantuan') }}" class="menu-item">
                     <div class="menu-icon-box">
