@@ -33,15 +33,31 @@
                     <div class="form-input-box">{{ $user?->name }}</div>
                 </div>
 
-                <div class="form-group">
-                    <span class="form-label">NIM</span>
-                    <div class="form-input-box">{{ $user?->nim }}</div>
-                </div>
+                @php
+                    $role = $user?->role ?? null;
+                @endphp
 
-                <div class="form-group">
-                    <span class="form-label">Program Studi</span>
-                    <div class="form-input-box">{{ $user?->prodi }}</div>
-                </div>
+                @if (in_array($role, ['administrasi','staff_filkom']))
+                    <div class="form-group">
+                        <span class="form-label">NIP</span>
+                        <div class="form-input-box">{{ $user?->nip }}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Jabatan</span>
+                        <div class="form-input-box">Staff FILKOM</div>
+                    </div>
+                @else
+                    <div class="form-group">
+                        <span class="form-label">NIM</span>
+                        <div class="form-input-box">{{ $user?->nim }}</div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Program Studi</span>
+                        <div class="form-input-box">{{ $user?->prodi }}</div>
+                    </div>
+                @endif
 
                 <div class="logout-btn-container">
                     <form action="{{ route('logout') }}" method="POST">

@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('users')->insertOrIgnore([
             [
                 "email"=> "prabowo@gmail.com",
                 "password"=> Hash::make("123"),
@@ -50,7 +50,17 @@ class UsersSeeder extends Seeder
                 "created_at" => Carbon::now(),
                 "updated_at" => Carbon::now(),
             ],
-            
+            [
+                "email"=> "admin@filkom.test",
+                "password"=> Hash::make("123"),
+                "name"=> "Admin Filkom",
+                "nim"=> "999",
+                "prodi"=> "Admin",
+                "role"=> "staff_filkom",
+                "foto"=> "images/photo_user_staff.png",
+                "created_at" => Carbon::now(),
+                "updated_at" => Carbon::now(),
+            ],
         ]);
     }
 }

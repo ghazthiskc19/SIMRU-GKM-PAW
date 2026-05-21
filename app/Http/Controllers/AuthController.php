@@ -34,6 +34,40 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+    public function login_staff(LoginRequest $request)
+    {
+        $email = $request->string('email')->toString();
+        $password = $request->string('password')->toString();
+
+        if (!Auth::guard('staff')->attempt(['email' => $email, 'password' => $password])) {
+            return back()
+                ->withInput($request->only('email'))
+                ->with('error', 'Email atau password tidak valid.');
+        }
+
+        Auth::shouldUse('staff');
+        $request->session()->regenerate();
+
+        return redirect()->route('home');
+    }
+
+    public function login_bem(LoginRequest $request)
+    {
+        $email = $request->string('email')->toString();
+        $password = $request->string('password')->toString();
+
+        if (!Auth::guard('bem')->attempt(['email' => $email, 'password' => $password])) {
+            return back()
+                ->withInput($request->only('email'))
+                ->with('error', 'Email atau password tidak valid.');
+        }
+
+        Auth::shouldUse('bem');
+        $request->session()->regenerate();
+
+        return redirect()->route('home');
+    }
+
     public function register_user(Request $request){
        $request->validate([
             'nama' => 'required|string|max:255',
@@ -87,7 +121,11 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        if (Auth::guard('staff')->check()) {
+            Auth::guard('staff')->logout();
+        } else {
+            Auth::logout();
+        }
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

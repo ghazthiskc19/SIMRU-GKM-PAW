@@ -6,6 +6,9 @@ use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use App\Models\Ruangan;
+use App\Models\User;
 
 class StudentHistoryController extends Controller
 {
@@ -182,6 +185,37 @@ class StudentHistoryController extends Controller
         ]);
     }
 
+    public function verifikasiLaporan()
+    {
+        // Prefer DB table if available
+        try {
+            $items = DB::table('laporan')->orderBy('tanggal_laporan', 'desc')->get()->map(function ($row) {
+                return [
+                    'id' => $row->id_laporan,
+                    'ruangan' => DB::table('ruangan')->where('id_ruangan', $row->id_ruangan)->value('nama_ruangan') ?? 'GKM',
+                    'status' => $row->status_laporan,
+                    'footer' => $row->deskripsi_laporan ?? '',
+                    'status_title' => $row->status_laporan ?? 'Laporan',
+                    'status_time' => date('d M Y | H.i WIB', strtotime($row->tanggal_laporan)),
+                    'tanggal' => date('d F Y', strtotime($row->tanggal_laporan)),
+                    'waktu' => date('H:i', strtotime($row->tanggal_laporan)) . ' WIB',
+                    'tempat' => DB::table('ruangan')->where('id_ruangan', $row->id_ruangan)->value('nama_ruangan') ?? 'GKM',
+                    'kegiatan' => 'Laporan Masalah',
+                    'lembaga' => DB::table('users')->where('id_users', $row->id_users)->value('prodi') ?? null,
+                    'nama' => DB::table('users')->where('id_users', $row->id_users)->value('name') ?? null,
+                    'nim' => DB::table('users')->where('id_users', $row->id_users)->value('nim') ?? null,
+                    'description' => explode("\n", $row->deskripsi_laporan ?? ''),
+                ];
+            })->toArray();
+        } catch (\Throwable $e) {
+            $items = $this->laporanItems();
+        }
+
+        return view('staff.verifikasi_laporan', [
+            'items' => $items,
+        ]);
+    }
+
     public function verifikasiPeminjamanDetail(int $id)
     {
         $item = collect($this->historyItems())->firstWhere('id_peminjaman', (int) $id);
@@ -193,6 +227,43 @@ class StudentHistoryController extends Controller
         return view('bem.verifikasi_peminjaman_detail', [
             'detail' => $item,
         ]);
+    }
+
+    public function verifikasiLaporanDetail(int $id)
+    {
+        // Try DB first
+        try {
+            $row = DB::table('laporan')->where('id_laporan', $id)->first();
+            if (!$row) {
+                $item = collect($this->laporanItems())->firstWhere('id', (int) $id);
+                if (!$item) {
+                    abort(404);
+                }
+
+                return view('staff.verifikasi_laporan_detail', ['detail' => $item]);
+            }
+
+            $detail = [
+                'id' => $row->id_laporan,
+                'ruangan' => DB::table('ruangan')->where('id_ruangan', $row->id_ruangan)->value('nama_ruangan') ?? 'GKM',
+                'status_title' => $row->status_laporan,
+                'footer' => $row->deskripsi_laporan ?? '',
+                'tanggal' => date('d F Y', strtotime($row->tanggal_laporan)),
+                'waktu' => date('H:i', strtotime($row->tanggal_laporan)) . ' WIB',
+                'tempat' => DB::table('ruangan')->where('id_ruangan', $row->id_ruangan)->value('nama_ruangan') ?? 'GKM',
+                'kegiatan' => 'Laporan Masalah',
+                'lembaga' => DB::table('users')->where('id_users', $row->id_users)->value('prodi') ?? null,
+                'nama' => DB::table('users')->where('id_users', $row->id_users)->value('name') ?? null,
+                'nim' => DB::table('users')->where('id_users', $row->id_users)->value('nim') ?? null,
+                'description' => explode("\n", $row->deskripsi_laporan ?? ''),
+            ];
+
+            return view('staff.verifikasi_laporan_detail', ['detail' => $detail]);
+        } catch (\Throwable $e) {
+            $item = collect($this->laporanItems())->firstWhere('id', (int) $id);
+            if (!$item) abort(404);
+            return view('staff.verifikasi_laporan_detail', ['detail' => $item]);
+        }
     }
 
     private function getStatusMapping(string $status): array
@@ -382,6 +453,71 @@ class StudentHistoryController extends Controller
 
         return redirect()->route('verifikasi-peminjaman')
             ->with('success', 'Status peminjaman berhasil diperbarui.');
+    }
+
+    public function completeLaporan(Request $request, int $id)
+    {
+        // Mark laporan as Selesai in DB if exists, otherwise try JSON file
+        try {
+            $updated = DB::table('laporan')->where('id_laporan', $id)->update([
+                'status_laporan' => 'Selesai',
+                'updated_at' => now(),
+            ]);
+
+            if ($updated) {
+                return redirect()->route('verifikasi-laporan')->with('success', 'Status laporan berhasil diperbarui menjadi Selesai.');
+            }
+        } catch (\Throwable $e) {
+            // ignore and fallback to JSON
+        }
+
+        // Fallback to JSON file
+        $items = $this->loadLaporanItems();
+        $found = false;
+        foreach ($items as &$item) {
+            if ((int) ($item['id'] ?? 0) === (int) $id) {
+                $item['status'] = 'Selesai';
+                $found = true;
+                break;
+            }
+        }
+
+        if ($found) {
+            $path = $this->getLaporanJsonPath();
+            file_put_contents($path, json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            return redirect()->route('verifikasi-laporan')->with('success', 'Status laporan berhasil diperbarui menjadi Selesai.');
+        }
+
+        return redirect()->route('verifikasi-laporan')->with('error', 'Laporan tidak ditemukan.');
+    }
+
+    public function generatePeminjamanPdf()
+    {
+        // Fetch peminjaman records with related user and ruangan names
+        $peminjaman = Peminjaman::orderBy('tanggal_pengajuan', 'desc')->get()->map(function ($item) {
+            $user = User::find($item->id_users);
+            $ruangan = Ruangan::find($item->id_ruangan);
+
+            return [
+                'id_peminjaman' => $item->id_peminjaman,
+                'nama' => $user?->name ?? null,
+                'ruangan' => $ruangan?->nama_ruangan ?? ('GKM ' . $item->id_ruangan),
+                'status' => $item->status_peminjaman,
+                'alasan_penolakan' => $item->alasan_penolakan ?? null,
+                'nama_kegiatan' => $item->nama_kegiatan ?? null,
+                'waktu_mulai' => $item->waktu_mulai ? date('Y-m-d H:i', strtotime($item->waktu_mulai)) : null,
+                'waktu_selesai' => $item->waktu_selesai ? date('Y-m-d H:i', strtotime($item->waktu_selesai)) : null,
+            ];
+        })->toArray();
+
+        // If dompdf package is available, generate PDF, otherwise return HTML view for preview
+        if (class_exists(\Barryvdh\DomPDF\Facade\Pdf::class)) {
+            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('staff.peminjaman_report', ['items' => $peminjaman]);
+            $filename = 'laporan_peminjaman_' . date('Ymd_His') . '.pdf';
+            return $pdf->download($filename);
+        }
+
+        return view('staff.peminjaman_report', ['items' => $peminjaman]);
     }
 
     private function laporanItems(): array

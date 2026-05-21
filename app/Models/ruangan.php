@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ruangan extends Model
 {
+    // Explicit table name because the DB table is named 'ruangan'
+    protected $table = 'ruangan';
+
     protected $primaryKey = 'id_ruangan';
     public $incrementing = true;
     protected $keyType = 'int';

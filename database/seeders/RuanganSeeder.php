@@ -14,7 +14,7 @@ class RuanganSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('ruangan')->insert([
+         DB::table('ruangan')->insertOrIgnore([
             [
                 "nama_ruangan"=> "GKM 4.1",
                 "status_ruangan"=> "Tersedia",

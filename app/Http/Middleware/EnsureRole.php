@@ -22,6 +22,10 @@ class EnsureRole
                 return redirect()->route('riwayat-peminjaman');
             }
 
+            if (in_array($role, ['administrasi', 'staff_filkom'], true)) {
+                return redirect()->route('menu');
+            }
+
             return redirect()->route('login-user');
         }
 

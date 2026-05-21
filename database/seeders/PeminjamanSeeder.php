@@ -55,7 +55,7 @@ class PeminjamanSeeder extends Seeder
             }
 
             // 2. Masukkan data ke tabel peminjaman
-            DB::table('peminjaman')->insert([
+            DB::table('peminjaman')->insertOrIgnore([
                 'id_users' => $userId,
                 'id_ruangan' => $item['ruangan_id'],
                 'status_peminjaman' => $item['status'],
