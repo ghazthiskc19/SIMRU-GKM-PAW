@@ -12,7 +12,7 @@
     <div class="content riwayat-content">
         <div class="month-selector">
             <button class="arrow-btn">&lt;</button>
-            <h2>Oktober 2025</h2>
+            <h2>{{ $selectedMonth ?? date('F Y') }}</h2>
             <button class="arrow-btn">&gt;</button>
         </div>
 

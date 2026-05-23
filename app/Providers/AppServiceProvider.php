@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Contracts\LoginLogRepositoryInterface;
 use App\Repositories\Contracts\VerificationHistoryRepositoryInterface;
+use App\Repositories\Db\DbVerificationHistoryRepository;
 use App\Repositories\Json\JsonLoginLogRepository;
-use App\Repositories\Json\JsonVerificationHistoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(LoginLogRepositoryInterface::class, JsonLoginLogRepository::class);
-        $this->app->bind(VerificationHistoryRepositoryInterface::class, JsonVerificationHistoryRepository::class);
+        $this->app->bind(VerificationHistoryRepositoryInterface::class, DbVerificationHistoryRepository::class);
     }
 
     /**
