@@ -13,6 +13,7 @@ class Peminjaman extends Model
 
     protected $fillable = [
         'id_users',
+        'id_staff',
         'id_bem',
         'id_ruangan',
         'status_peminjaman',

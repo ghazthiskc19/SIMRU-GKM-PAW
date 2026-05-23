@@ -12,10 +12,24 @@ use App\Models\User;
 
 class StudentHistoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $selectedDate = $this->resolveSelectedDate($request->query('month'));
+        $selectedMonth = $this->formatMonthLabel($selectedDate);
+
+        $items = array_values(array_filter($this->historyItems(), function ($item) use ($selectedDate) {
+            return !empty($item['tanggal_pengajuan'])
+                && date('Y-m', strtotime($item['tanggal_pengajuan'])) === $selectedDate->format('Y-m');
+        }));
+
+        $previousMonth = $selectedDate->modify('-1 month')->format('Y-m');
+        $nextMonth = $selectedDate->modify('+1 month')->format('Y-m');
+
         return view('riwayat_peminjaman', [
-            'items' => $this->historyItems(),
+            'items' => $items,
+            'selectedMonth' => $selectedMonth,
+            'previousMonth' => $previousMonth,
+            'nextMonth' => $nextMonth,
         ]);
     }
 
@@ -180,8 +194,21 @@ class StudentHistoryController extends Controller
 
     public function verifikasiPeminjaman()
     {
+        $items = $this->historyItems();
+        $userRole = Auth::user()?->role ?? null;
+
+        if ($userRole === 'staff') {
+            $items = array_values(array_filter($items, function ($it) {
+                return (($it['status'] ?? '') === 'Sudah Terverifikasi');
+            }));
+        } elseif ($userRole === 'bem') {
+            $items = array_values(array_filter($items, function ($it) {
+                return (($it['status'] ?? '') === 'Proses Pengajuan');
+            }));
+        }
+
         return view('bem.verifikasi_peminjaman', [
-            'items' => $this->historyItems(),
+            'items' => $items,
         ]);
     }
 
@@ -342,12 +369,15 @@ class StudentHistoryController extends Controller
                     'id_peminjaman' => $item->id_peminjaman,
                     'ruangan' => $ruangan,
                     'hari_tanggal' => $formattedDate,
+                    'jam_mulai' => date('H:i', strtotime($item->waktu_mulai)),
+                    'jam_selesai' => date('H:i', strtotime($item->waktu_selesai)),
                     'pukul' => $timeLabel,
                     'status' => $item->status_peminjaman,
                     'status_class' => $statusMap['class'],
                     'footer' => $statusMap['footer'],
                     'status_title' => $statusMap['title'],
                     'status_time' => date('d M Y | H.i WIB', strtotime($item->tanggal_pengajuan)),
+                    'tanggal_pengajuan' => $item->tanggal_pengajuan,
                     'tanggal_pemakaian' => $tanggal,
                     'waktu' => $timeLabel,
                     'tempat' => $ruangan,
@@ -429,6 +459,38 @@ class StudentHistoryController extends Controller
         return [];
     }
 
+    private function resolveSelectedDate(?string $month): \DateTimeImmutable
+    {
+        if ($month && preg_match('/^\d{4}-\d{2}$/', $month)) {
+            $date = \DateTimeImmutable::createFromFormat('Y-m-d', $month . '-01');
+            if ($date !== false) {
+                return $date;
+            }
+        }
+
+        return new \DateTimeImmutable('first day of this month');
+    }
+
+    private function formatMonthLabel(\DateTimeInterface $date): string
+    {
+        $months = [
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4 => 'April',
+            5 => 'Mei',
+            6 => 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember',
+        ];
+
+        return sprintf('%s %s', $months[(int) $date->format('n')] ?? $date->format('F'), $date->format('Y'));
+    }
+
     public function updatePeminjamanStatus(Request $request, int $id)
     {
         $validated = $request->validate([
@@ -438,12 +500,34 @@ class StudentHistoryController extends Controller
 
         $peminjaman = Peminjaman::findOrFail($id);
 
+        $approverRole = Auth::user()?->role ?? null;
+
         if ($validated['action'] === 'approve') {
-            $peminjaman->status_peminjaman = 'Disetujui';
-            $peminjaman->id_bem = Auth::id();
+            if ($approverRole === 'bem') {
+                $peminjaman->status_peminjaman = 'Sudah Terverifikasi';
+                $peminjaman->id_bem = Auth::id();
+                $peminjaman->id_staff = null; 
+            } elseif (in_array($approverRole, ['staff', 'administrasi'])) {
+                if (($peminjaman->status_peminjaman ?? '') !== 'Sudah Terverifikasi') {
+                    return redirect()->back()->with('error', 'Hanya peminjaman dengan status "Sudah Terverifikasi" yang dapat divalidasi oleh staff.');
+                }
+
+                $peminjaman->status_peminjaman = 'Sudah Tervalidasi/Disetujui';
+                $peminjaman->id_staff = Auth::id();
+                // biarkan id_bem tetap terisi dari verifikasi BEM sebelumnya
+            } else {
+                // fallback untuk role lain
+                $peminjaman->status_peminjaman = 'Disetujui';
+            }
         } elseif ($validated['action'] === 'reject') {
             $peminjaman->status_peminjaman = 'Ditolak';
-            $peminjaman->id_bem = Auth::id();
+            if ($approverRole === 'staff') {
+                $peminjaman->id_staff = Auth::id();
+            } else {
+                $peminjaman->id_bem = Auth::id();
+                $peminjaman->id_staff = null;
+            }
+
             if ($validated['alasan']) {
                 $peminjaman->alasan_penolakan = $validated['alasan'];
             }

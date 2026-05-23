@@ -17,7 +17,20 @@
         </div>
 
         <div class="verification-list">
-            @forelse (($items ?? [1, 2, 3]) as $item)
+            @php
+                $userRole = Auth::user()?->role ?? null;
+                $filtered = collect($items ?? [])->filter(function($it) use ($userRole) {
+                    if ($userRole === 'staff' || $userRole == 'administrasi') {
+                        return (($it['status'] ?? '') === 'Sudah Terverifikasi');
+                    }
+                    if ($userRole === 'bem') {
+                        return (($it['status'] ?? '') === 'Proses Pengajuan');
+                    }
+                    return true;
+                })->values()->all();
+            @endphp
+
+            @forelse ($filtered as $item)
                 <a href="{{ route('verifikasi-peminjaman-detail', ['id' => $item['id_peminjaman']]) }}" class="verification-card-link">
                     <article class="verification-card">
                         <div class="verification-card-main">

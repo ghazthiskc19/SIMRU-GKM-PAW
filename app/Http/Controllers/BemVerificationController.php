@@ -12,7 +12,7 @@ class BemVerificationController extends Controller
 
     public function index()
     {
-        return view('bem.riwayat_verifikasi', $this->verificationHistoryService->getList('Oktober 2025'));
+        return view('bem.riwayat_verifikasi', $this->verificationHistoryService->getList());
     }
 
     public function detail(int $id)
