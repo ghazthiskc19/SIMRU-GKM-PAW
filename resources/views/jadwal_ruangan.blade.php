@@ -14,19 +14,19 @@
             <span class="room-filter-label">Filter Ruangan</span>
             <div id="room-filter-group" class="room-filter-group" role="group" aria-label="Filter ruangan">
                 <label class="room-check-item">
-                    <input type="checkbox" class="room-filter-checkbox" value="gkm-41" checked>
+                    <input type="checkbox" class="room-filter-checkbox" value="1" checked>
                     <span>GKM 4.1</span>
                 </label>
                 <label class="room-check-item">
-                    <input type="checkbox" class="room-filter-checkbox" value="gkm-42" checked>
+                    <input type="checkbox" class="room-filter-checkbox" value="2" checked>
                     <span>GKM 4.2</span>
                 </label>
                 <label class="room-check-item">
-                    <input type="checkbox" class="room-filter-checkbox" value="gkm-31" checked>
+                    <input type="checkbox" class="room-filter-checkbox" value="3" checked>
                     <span>GKM 3.1</span>
                 </label>
                 <label class="room-check-item">
-                    <input type="checkbox" class="room-filter-checkbox" value="gkm-lt1" checked>
+                    <input type="checkbox" class="room-filter-checkbox" value="4" checked>
                     <span>GKM Lt.1</span>
                 </label>
             </div>

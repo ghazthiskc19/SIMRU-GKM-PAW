@@ -121,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const roomFromQuery = params.get('ruangan');
 
     const roomMap = {
-        '1': 'gkm-41',
-        '2': 'gkm-42',
-        '3': 'gkm-31',
-        '4': 'gkm-lt1',
+        '1': '1',
+        '2': '2',
+        '3': '3',
+        '4': '4',
     };
 
     if (roomFromQuery && roomMap[roomFromQuery]) {

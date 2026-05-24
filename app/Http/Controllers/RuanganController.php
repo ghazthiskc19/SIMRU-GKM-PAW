@@ -58,19 +58,26 @@ class RuanganController extends Controller
         return view('peminjaman_ruangan', compact('ruangan', 'data'));
     }
 
-    public function getJadwal()
+    public function getJadwal(Request $request)
     {
-        $data = Peminjaman::where('status_peminjaman', 'Disetujui')
-            ->get()
-            ->map(function ($item) {
-                return [
-                    'title' => $item->nama_kegiatan,
-                    'start' => $item->waktu_mulai,
-                    'end' => $item->waktu_selesai,
-                    'extendedProps' => [
-                        'roomId' => $item->id_ruangan,
-                    ],
-                ];
+        $rooms = $request->rooms; // array id ruangan
+
+        $query = Peminjaman::where('status_peminjaman', 'Sudah Tervalidasi/Disetujui');
+
+        // kalau ada filter ruangan
+        if (!empty($rooms)) {
+            $query->whereIn('id_ruangan', $rooms);
+        }
+
+        $data = $query->get()->map(function ($item) {
+            return [
+                'title' => $item->nama_kegiatan,
+                'start' => $item->waktu_mulai,
+                'end' => $item->waktu_selesai,
+                'extendedProps' => [
+                'roomId' => $item->id_ruangan,
+                ],
+            ];
         });
 
         return response()->json($data);
