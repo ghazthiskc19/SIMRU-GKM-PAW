@@ -515,6 +515,12 @@ class StudentHistoryController extends Controller
                 $peminjaman->status_peminjaman = 'Sudah Tervalidasi/Disetujui';
                 $peminjaman->id_staff = Auth::id();
                 // biarkan id_bem tetap terisi dari verifikasi BEM sebelumnya
+
+                $room = Ruangan::find($peminjaman->id_ruangan);
+                if ($room) {
+                    $room->status_ruangan = 'Tidak Tersedia';
+                    $room->save();
+                }
             } else {
                 // fallback untuk role lain
                 $peminjaman->status_peminjaman = 'Disetujui';
@@ -534,6 +540,7 @@ class StudentHistoryController extends Controller
         }
 
         $peminjaman->save();
+        RuanganController::refreshRoomStatuses();
 
         return redirect()->route('verifikasi-peminjaman')
             ->with('success', 'Status peminjaman berhasil diperbarui.');

@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
+use App\Models\ruangan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+
 class PeminjamanController extends Controller
 {
     public function peminjaman(Request $request)
     {
+        RuanganController::refreshRoomStatuses();
+
         $dokumenPaths = [];
 
         if ($request->hasFile('dokumen')) {
             foreach ($request->file('dokumen') as $file) {
                 $dokumenPaths[] = $file->store('dokumen');
             }
+        }
+
+        $selectedRoom = ruangan::findOrFail($request->ruangan_id);
+        if (strtolower($selectedRoom->status_ruangan) === 'tidak tersedia') {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Ruangan ini sedang tidak tersedia dan tidak bisa dipinjam.');
         }
 
         // Determine user id: prefer authenticated user, otherwise find or create by NIM
