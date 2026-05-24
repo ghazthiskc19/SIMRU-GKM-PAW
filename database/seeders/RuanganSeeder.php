@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -14,47 +13,60 @@ class RuanganSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('ruangan')->insertOrIgnore([
+        $items = [
             [
-                "nama_ruangan"=> "GKM 4.1",
-                "status_ruangan"=> "Tersedia",
-                "fasilitas"=> "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
-                "kapasitas"=> "80 Orang",
-                "lokasi"=> "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
-                "path_images"=> json_encode (["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]),
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now(),
+                'id_ruangan' => 1,
+                'nama_ruangan' => 'GKM 4.1',
+                'status' => 'Tersedia',
+                'fasilitas' => 'AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone',
+                'kapasitas' => '80 Orang',
+                'lokasi' => 'Gedung GKM lantai 4 Fakultas Ilmu Komputer',
+                'images' => ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png'],
             ],
             [
-                "nama_ruangan"=> "GKM 4.2",
-                "status_ruangan"=> "Tersedia",
-                "fasilitas"=> "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
-                "kapasitas"=> "80 Orang",
-                "lokasi"=> "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
-                "path_images"=> json_encode ( ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]),
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now(),
+                'id_ruangan' => 2,
+                'nama_ruangan' => 'GKM 4.2',
+                'status' => 'Tersedia',
+                'fasilitas' => 'AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone',
+                'kapasitas' => '80 Orang',
+                'lokasi' => 'Gedung GKM lantai 4 Fakultas Ilmu Komputer',
+                'images' => ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png'],
             ],
             [
-                "nama_ruangan"=> "GKM 4.3",
-                "status_ruangan"=> "Tersedia",
-                "fasilitas"=> "AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
-                "kapasitas"=> "80 Orang",
-                "lokasi"=> "Gedung GKM lantai 4 Fakultas Ilmu Komputer",
-                "path_images"=> json_encode ( ["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]),
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now(),
+                'id_ruangan' => 3,
+                'nama_ruangan' => 'GKM 4.3',
+                'status' => 'Tersedia',
+                'fasilitas' => 'AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone',
+                'kapasitas' => '80 Orang',
+                'lokasi' => 'Gedung GKM lantai 4 Fakultas Ilmu Komputer',
+                'images' => ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png'],
             ],
             [
-                "nama_ruangan"=>"GKM Lantai 1",
-                "status_ruangan"=>"Tersedia",
-                "fasilitas"=>"AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone",
-                "kapasitas"=>"200 Orang",
-                "lokasi"=>"Gedung GKM lantai 1 Fakultas Ilmu Komputer",
-                "path_images"=> json_encode (["/images/hero_ruangan.png", "/images/hero_ruangan.png", "/images/hero_ruangan.png" ]),
-                "created_at" => Carbon::now(),
-                "updated_at" => Carbon::now(),
-            ]
-         ]);
+                'id_ruangan' => 4,
+                'nama_ruangan' => 'GKM Lantai 1',
+                'status' => 'Tersedia',
+                'fasilitas' => 'AC, Sound System, In Focus, Layer In Focus, Meja Panjang, Kursi, Microphone',
+                'kapasitas' => '200 Orang',
+                'lokasi' => 'Gedung GKM lantai 1 Fakultas Ilmu Komputer',
+                'images' => ['/images/hero_ruangan.png', '/images/hero_ruangan.png', '/images/hero_ruangan.png'],
+            ],
+        ];
+
+        $now = Carbon::now();
+        $rows = array_map(function ($item) use ($now) {
+            return [
+                'id_ruangan' => $item['id_ruangan'] ?? null,
+                'nama_ruangan' => $item['nama_ruangan'] ?? null,
+                'status_ruangan' => $item['status'] ?? ($item['status_ruangan'] ?? null),
+                'fasilitas' => $item['fasilitas'] ?? null,
+                'kapasitas' => $item['kapasitas'] ?? null,
+                'lokasi' => $item['lokasi'] ?? null,
+                'path_images' => isset($item['images']) ? json_encode($item['images']) : (isset($item['path_images']) ? json_encode($item['path_images']) : null),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
+        }, $items);
+
+        DB::table('ruangan')->insertOrIgnore($rows);
     }
 }

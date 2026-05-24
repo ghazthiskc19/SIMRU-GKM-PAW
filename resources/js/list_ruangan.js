@@ -68,6 +68,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Confirmation dialog for submit actions
+    const confirmForms = document.querySelectorAll('[data-confirm-submit]');
+
+    confirmForms.forEach(form => {
+        form.addEventListener('submit', (event) => {
+            const message = form.getAttribute('data-confirm-submit') || 'Apakah Anda yakin ingin melanjutkan?';
+
+            if (!window.confirm(message)) {
+                event.preventDefault();
+            }
+        });
+    });
+
     // Header back button
     const backButton = document.querySelector('.header-back');
     if (backButton) {

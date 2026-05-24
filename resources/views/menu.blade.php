@@ -98,11 +98,11 @@
                         <span class="menu-label">Validasi Laporan</span>
                     </a>
 
-                    <a href="{{ route('staff.bem.create') }}" class="menu-item">
+                    <a href="{{ route('staff.bem.index') }}" class="menu-item">
                         <div class="menu-icon-box">
-                            <img src="{{ asset('images/tambah_akun_bem.svg') }}" alt="Tambah Akun BEM">
+                            <img src="{{ asset('images/tambah_akun_bem.svg') }}" alt="Manage Akun BEM">
                         </div>
-                        <span class="menu-label">Tambah Akun BEM</span>
+                        <span class="menu-label">Manage Akun BEM</span>
                     </a>
 
                     <a href="{{ route('laporan-generate') }}" class="menu-item">

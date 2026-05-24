@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Ruangan - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', 'Detail Ruangan - ' . $detailRuangan->nama_ruangan . ' - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/list_ruangan_detail_style.css'])
@@ -15,6 +15,9 @@
 
 
 @section('page')
+    @php
+        $userRole = auth()->user()?->role;
+    @endphp
     @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
 
     <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
@@ -23,7 +26,7 @@
                 <h3 class="ruangan-name" id="detail-room-name-chip">{{ $ruangan['nama_ruangan'] }}</h3>
             </div>
             <div class="status-ruangan-container">
-                <h3 class="status-ruangan" id="detail-room-status">{{ $ruangan['status'] }}</h3>
+                <h3 class="status-ruangan" id="detail-room-status">{{ $ruangan['status_ruangan'] }}</h3>
             </div>
         </div>
 
@@ -62,6 +65,13 @@
                 </div>
             </div>
         </div>
+
+        @if($userRole == 'administrasi')
+            <div class="btn-wrapper-crud">
+                <a href="{{ route('staff.ruangan.edit-ruangan', ['id' => $ruangan->id_ruangan]) }}" class="btn-crud btn-edit">Edit</a>
+                <button type="button" class="btn-crud btn-delete">Delete</button>
+            </div>
+        @endif
     </div>
 
     <div class="pinjam-action-bar">

@@ -200,6 +200,41 @@ body {
     font-weight: 500;
 }
 
+/* CRUD buttons (Create / Edit / Delete) */
+.btn-wrapper-crud {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    padding: 0 14px 14px;
+}
+
+.btn-wrapper-crud .btn-crud {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-wrapper-crud .btn-create {
+    background: #2f6f4e;
+}
+
+.btn-wrapper-crud .btn-edit {
+    background: #f0b429;
+    color: #1f1f1f;
+}
+
+.btn-wrapper-crud .btn-delete {
+    background: #d64545;
+}
+
 /* Button Lihat Detail */
 .btn-detail-ruangan {
     background: #FFD700;
