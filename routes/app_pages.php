@@ -54,7 +54,7 @@ Route::middleware('auth.session')->group(function () {
     Route::get('/staff/ruangan', [RuanganController::class, 'dataListRuangan'])->name('staff.ruangan.index');
 });
 
-Route::middleware(['auth.session', 'role:mahasiswa'])->group(function () {
+Route::middleware(['auth.session', 'role:mahasiswa,bem,staff,administrasi'])->group(function () {
     Route::get('/riwayat_peminjaman', [StudentHistoryController::class, 'index'])
         ->name('riwayat-peminjaman');
 

@@ -38,7 +38,7 @@
                         <span class="menu-label">Verifikasi Peminjaman Ruangan</span>
                     </a>
 
-                    <a href="{{ route('riwayat-verifikasi') }}" class="menu-item">
+                    <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
                         <div class="menu-icon-box">
                             <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Verifikasi">
                         </div>
@@ -53,7 +53,7 @@
                         <span class="menu-label">Validasi Peminjaman Ruangan</span>
                     </a>
 
-                    <a href="{{ route('riwayat-verifikasi') }}" class="menu-item">
+                    <a href="{{ route('riwayat-peminjaman') }}" class="menu-item">
                         <div class="menu-icon-box">
                             <img src="{{ asset('images/icon_riwayat.svg') }}" alt="Riwayat Verifikasi">
                         </div>
