@@ -27,6 +27,39 @@ body {
     flex-direction: column;
 }
 
+.login-back-button {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.6);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    z-index: 20;
+    padding: 0;
+    text-decoration: none;
+}
+
+.login-back-button img {
+    width: 18px;
+    height: 18px;
+}
+
+.login-back-button:hover {
+    transform: translateY(-1px);
+}
+
+.login-back-button:focus-visible {
+    outline: 2px solid #2b3582;
+    outline-offset: 3px;
+}
+
 /* =========================================
    Elemen Dekoratif (Absolute Positioning)
    ========================================= */

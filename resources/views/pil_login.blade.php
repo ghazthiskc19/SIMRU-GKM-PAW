@@ -8,7 +8,7 @@
 
 @section('page')
     @include('partials.auth-decor')
-
+    @include('partials.auth-back-button', ['fallbackUrl' => route('login')])
     <div class="login-card">
             <h2>Login Staff</h2>
             <p class="subtitle">Pilih jenis akun yang akan digunakan</p>
