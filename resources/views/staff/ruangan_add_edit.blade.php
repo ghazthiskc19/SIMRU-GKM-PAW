@@ -15,7 +15,7 @@
 	@include('partials.header', ['id' => 2, 'judul' => $isEdit ? 'Edit Ruangan' : 'Tambah Ruangan', 'kembaliKe' => '/staff/ruangan'])
 
 	<div class="content form-content">
-		<form id="form-tambah-ruangan" action="{{ $isEdit ? route('edit-ruangan.update', ['id' => $ruangan->id_ruangan]) : route('staff.ruangan.store') }}" method="POST" enctype="multipart/form-data" data-confirm-submit="{{ $isEdit ? 'Yakin ingin memperbarui data ruangan ini?' : 'Yakin ingin menyimpan data ruangan baru?' }}">
+		<form id="form-tambah-ruangan" action="{{ $isEdit ? route('staff.ruangan.update', ['id' => $ruangan->id_ruangan]) : route('staff.ruangan.store') }}" method="POST" enctype="multipart/form-data" data-confirm-submit="{{ $isEdit ? 'Yakin ingin memperbarui data ruangan ini?' : 'Yakin ingin menyimpan data ruangan baru?' }}">
 			@csrf
 			@if($isEdit)
 				@method('PUT')
