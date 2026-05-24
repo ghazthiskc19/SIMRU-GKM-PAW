@@ -29,6 +29,9 @@ class DbVerificationHistoryRepository implements VerificationHistoryRepositoryIn
         $waktuMulai = strtotime($item->waktu_mulai);
         $waktuSelesai = strtotime($item->waktu_selesai);
 
+        // Get user data
+        $user = \App\Models\User::find($item->id_users);
+
         return [
             'id' => $item->id_peminjaman,
             'ruangan' => $this->resolveRuanganName($item->id_ruangan),
@@ -40,6 +43,18 @@ class DbVerificationHistoryRepository implements VerificationHistoryRepositoryIn
             'status_badge_class' => $status['badge'],
             'footer' => $status['footer'],
             'tanggal_pengajuan' => $item->tanggal_pengajuan,
+            // Detail fields
+            'nama' => $user?->name ?? 'Pengguna Tidak Diketahui',
+            'nim' => $user?->nim ?? '-',
+            'program_studi' => $user?->prodi ?? '-',
+            'tanggal_pemakaian' => $this->formatTanggalPemakaian($waktuMulai),
+            'jam_mulai_lengkap' => $waktuMulai ? date('H:i', $waktuMulai) : '-',
+            'jam_selesai_lengkap' => $waktuSelesai ? date('H:i', $waktuSelesai) : '-',
+            'alasan_peminjaman' => $item->nama_kegiatan ?? '-',
+            'sarana_prasarana' => '-',
+            'alat_tambahan' => '-',
+            'dokumen' => $item->path_surat ? [$item->path_surat] : [],
+            'catatan_verifikasi' => $item->alasan_penolakan ?? '-',
         ];
     }
 
