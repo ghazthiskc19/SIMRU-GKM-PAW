@@ -17,6 +17,12 @@
 @section('page')
     @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
 
+    @if(session('error'))
+        <div class="alert error" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="peminjaman-ruangan-container" data-ruangan-id="{{ request('ruangan', 1) }}">
         <div class="room-selector-container">
             <label for="room-select">Pilih Ruangan:</label>

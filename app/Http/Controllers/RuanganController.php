@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
 use App\Models\ruangan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,34 @@ class RuanganController extends Controller
         }
 
         return ruangan::findOrFail($id);
+    }
+
+    public static function refreshRoomStatuses()
+    {
+        $now = Carbon::now();
+        $validatedStatuses = ['Sudah Tervalidasi/Disetujui', 'Disetujui'];
+
+        $rooms = ruangan::where('status_ruangan', 'Tidak Tersedia')->get();
+
+        foreach ($rooms as $room) {
+            /** @var ruangan $room */
+            $hasOngoingOrFutureValidatedBooking = Peminjaman::where('id_ruangan', $room->id_ruangan)
+                ->whereIn('status_peminjaman', $validatedStatuses)
+                ->where('waktu_selesai', '>', $now)
+                ->exists();
+
+            if (!$hasOngoingOrFutureValidatedBooking) {
+                $room->update(['status_ruangan' => 'Tersedia']);
+            }
+        }
+    }
+
+    private function mapRoomToArray(ruangan $room)
+    {
+        return array_merge($room->toArray(), [
+            'status' => $room->status_ruangan,
+            'images' => $room->path_images ? json_decode($room->path_images, true) : [],
+        ]);
     }
 
     public function detailRuangan(Request $request)
@@ -42,18 +71,15 @@ class RuanganController extends Controller
 
     public function peminjaman(Request $request)
     {
+        self::refreshRoomStatuses();
+
         $id = (int) $request->input('ruangan', 1);
+        $ruanganModel = ruangan::findOrFail($id);
 
-        $json = file_get_contents(storage_path('app/data_ruangan.json'));
-        $data = json_decode($json, true);
-
-        $ruangan = collect($data)->first(function ($item) use ($id) {
-            return (int) $item['id_ruangan'] === $id;
-        });
-
-        if (!$ruangan) {
-            abort(404, 'Ruangan tidak ditemukan');
-        }
+        $ruangan = $this->mapRoomToArray($ruanganModel);
+        $data = ruangan::all()->map(function ($room) {
+            return $this->mapRoomToArray($room);
+        })->toArray();
 
         return view('peminjaman_ruangan', compact('ruangan', 'data'));
     }
