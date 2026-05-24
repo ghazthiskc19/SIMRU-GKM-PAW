@@ -38,9 +38,11 @@ class DbVerificationHistoryRepository implements VerificationHistoryRepositoryIn
             'hari_tanggal' => $this->formatTanggalPemakaian($waktuMulai),
             'jam_mulai' => $waktuMulai ? date('H.i', $waktuMulai) : null,
             'jam_selesai' => $waktuSelesai ? date('H.i', $waktuSelesai) : null,
+            'status_raw' => $item->status_peminjaman,
             'status_text' => $status['text'],
             'status_title' => $status['title'],
             'status_badge_class' => $status['badge'],
+            'status_time' => date('d M Y | H.i WIB', strtotime($item->tanggal_pengajuan)),
             'footer' => $status['footer'],
             'tanggal_pengajuan' => $item->tanggal_pengajuan,
             // Detail fields

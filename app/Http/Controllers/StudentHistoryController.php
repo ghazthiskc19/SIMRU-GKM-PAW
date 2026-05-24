@@ -613,7 +613,43 @@ class StudentHistoryController extends Controller
 
     private function laporanItems(): array
     {
-        return $this->loadLaporanItems();
+        try {
+            $items = DB::table('laporan')->orderBy('tanggal_laporan', 'desc')->get();
+
+            return $items->map(function ($row) {
+                $tanggal = date('d F Y', strtotime($row->tanggal_laporan));
+                $dayName = $this->indonesianDayName($row->tanggal_laporan);
+                $hari_tanggal = "$dayName, $tanggal";
+                $pukul = date('H:i', strtotime($row->tanggal_laporan)) . ' WIB';
+                
+                $ruangan = DB::table('ruangan')->where('id_ruangan', $row->id_ruangan)->value('nama_ruangan') ?? 'GKM';
+                $user = DB::table('users')->where('id_users', $row->id_users)->first();
+
+                return [
+                    'id' => $row->id_laporan,
+                    'ruangan' => $ruangan,
+                    'hari_tanggal' => $hari_tanggal,
+                    'pukul' => $pukul,
+                    'status' => $row->status_laporan,
+                    'status_class' => match($row->status_laporan) {
+                        'Sedang Ditinjau' => 'badge-warning',
+                        'Selesai' => 'badge-success',
+                        default => 'badge-info',
+                    },
+                    'footer' => $row->deskripsi_laporan ?? '',
+                    'status_title' => $row->status_laporan,
+                    'status_time' => date('d M Y | H.i WIB', strtotime($row->tanggal_laporan)),
+                    'tanggal' => $tanggal,
+                    'waktu' => $pukul,
+                    'tempat' => $ruangan,
+                    'nama' => $user?->name ?? null,
+                    'nim' => $user?->nim ?? null,
+                    'description' => explode("\n", $row->deskripsi_laporan ?? ''),
+                ];
+            })->toArray();
+        } catch (\Throwable $e) {
+            return [];
+        }
     }
 }
 

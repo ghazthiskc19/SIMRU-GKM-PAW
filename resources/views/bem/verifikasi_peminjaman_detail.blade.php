@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Verifikasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', Auth::user()?->role === 'bem' ? 'Detail Verifikasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM' : 'Detail Validasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/verifikasi_peminjaman_detail_style.css'])
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Verifikasi Peminjaman', 'kembaliKe' => '/verifikasi_peminjaman'])
+    @include('partials.header', ['id' => 2, 'judul' => Auth::user()?->role === 'bem' ? 'Verifikasi Peminjaman' : 'Validasi Peminjaman', 'kembaliKe' => '/verifikasi_peminjaman'])
 
     <div class="content verifikasi-detail-content">
         <div class="card-container-ungu">

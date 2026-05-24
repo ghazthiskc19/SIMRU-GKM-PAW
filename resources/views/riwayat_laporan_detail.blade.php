@@ -27,8 +27,6 @@
             <p>Tanggal: {{ $item['tanggal'] }}</p>
             <p>Waktu: {{ $item['waktu'] }}</p>
             <p>Tempat: {{ $item['tempat'] }}</p>
-            <p>Kegiatan: {{ $item['kegiatan'] }}</p>
-            <p>Lembaga: {{ $item['lembaga'] }}</p>
         </div>
 
         <div class="detail-description">

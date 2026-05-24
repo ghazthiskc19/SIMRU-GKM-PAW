@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Riwayat Verifikasi - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', Auth::user()?->role === 'bem' ? 'Riwayat Verifikasi - Sistem Informasi Manajemen Ruangan GKM' : 'Riwayat Validasi - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/riwayat_style.css'])
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Verifikasi', 'kembaliKe' => '/menu'])
+    @include('partials.header', ['id' => 2, 'judul' => Auth::user()?->role === 'bem' ? 'Riwayat Verifikasi' : 'Riwayat Validasi', 'kembaliKe' => '/menu'])
 
     <div class="content riwayat-content">
         <div class="month-selector">

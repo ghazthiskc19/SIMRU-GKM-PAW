@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Verifikasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', Auth::user()?->role === 'bem' ? 'Verifikasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM' : 'Validasi Peminjaman - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/verifikasi_peminjaman_style.css'])
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Verifikasi Peminjaman', 'kembaliKe' => '/menu'])
+    @include('partials.header', ['id' => 2, 'judul' => Auth::user()?->role === 'bem' ? 'Verifikasi Peminjaman' : 'Validasi Peminjaman', 'kembaliKe' => '/menu'])
 
     <div class="content verifikasi-peminjaman-content">
         <div class="month-selector" aria-label="Pilihan bulan verifikasi peminjaman">

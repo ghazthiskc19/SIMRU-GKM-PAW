@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Riwayat Verifikasi - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', Auth::user()?->role === 'bem' ? 'Detail Riwayat Verifikasi - Sistem Informasi Manajemen Ruangan GKM' : 'Detail Riwayat Validasi - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/detail_riwayat_style.css'])
 @endpush
 
 @section('page')
-    @include('partials.header', ['id' => 2, 'judul' => 'Riwayat Verifikasi', 'kembaliKe' => '/riwayat_verifikasi'])
+    @include('partials.header', ['id' => 2, 'judul' => Auth::user()?->role === 'bem' ? 'Riwayat Verifikasi' : 'Riwayat Validasi', 'kembaliKe' => '/riwayat_verifikasi'])
 
     <div class="content detail-content">
         <section class="status-alert" aria-label="Status verifikasi terkini">
@@ -24,7 +24,7 @@
                 @elseif (str_contains($statusTitle, 'diverifikasi') || str_contains($statusTitle, 'selesai') || str_contains($statusTitle, 'disetujui'))
                     <p>Laporan telah diverifikasi.</p>
                 @else
-                    <p>{{ $detail['status_time'] }}</p>
+                    <p>{{ $detail['status_time'] ?? '' }}</p>
                 @endif
             </div>
         </section>

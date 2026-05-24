@@ -28,15 +28,10 @@
                                 <p>Pukul: {{ $item['pukul'] }}</p>
                                 <div class="status-row">
                                     <span>Status Laporan:</span>
-                                    <span class="badge {{ $item['status_class'] }}">{{ $item['status'] }}</span>
+                                    <span class="badge {{ $item['status_class'] ?? 'badge-info' }}">{{ $item['status'] }}</span>
                                 </div>
                             </div>
                         </div>
-                        @if (!empty($item['footer']))
-                            <div class="card-footer">
-                                {{ $item['footer'] }}
-                            </div>
-                        @endif
                     </div>
                 </a>
             @endforeach

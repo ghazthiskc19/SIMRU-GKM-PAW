@@ -17,14 +17,23 @@ class VerificationHistoryService
         $currentMonth = $now->format('m');
         $currentYear = $now->format('Y');
 
+        $allowedStatuses = [
+            'Sudah Terverifikasi',
+            'Sudah Tervalidasi/Disetujui',
+            'Disetujui',
+        ];
+
         $items = array_filter(
             array_map(
                 static fn (array $item) => VerificationHistoryItem::fromArray($item)->toArray(),
                 $this->repository->all()
             ),
-            static fn (array $item) => !empty($item['tanggal_pengajuan'])
-                && date('m', strtotime($item['tanggal_pengajuan'])) === $currentMonth
-                && date('Y', strtotime($item['tanggal_pengajuan'])) === $currentYear
+            static function (array $item) use ($currentMonth, $currentYear, $allowedStatuses) {
+                return !empty($item['tanggal_pengajuan'])
+                    && in_array($item['status_raw'] ?? '', $allowedStatuses, true)
+                    && date('m', strtotime($item['tanggal_pengajuan'])) === $currentMonth
+                    && date('Y', strtotime($item['tanggal_pengajuan'])) === $currentYear;
+            }
         );
 
         return [
@@ -56,6 +65,21 @@ class VerificationHistoryService
     public function getDetailById(int $id): ?array
     {
         $item = $this->repository->findById($id);
-        return $item ? VerificationHistoryItem::fromArray($item)->toArray() : null;
+        if (!$item) {
+            return null;
+        }
+
+        $detail = VerificationHistoryItem::fromArray($item)->toArray();
+        $allowedStatuses = [
+            'Sudah Terverifikasi',
+            'Sudah Tervalidasi/Disetujui',
+            'Disetujui',
+        ];
+
+        if (!in_array($detail['status_raw'] ?? '', $allowedStatuses, true)) {
+            return null;
+        }
+
+        return $detail;
     }
 }
