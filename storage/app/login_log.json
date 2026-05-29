@@ -372,6 +372,10 @@
     {
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
+<<<<<<< HEAD
         "login_time": "2026-05-29 14:24:03"
+=======
+        "login_time": "2026-05-29 14:24:54"
+>>>>>>> c63a6dea3af1a3cc640e73ea7557ab2ce38ed853
     }
 ]

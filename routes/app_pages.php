@@ -19,7 +19,8 @@ Route::middleware('auth.session')->group(function () {
 
     Route::get('/list_ruangan', [RuanganController::class, 'dataListRuangan'])->name('list-ruangan');
 
-    Route::get('/list_ruangan_detail/{id}', [RuanganController::class, 'detailRuangan'])
+    Route::get('/list_ruangan_detail/{id?}', [RuanganController::class, 'detailRuangan'])
+        ->whereNumber('id')
     ->name('list-ruangan-detail');
 
     Route::get('/list_ruangan_detail/staff', [RuanganController::class, 'detailRuanganStaff'])
