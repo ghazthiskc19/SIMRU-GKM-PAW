@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Detail Ruangan - ' . $detailRuangan->nama_ruangan . ' - Sistem Informasi Manajemen Ruangan GKM')
+@section('title', 'Detail Ruangan - ' . $ruangan->nama_ruangan . ' - Sistem Informasi Manajemen Ruangan GKM')
 
 @push('styles')
     @vite(['resources/css/list_ruangan_detail_style.css'])
@@ -20,7 +20,7 @@
     @endphp
     @include('partials.header', ['id' => 2, 'judul' => 'Peminjaman Ruangan', 'kembaliKe' => '/menu'])
 
-    <div class="list-ruangan-detail-container" data-ruangan-id="{{ request('ruangan', 1) }}">
+    <div class="list-ruangan-detail-container" data-ruangan-id="{{ $ruangan->id_ruangan }}">
         <div class="list-ruangan-detail-status">
             <div class="nama-ruangan-container">
                 <h3 class="ruangan-name" id="detail-room-name-chip">{{ $ruangan['nama_ruangan'] }}</h3>

@@ -13,7 +13,7 @@ class RuanganController extends Controller
     private function findRuanganOrFail($param)
     {
         if ($param instanceof Request) {
-            $id = (int) $param->input('ruangan', 1);
+            $id = (int) ($param->route('id') ?? $param->input('ruangan', 1));
         } else {
             $id = (int) $param;
         }
@@ -62,7 +62,7 @@ class RuanganController extends Controller
     }
 
     public function detailManageRuangan(Request $req){
-        $id = (int) $req->input('ruangan', 1);
+        $id = (int) ($req->route('id') ?? $req->input('ruangan', 1));
 
         $ruangan = ruangan::findOrFail($id);
 
