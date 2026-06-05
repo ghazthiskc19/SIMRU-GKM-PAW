@@ -11,11 +11,10 @@ class VerificationHistoryService
     {
     }
 
-    public function getList(): array
+    public function getList(?string $month = null): array
     {
-        $now = new \DateTimeImmutable();
-        $currentMonth = $now->format('m');
-        $currentYear = $now->format('Y');
+        $selectedDate = $this->resolveSelectedDate($month);
+        $selectedMonth = $this->formatMonthLabel($selectedDate);
 
         $allowedStatuses = [
             'Sudah Terverifikasi',
@@ -28,18 +27,34 @@ class VerificationHistoryService
                 static fn (array $item) => VerificationHistoryItem::fromArray($item)->toArray(),
                 $this->repository->all()
             ),
-            static function (array $item) use ($currentMonth, $currentYear, $allowedStatuses) {
+            static function (array $item) use ($selectedDate, $allowedStatuses) {
                 return !empty($item['tanggal_pengajuan'])
                     && in_array($item['status_raw'] ?? '', $allowedStatuses, true)
-                    && date('m', strtotime($item['tanggal_pengajuan'])) === $currentMonth
-                    && date('Y', strtotime($item['tanggal_pengajuan'])) === $currentYear;
+                    && date('Y-m', strtotime($item['tanggal_pengajuan'])) === $selectedDate->format('Y-m');
             }
         );
 
+        $previousMonth = $selectedDate->modify('-1 month')->format('Y-m');
+        $nextMonth = $selectedDate->modify('+1 month')->format('Y-m');
+
         return [
-            'selectedMonth' => $this->formatMonthLabel($now),
+            'selectedMonth' => $selectedMonth,
             'items' => array_values($items),
+            'previousMonth' => $previousMonth,
+            'nextMonth' => $nextMonth,
         ];
+    }
+
+    private function resolveSelectedDate(?string $month): \DateTimeImmutable
+    {
+        if ($month && preg_match('/^\d{4}-\d{2}$/', $month)) {
+            $date = \DateTimeImmutable::createFromFormat('Y-m-d', $month . '-01');
+            if ($date !== false) {
+                return $date;
+            }
+        }
+
+        return new \DateTimeImmutable('first day of this month');
     }
 
     private function formatMonthLabel(\DateTimeInterface $date): string
