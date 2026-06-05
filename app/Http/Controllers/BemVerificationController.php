@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Bem\VerificationHistoryService;
+use Illuminate\Http\Request;
 
 class BemVerificationController extends Controller
 {
@@ -10,9 +11,9 @@ class BemVerificationController extends Controller
     {
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('bem.riwayat_verifikasi', $this->verificationHistoryService->getList());
+        return view('bem.riwayat_verifikasi', $this->verificationHistoryService->getList($request->query('month')));
     }
 
     public function detail(int $id)

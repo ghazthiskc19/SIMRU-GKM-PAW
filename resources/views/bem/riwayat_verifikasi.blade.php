@@ -11,9 +11,9 @@
 
     <div class="content riwayat-content">
         <div class="month-selector">
-            <button class="arrow-btn">&lt;</button>
+            <a class="arrow-btn" href="{{ route('riwayat-verifikasi', ['month' => $previousMonth ?? date('Y-m')]) }}" aria-label="Bulan sebelumnya">&lt;</a>
             <h2>{{ $selectedMonth ?? date('F Y') }}</h2>
-            <button class="arrow-btn">&gt;</button>
+            <a class="arrow-btn" href="{{ route('riwayat-verifikasi', ['month' => $nextMonth ?? date('Y-m')]) }}" aria-label="Bulan berikutnya">&gt;</a>
         </div>
 
         <div class="history-list">

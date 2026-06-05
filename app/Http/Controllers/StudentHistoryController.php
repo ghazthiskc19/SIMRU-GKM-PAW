@@ -192,12 +192,15 @@ class StudentHistoryController extends Controller
         return $days[date('l', strtotime($date))] ?? date('l', strtotime($date));
     }
 
-    public function verifikasiPeminjaman()
+    public function verifikasiPeminjaman(Request $request)
     {
+        $selectedDate = $this->resolveSelectedDate($request->query('month'));
+        $selectedMonth = $this->formatMonthLabel($selectedDate);
+
         $items = $this->historyItems();
         $userRole = Auth::user()?->role ?? null;
 
-        if ($userRole === 'staff') {
+        if ($userRole === 'staff' || $userRole === 'administrasi') {
             $items = array_values(array_filter($items, function ($it) {
                 return (($it['status'] ?? '') === 'Sudah Terverifikasi');
             }));
@@ -207,8 +210,20 @@ class StudentHistoryController extends Controller
             }));
         }
 
+        // Filter by selected month
+        $items = array_values(array_filter($items, function ($item) use ($selectedDate) {
+            return !empty($item['tanggal_pengajuan'])
+                && date('Y-m', strtotime($item['tanggal_pengajuan'])) === $selectedDate->format('Y-m');
+        }));
+
+        $previousMonth = $selectedDate->modify('-1 month')->format('Y-m');
+        $nextMonth = $selectedDate->modify('+1 month')->format('Y-m');
+
         return view('bem.verifikasi_peminjaman', [
             'items' => $items,
+            'selectedMonth' => $selectedMonth,
+            'previousMonth' => $previousMonth,
+            'nextMonth' => $nextMonth,
         ]);
     }
 

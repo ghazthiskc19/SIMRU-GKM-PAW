@@ -11,9 +11,9 @@
 
     <div class="content verifikasi-peminjaman-content">
         <div class="month-selector" aria-label="Pilihan bulan verifikasi peminjaman">
-            <button class="month-arrow" type="button" aria-label="Bulan sebelumnya">◀</button>
+            <a class="month-arrow" href="{{ route('verifikasi-peminjaman', ['month' => $previousMonth ?? date('Y-m')]) }}" aria-label="Bulan sebelumnya">◀</a>
             <h2>{{ $selectedMonth ?? 'Oktober 2025' }}</h2>
-            <button class="month-arrow" type="button" aria-label="Bulan berikutnya">▶</button>
+            <a class="month-arrow" href="{{ route('verifikasi-peminjaman', ['month' => $nextMonth ?? date('Y-m')]) }}" aria-label="Bulan berikutnya">▶</a>
         </div>
 
         <div class="verification-list">
