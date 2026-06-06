@@ -550,7 +550,7 @@ class StudentHistoryController extends Controller
         })->toArray();
 
         if (class_exists(Pdf::class)) {
-            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('staff.peminjaman_report', ['items' => $peminjaman]);
+            $pdf = Pdf::loadView('staff.peminjaman_report', ['items' => $peminjaman]);
             $filename = 'laporan_peminjaman_' . date('Ymd_His') . '.pdf';
             return $pdf->download($filename);
         }
