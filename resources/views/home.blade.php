@@ -15,9 +15,9 @@
                 <div class="calendar-title-wrap">
                     <h2 class="calendar-title">Kalender</h2>
                 </div>
-                <button class="calendar-action" type="button" aria-label="Kalender">
+                <a class="calendar-action" href="{{ route('jadwal-ruangan') }}" aria-label="Buka Jadwal Ruangan">
                     <img src="{{ asset('images/icon_jadwal.svg') }}" alt="Kalender">
-                </button>
+                </a>
             </div>
 
             <div id="home-calendar" class="home-calendar"></div>

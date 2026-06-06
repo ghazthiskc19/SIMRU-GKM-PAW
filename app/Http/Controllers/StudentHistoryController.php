@@ -20,8 +20,8 @@ class StudentHistoryController extends Controller
         $selectedMonth = $this->formatMonthLabel($selectedDate);
 
         $items = array_values(array_filter($this->historyItems(), function ($item) use ($selectedDate) {
-            return !empty($item['tanggal_pengajuan'])
-                && date('Y-m', strtotime($item['tanggal_pengajuan'])) === $selectedDate->format('Y-m');
+            return !empty($item['tanggal_pemakaian_raw'])
+                && date('Y-m', strtotime($item['tanggal_pemakaian_raw'])) === $selectedDate->format('Y-m');
         }));
 
         $previousMonth = $selectedDate->modify('-1 month')->format('Y-m');
@@ -205,8 +205,8 @@ class StudentHistoryController extends Controller
 
         // Filter by selected month
         $items = array_values(array_filter($items, function ($item) use ($selectedDate) {
-            return !empty($item['tanggal_pengajuan'])
-                && date('Y-m', strtotime($item['tanggal_pengajuan'])) === $selectedDate->format('Y-m');
+            return !empty($item['tanggal_pemakaian_raw'])
+                && date('Y-m', strtotime($item['tanggal_pemakaian_raw'])) === $selectedDate->format('Y-m');
         }));
 
         $previousMonth = $selectedDate->modify('-1 month')->format('Y-m');
@@ -386,6 +386,7 @@ class StudentHistoryController extends Controller
                     'status_title' => $statusMap['title'],
                     'status_time' => date('d M Y | H.i WIB', strtotime($item->tanggal_pengajuan)),
                     'tanggal_pengajuan' => $item->tanggal_pengajuan,
+                    'tanggal_pemakaian_raw' => date('Y-m-d', strtotime($item->waktu_mulai)),
                     'tanggal_pemakaian' => $tanggal,
                     'waktu' => $timeLabel,
                     'tempat' => $ruangan,
