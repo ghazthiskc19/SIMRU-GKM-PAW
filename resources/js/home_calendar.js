@@ -47,23 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
             minute: '2-digit',
             hour12: false,
         },
-        events: [
-            {
-                title: 'GKM 4.1',
-                start: new Date(year, month, day, 5, 45),
-                end: new Date(year, month, day, 8, 15),
-            },
-            {
-                title: 'Ruang Sidang A',
-                start: new Date(year, month, day + 1, 13, 0),
-                end: new Date(year, month, day + 1, 15, 0),
-            },
-            {
-                title: 'Lab 2.3',
-                start: new Date(year, month, day + 2, 9, 0),
-                end: new Date(year, month, day + 2, 10, 30),
-            },
-        ],
+        events: function(fetchInfo, successCallback, failureCallback) {
+            fetch('/api/jadwal')
+                .then(res => res.json())
+                .then(data => successCallback(data))
+                .catch(err => failureCallback(err));
+        },
         
         // Hooks untuk format time dengan dot
         slotLabelDidMount(info) {
