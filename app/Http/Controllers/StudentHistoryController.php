@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Ruangan;
 use App\Models\User;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StudentHistoryController extends Controller
 {
@@ -76,9 +78,6 @@ class StudentHistoryController extends Controller
         try {
             $validated = $request->validate([
                 'ruangan' => 'required|string',
-                'nama' => 'required|string',
-                'nim' => 'required|string',
-                'prodi' => 'required|string',
                 'tanggal' => 'required|date',
                 'waktu' => 'required',
                 'permasalahan' => 'required|string',
@@ -90,48 +89,33 @@ class StudentHistoryController extends Controller
             return back()->withErrors($e->errors())->withInput();
         }
 
-        $path = $this->getLaporanJsonPath();
-        $items = $this->loadLaporanItems();
-
-        $nextId = collect($items)->pluck('id')->max();
-        $nextId = $nextId ? $nextId + 1 : 1;
-
         $roomLabel = match ($validated['ruangan']) {
             'gkm4.1' => 'GKM 4.1',
             'gkm4.2' => 'GKM 4.2',
-            'gkm3.1' => 'GKM 3.1',
+            'gkm4.3' => 'GKM 4.3',
+            'gkm-lantai-1' => 'GKM Lantai 1',
             default => strtoupper($validated['ruangan']),
         };
 
-        $tanggal = date('d F Y', strtotime($validated['tanggal']));
-        $dayName = $this->indonesianDayName($validated['tanggal']);
-        $formattedDate = "$dayName, $tanggal";
-        $timeLabel = date('H:i', strtotime($validated['waktu'])) . ' WIB';
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            return back()->withErrors(['error' => 'Data mahasiswa tidak ditemukan.'])->withInput();
+        }
 
-        $newItem = [
-            'id' => $nextId,
-            'ruangan' => $roomLabel,
-            'hari_tanggal' => $formattedDate,
-            'pukul' => $timeLabel,
-            'status' => 'Sedang Ditinjau',
-            'status_class' => 'badge-warning',
-            'footer' => 'Laporan telah dikirim dan sedang ditinjau oleh staf.',
-            'status_title' => 'Laporan Sedang Ditinjau',
-            'status_time' => date('d M Y | H.i WIB'),
-            'tanggal' => $tanggal,
-            'waktu' => $timeLabel,
-            'tempat' => $roomLabel,
-            'kegiatan' => 'Laporan Masalah',
-            'lembaga' => $validated['prodi'],
-            'nama' => $validated['nama'],
-            'nim' => $validated['nim'],
-            'description' => [
-                'Nama: ' . $validated['nama'],
-                'NIM: ' . $validated['nim'],
-                'Program Studi: ' . $validated['prodi'],
-                'Detail Laporan: ' . $validated['permasalahan'],
-            ],
-        ];
+        $ruangan = DB::table('ruangan')->where('nama_ruangan', $roomLabel)->first();
+        if (!$ruangan) {
+            return back()->withErrors(['ruangan' => 'Ruangan yang dipilih tidak ditemukan.'])->withInput();
+        }
+
+        $tanggalLaporan = Carbon::createFromFormat('Y-m-d H:i', $validated['tanggal'] . ' ' . $validated['waktu']);
+        $description = implode("\n", [
+            'Nama: ' . $user->name,
+            'NIM: ' . $user->nim,
+            'Program Studi: ' . $user->prodi,
+            'Detail Laporan: ' . $validated['permasalahan'],
+        ]);
+
+        $pathFoto = null;
 
         if ($request->hasFile('dokumen')) {
             $uploaded = [];
@@ -139,14 +123,23 @@ class StudentHistoryController extends Controller
                 $uploaded[] = $file->store('laporan_files', 'local');
             }
             if (!empty($uploaded)) {
-                $newItem['dokumen'] = array_map(fn($path) => basename($path), $uploaded);
+                $pathFoto = $uploaded[0];
             }
         }
 
-        $items[] = $newItem;
-        $result = file_put_contents($path, json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-        if ($result === false) {
+        try {
+            DB::table('laporan')->insert([
+                'id_users' => $user->id_users,
+                'id_ruangan' => $ruangan->id_ruangan,
+                'status_laporan' => 'Sedang Ditinjau',
+                'path_foto' => $pathFoto,
+                'tanggal_laporan' => $tanggalLaporan,
+                'deskripsi_laporan' => $description,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } catch (\Throwable $e) {
+            Log::error('Gagal menyimpan laporan ke database', ['error' => $e->getMessage()]);
             return back()->withErrors(['error' => 'Gagal menyimpan laporan.']);
         }
 
@@ -411,66 +404,6 @@ class StudentHistoryController extends Controller
         } catch (\Throwable $e) {
             // If DB read fails, fall back to JSON (original logic preserved below)
         }
-
-        /*
-        // Original JSON-based implementation (kept as backup)
-        $path = storage_path('app/data_peminjaman.json');
-
-        if (!file_exists($path)) {
-            return [];
-        }
-
-        $json = file_get_contents($path);
-        $data = json_decode($json, true);
-
-        if (!is_array($data)) {
-            return [];
-        }
-
-        return array_map(function($item) {
-            $ruanganMap = [
-                '1' => 'GKM 4.1',
-                '2' => 'GKM 4.2',
-                '3' => 'GKM 3.1',
-            ];
-
-            $ruangan = $ruanganMap[$item['ruangan_id']] ?? 'GKM ' . $item['ruangan_id'];
-
-            $tanggal = date('d F Y', strtotime($item['tanggal_pemakaian']));
-            $dayName = $this->indonesianDayName($item['tanggal_pemakaian']);
-            $formattedDate = "$dayName, $tanggal";
-            $timeLabel = date('H:i', strtotime($item['jam_mulai'])) . ' - ' . date('H:i', strtotime($item['jam_selesai'])) . ' WIB';
-
-            return [
-                'id_peminjaman' => $item['id_peminjaman'],
-                'ruangan' => $ruangan,
-                'hari_tanggal' => $formattedDate,
-                'pukul' => $timeLabel,
-                'status' => $item['status'],
-                'status_class' => 'badge-success',
-                'footer' => 'Peminjaman telah selesai dilaksanakan.',
-                'status_title' => 'Peminjaman Selesai',
-                'status_time' => date('d M Y | H.i WIB', strtotime($item['tanggal_pemakaian'])),
-                'tanggal_pemakaian' => $tanggal,
-                'waktu' => $timeLabel,
-                'tempat' => $ruangan,
-                'kegiatan' => $item['alasan_peminjaman'] ?? 'Kegiatan Organisasi',
-                'lembaga' => $item['prodi'],
-                'nama' => $item['nama'],
-                'nim' => $item['nim'],
-                'description' => [
-                    'Nama: ' . $item['nama'],
-                    'NIM: ' . $item['nim'],
-                    'Program Studi: ' . $item['prodi'],
-                    'Alasan Peminjaman: ' . ($item['alasan_peminjaman'] ?? ''),
-                    'Sarana Prasarana: ' . ($item['sarana_prasarana'] ?? ''),
-                    'Alat Tambahan: ' . ($item['alat_tambahan'] ?? ''),
-                ],
-            ];
-        }, $data);
-        */
-
-        // Ensure function always returns an array on all code paths
         return [];
     }
 
@@ -616,9 +549,8 @@ class StudentHistoryController extends Controller
             ];
         })->toArray();
 
-        // If dompdf package is available, generate PDF, otherwise return HTML view for preview
-        if (class_exists(\Barryvdh\DomPDF\Facade\Pdf::class)) {
-            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('staff.peminjaman_report', ['items' => $peminjaman]);
+        if (class_exists(Pdf::class)) {
+            $pdf = Pdf::loadView('staff.peminjaman_report', ['items' => $peminjaman]);
             $filename = 'laporan_peminjaman_' . date('Ymd_His') . '.pdf';
             return $pdf->download($filename);
         }
@@ -667,4 +599,3 @@ class StudentHistoryController extends Controller
         }
     }
 }
-

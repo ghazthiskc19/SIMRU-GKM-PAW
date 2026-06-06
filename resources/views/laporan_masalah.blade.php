@@ -16,7 +16,8 @@
                 <select class="room-select" name="ruangan" required>
                     <option value="gkm4.1">GKM 4.1</option>
                     <option value="gkm4.2">GKM 4.2</option>
-                    <option value="gkm3.1">GKM 3.1</option>
+                    <option value="gkm4.3">GKM 4.3</option>
+                    <option value="gkm-lantai-1">GKM Lantai 1</option>
                 </select>
                 <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </div>
@@ -44,4 +45,3 @@
 
     @include('partials.footer-submit', ['teks' => 'Submit', 'formId' => 'form-laporan'])
 @endsection
-

@@ -17,16 +17,24 @@
     {
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
+<<<<<<< HEAD
         "login_time": "2026-06-05 15:06:06"
+=======
+        "login_time": "2026-06-06 03:38:36"
+>>>>>>> 2cf8de0bb6b0b634d99a1fc7ea50e044a2ba71d2
     },
     {
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
+<<<<<<< HEAD
         "login_time": "2026-06-06 03:39:51"
     },
     {
         "email": "prabowo@gmail.com",
         "role": "mahasiswa",
         "login_time": "2026-06-06 03:52:39"
+=======
+        "login_time": "2026-06-06 04:08:10"
+>>>>>>> 2cf8de0bb6b0b634d99a1fc7ea50e044a2ba71d2
     }
 ]
